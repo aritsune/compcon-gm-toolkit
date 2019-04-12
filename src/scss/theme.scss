@@ -1,0 +1,16 @@
+$theme-colors: (
+  "role--striker": #bd3f39,
+  "role--tank": #d67e08,
+  "role--controller": #398ad6,
+  "role--support": #6aa84f,
+  "role--artillery": #a64d79,
+  //
+  "system--weapon": #cc0000,
+  "system--system": #2aa780,
+  "system--trait": #bd6579,
+  "system--tech": #26678e,
+  "system--reaction": #83b03c
+);
+
+@import '~bootstrap/scss/bootstrap.scss';
+@import '~bootstrap-vue/src/index.scss';

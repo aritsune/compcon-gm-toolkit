@@ -1,0 +1,254 @@
+[{
+        "name": "scourer",
+        "role": "striker",
+        "info": {
+            "flavor": "SCOURER doctrine mechs mount massive-output recursive power plants in order to field deadly energy weapons. A common specialist-role doctrine, SCOURER chassis are found on fronts across the galaxy, supporting kinetic-focus ground troops with powerful lensing attacks that target not only corporeal enemies, but systemic threats.",
+            "tactics": "The Scourer deals powerful single target damage if it keeps attacking the same target. Switching targets will greatly reduce its effectiveness, and it needs to stay still to take advantage of its weapons systems."
+        },
+        "stats": [{
+            "hp": 10,
+            "evade": 8,
+            "edef": 8,
+            "heatcap": 8,
+            "hull": 1,
+            "agility": 0,
+            "systems": 0,
+            "engineering": 1,
+            "armor": 2,
+            "speed": 4,
+            "sensor": 10,
+            "save": 10
+        }, {
+            "hp": 13,
+            "evade": 9,
+            "edef": 8,
+            "heatcap": 8,
+            "hull": 2,
+            "agility": 1,
+            "systems": 0,
+            "engineering": 2,
+            "armor": 2,
+            "speed": 4,
+            "sensor": 10,
+            "save": 12
+        }, {
+            "hp": 15,
+            "evade": 10,
+            "edef": 8,
+            "heatcap": 12,
+            "hull": 3,
+            "agility": 1,
+            "systems": 1,
+            "engineering": 4,
+            "armor": 2,
+            "speed": 4,
+            "sensor": 10,
+            "save": 14
+        }],
+        "size": 1,
+        "systems": {
+            "base": [{
+                    "name": "Thermal Lance",
+                    "type": "weapon",
+                    "weapon_type": "Heavy Cannon",
+                    "tags": "4 heat (self)",
+                    "weapon_roll": {
+                        "flat": {
+                            "val": 1,
+                            "pertier": true
+                        },
+                        "accdiff": {
+                            "val": 1,
+                            "pertier": false
+                        }
+                    },
+                    "range": "Range 8",
+                    "damage": [6, 8, 10],
+                    "damage_type": "energy"
+                },
+                {
+                    "name": "Focus Down",
+                    "type": "trait",
+                    "effect": "If the Scourer hit a character with the Thermal Lance that it already hit with the Thermal Lance in the previous turn, that character also takes burn 5/7/8."
+                },
+                {
+                    "name": "Cooling Module",
+                    "type": "system",
+                    "effect": "If the scourer does not move (even involuntarily) between the end of its turn and start of its next turn, it reduces its heat to 0 at the start of its turn."
+                },
+                {
+                    "name": "Ablative Shielding",
+                    "type": "system",
+                    "effect": "The Scourer has resistance to energy damage"
+                }
+            ],
+            "optional": [{
+                    "name": "Supercharged",
+                    "type": "trait",
+                    "effect": "When the Scourer’s Focus Down trait activates, it’s target is also Shredded and Slowed until the end of its next turn."
+                },
+                {
+                    "name": "Emergency Vent",
+                    "type": "trait",
+                    "effect": "When the Scourer Overheats or becomes Shut Down, it immediately becomes invisible until the start of its next turn."
+                },
+                {
+                    "name": "Pulse Laser",
+                    "type": "weapon",
+                    "weapon_type": "Main Cannon",
+                    "tags": "4 heat (self)",
+                    "weapon_roll": {
+                        "flat": {
+                            "val": 2,
+                            "pertier": true
+                        }
+                    },
+                    "range": "Line 10",
+                    "damage": [4, 4, 4],
+                    "effect": "This weapon can attack twice at tier III",
+                    "damage_type": "energy"
+                },
+                {
+                    "name": "Flash Lense",
+                    "type": "system",
+                    "tags": "Quick Action, Recharge (6+)",
+                    "effect": "The Scourer targets a cone 5 area in a direction of its choosing. All characters in the area must pass a systems save or be jammed until the start of the Scourer’s next turn."
+                },
+                {
+                    "name": "Melt",
+                    "type": "system",
+                    "tags": "Quick Action, Recharge (5+)",
+                    "effect": "The scourer targets an object or drone in range 10, then makes a ranged attack, dealing 20 AP energy damage on hit."
+                }
+            ]
+        }
+    },
+    {
+        "name": "assault",
+        "role": "striker",
+        "info": {
+            "flavor": "Assault doctrine mechs and their pilots are the most common main battle chassis found throughout the galaxy. Fitted with a localized version of a main battle rifle, sidearm, and a suite of systems to enhance movement, targeting, and defensive systems, an Assault Doctrine chassis is a straightforward, reliable, hardy combatant. Assault doctrine pilots are the cheapest to train and outfit: this does not make them any less of a threat when paired with a kit of their choice.",
+            "tactics": "The Assault is a straightforward, high damage dealer. Put it in a place where it’s toughness and decent range can be put to good use, and its use Brace reaction on sources of burst damage to maximize its survivability."
+        },
+        "stats": [
+            {
+                "hp": 15,
+                "evade": 8,
+                "edef": 8,
+                "heatcap": 8,
+                "hull": 1,
+                "agility": 1,
+                "systems": 1,
+                "engineering": 1,
+                "armor": 1,
+                "speed": 4,
+                "sensor": 8,
+                "save": 10
+            }, {
+                "hp": 18,
+                "evade": 10,
+                "edef": 10,
+                "heatcap": 8,
+                "hull": 2,
+                "agility": 2,
+                "systems": 2,
+                "engineering": 2,
+                "armor": 1,
+                "speed": 4,
+                "sensor": 8,
+                "save": 12
+            }, {
+                "hp": 21,
+                "evade": 12,
+                "edef": 10,
+                "heatcap": 8,
+                "hull": 3,
+                "agility": 3,
+                "systems": 3,
+                "engineering": 3,
+                "armor": 1,
+                "speed": 4,
+                "sensor": 8,
+                "save": 14
+            }
+        ],
+        "size": 1,
+        "systems": {
+            "base": [
+                {
+                    "type": "weapon",
+                    "name": "Heavy Assault Rifle",
+                    "weapon_type": "Main Rifle",
+                    "tags": "Reliable 2/3/4 TODO",
+                    "weapon_roll": {
+                        "flat": {
+                            "val": 1,
+                            "pertier": true
+                        }
+                    },
+                    "range": "Range 10",
+                    "damage": [6, 8, 10],
+                    "damage_type": "kinetic"
+                },
+                {
+                    "type": "weapon",
+                    "name": "Combat Knife",
+                    "weapon_type": "Auxiliary Melee",
+                    "tags": "",
+                    "weapon_roll": {
+                        "flat": {
+                            "val": 1,
+                            "pertier": true
+                        }
+                    },
+                    "range": "Threat 1",
+                    "damage": [6, 8, 10],
+                    "damage_type": "kinetic"
+                },
+                {
+                    "name": "Brace",
+                    "type": "reaction",
+                    "effect": "The Assault gains resistance to all the damage from one attack that just hit it."
+                }
+            ],
+            "optional": [
+                {
+                    "type": "weapon",
+                    "name": "Underslung Grenade Launcher",
+                    "weapon_type": "Auxiliary Launcher",
+                    "tags": "Loading, Arcing",
+                    "weapon_roll": {
+                        "flat": {
+                            "val": 1,
+                            "pertier": true
+                        }
+                    },
+                    "range": "Range 8, Blast 2",
+                    "damage": [4, 6, 8],
+                    "damage_type": "explosive"
+                },
+                {
+                    "name": "Micro-missile Barrage",
+                    "type": "system",
+                    "recharge": 6,
+                    "effect": "All characters in a line 8 area drawn from the Assault must pass a hull save or take 6/8/10 kinetic damage, or half on a successful save."
+                },
+                {
+                    "name": "High Impact Rounds",
+                    "type": "system",
+                    "effect": "The Heavy Assault rifle can be fired with high caliber rounds, adding +4 kinetic damage and the AP tag, but requiring a reload after firing it this way (as if it had the loading tag)"
+                },
+                {
+                    "name": "Auto-targeting",
+                    "type": "trait",
+                    "effect": "The Assault’s attacks ignore cover penalties (it must still obey line of sight)."
+                },
+                {
+                    "name": "Rank Discipline",
+                    "type": "trait",
+                    "effect": "The Assault gains +1 Accuracy on all its attacks, checks, and saves as long as it’s adjacent to at least one friendly mech."
+                }
+            ]
+        }
+    }
+]
