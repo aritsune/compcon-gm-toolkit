@@ -1,124 +1,121 @@
 [{
-        "name": "scourer",
+        "name": "ace",
         "role": "striker",
         "info": {
-            "flavor": "SCOURER doctrine mechs mount massive-output recursive power plants in order to field deadly energy weapons. A common specialist-role doctrine, SCOURER chassis are found on fronts across the galaxy, supporting kinetic-focus ground troops with powerful lensing attacks that target not only corporeal enemies, but systemic threats.",
-            "tactics": "The Scourer deals powerful single target damage if it keeps attacking the same target. Switching targets will greatly reduce its effectiveness, and it needs to stay still to take advantage of its weapons systems."
+            "flavor": "A pilot more comfortable the closer they get to their roots, the Ace enemy-type employs high-speed strafing runs, agile maneuvers, and a reckless approach to piloting their mech. Cocky and self-assured, Ace-type enemies relish a good duel.",
+            "tactics": "The Ace is a very fast, reactive striker with the ability to mitigate dangerous or high-damage attacks with its Evasive Maneuvers trait. Its seeking weapons can ignore cover and line of sight, making it very consistent damage. Use Evasive Maneuvers against heavy weaponry to maximize its potential. The Ace’s lower HP makes it a lot weaker against sustained damage and it is relatively easy to tech attack."
         },
-        "stats": [{
-            "hp": 10,
-            "evade": 8,
-            "edef": 8,
-            "heatcap": 8,
-            "hull": 1,
-            "agility": 0,
-            "systems": 0,
-            "engineering": 1,
-            "armor": 2,
-            "speed": 4,
-            "sensor": 10,
-            "save": 10
-        }, {
-            "hp": 13,
-            "evade": 9,
-            "edef": 8,
-            "heatcap": 8,
-            "hull": 2,
-            "agility": 1,
-            "systems": 0,
-            "engineering": 2,
-            "armor": 2,
-            "speed": 4,
-            "sensor": 10,
-            "save": 12
-        }, {
-            "hp": 15,
-            "evade": 10,
-            "edef": 8,
-            "heatcap": 12,
-            "hull": 3,
-            "agility": 1,
-            "systems": 1,
-            "engineering": 4,
-            "armor": 2,
-            "speed": 4,
-            "sensor": 10,
-            "save": 14
-        }],
+        "stats": [
+            {
+                "hp": 10,
+                "evade": 12,
+                "edef": 8,
+                "heatcap": 8,
+                "hull": -2,
+                "agility": 3,
+                "systems": 1,
+                "engineering": 0,
+                "armor": 0,
+                "speed": 5,
+                "sensor": 10,
+                "save": 10
+            }, {
+                "hp": 12,
+                "evade": 15,
+                "edef": 8,
+                "heatcap": 8,
+                "hull": -2,
+                "agility": 4,
+                "systems": 2,
+                "engineering": 1,
+                "armor": 0,
+                "speed": 6,
+                "sensor": 10,
+                "save": 12
+            }, {
+                "hp": 14,
+                "evade": 18,
+                "edef": 8,
+                "heatcap": 8,
+                "hull": -2,
+                "agility": 6,
+                "systems": 3,
+                "engineering": 1,
+                "armor": 0,
+                "speed": 7,
+                "sensor": 10,
+                "save": 14
+            }
+        ],
         "size": 1,
         "systems": {
-            "base": [{
-                    "name": "Thermal Lance",
+            "base": [
+                {
+                    "name": "SS Corpro flight system",
+                    "type": "system",
+                    "effect": "Whenever this mech moves or boosts, it can fly."
+                },
+                {
                     "type": "weapon",
-                    "weapon_type": "Heavy Cannon",
-                    "tags": "4 heat (self)",
+                    "name": "Missile Launcher",
+                    "weapon_type": "Main Launcher",
+                    "tags": "Seeking",
                     "weapon_roll": {
                         "flat": {
                             "val": 1,
                             "pertier": true
-                        },
-                        "accdiff": {
-                            "val": 1,
-                            "pertier": false
                         }
                     },
-                    "range": "Range 8",
-                    "damage": [6, 8, 10],
-                    "damage_type": "energy"
+                    "range": "Range 10, Blast 1",
+                    "damage": [4, 6, 8],
+                    "damage_type": "explosive"
                 },
                 {
-                    "name": "Focus Down",
-                    "type": "trait",
-                    "effect": "If the Scourer hit a character with the Thermal Lance that it already hit with the Thermal Lance in the previous turn, that character also takes burn 5/7/8."
-                },
-                {
-                    "name": "Cooling Module",
-                    "type": "system",
-                    "effect": "If the scourer does not move (even involuntarily) between the end of its turn and start of its next turn, it reduces its heat to 0 at the start of its turn."
-                },
-                {
-                    "name": "Ablative Shielding",
-                    "type": "system",
-                    "effect": "The Scourer has resistance to energy damage"
+                    "name": "Evasive Maneuvers",
+                    "type": "reaction",
+                    "recharge": 6,
+                    "effect": "In response to being hit by any ranged or melee attack, the mech can perform a barrel roll, flying 6 in any direction and causes the attack to miss. This movement does not provoke reactions and ignores engagement. The Ace must decide to take this reaction before damage is rolled, but after it knows the final result of the attack roll (hit, critical hit etc)."
                 }
             ],
-            "optional": [{
-                    "name": "Supercharged",
-                    "type": "trait",
-                    "effect": "When the Scourer’s Focus Down trait activates, it’s target is also Shredded and Slowed until the end of its next turn."
+            "optional": [
+                {
+                    "name": "Bombing Bay",
+                    "type": "system",
+                    "limited": 3,
+                    "tags": "1/round",
+                    "effect": "When this mech moves or boosts and is flying, it can drop a bomb on one character below as a free action it that it passes over vertically or adjacent to. Bombs create a blast 1 area with at least 1 space on their target. All affected targets must pass an agility save or take 6/8/10 explosive damage and be knocked prone."
                 },
                 {
-                    "name": "Emergency Vent",
+                    "name": "Strafe",
                     "type": "trait",
-                    "effect": "When the Scourer Overheats or becomes Shut Down, it immediately becomes invisible until the start of its next turn."
+                    "tags": "Quick Action, 1/round",
+                    "effect": "The Ace flies its speed in any direction in a strafing run, dealing 3/4/6 kinetic damage to any actor of its choice it passes over vertically or adjacent to (no roll required)."
                 },
                 {
-                    "name": "Pulse Laser",
                     "type": "weapon",
-                    "weapon_type": "Main Cannon",
-                    "tags": "4 heat (self)",
+                    "name": "Missile Swarm",
+                    "weapon_type": "Main Launcher",
+                    "tags": "Seeking, Loading",
                     "weapon_roll": {
                         "flat": {
-                            "val": 2,
+                            "val": 1,
                             "pertier": true
                         }
                     },
-                    "range": "Line 10",
-                    "damage": [4, 4, 4],
-                    "effect": "This weapon can attack twice at tier III",
-                    "damage_type": "energy"
+                    "range": "Burst 5",
+                    "damage": [4, 5, 6],
+                    "effect": "This weapon does not hit allied characters and deals double damage to characters suffering from the Lock On condition",
+                    "damage_type": "explosive"
                 },
                 {
-                    "name": "Flash Lense",
-                    "type": "system",
-                    "tags": "Quick Action, Recharge (6+)",
-                    "effect": "The Scourer targets a cone 5 area in a direction of its choosing. All characters in the area must pass a systems save or be jammed until the start of the Scourer’s next turn."
+                    "name": "Watchful",
+                    "type": "trait",
+                    "effect": "1/round, in response to any hostile character moving in line of sight, the Ace can make the boost action as a reaction after that movement completes."
                 },
                 {
-                    "name": "Melt",
-                    "type": "system",
-                    "tags": "Quick Action, Recharge (5+)",
-                    "effect": "The scourer targets an object or drone in range 10, then makes a ranged attack, dealing 20 AP energy damage on hit."
+                    "name": "Chaff Launchers",
+                    "type": "trait",
+                    "effect": "The Ace’s Evasive Maneuvers also work on tech attacks. In addition, after it takes its Evasive Manuevers action, it counts as being in soft cover until the end of its next turn."
                 }
             ]
         }
@@ -250,5 +247,130 @@
                 }
             ]
         }
-    }
+    },
+    {
+        "name": "scourer",
+        "role": "striker",
+        "info": {
+            "flavor": "SCOURER doctrine mechs mount massive-output recursive power plants in order to field deadly energy weapons. A common specialist-role doctrine, SCOURER chassis are found on fronts across the galaxy, supporting kinetic-focus ground troops with powerful lensing attacks that target not only corporeal enemies, but systemic threats.",
+            "tactics": "The Scourer deals powerful single target damage if it keeps attacking the same target. Switching targets will greatly reduce its effectiveness, and it needs to stay still to take advantage of its weapons systems."
+        },
+        "stats": [{
+            "hp": 10,
+            "evade": 8,
+            "edef": 8,
+            "heatcap": 8,
+            "hull": 1,
+            "agility": 0,
+            "systems": 0,
+            "engineering": 1,
+            "armor": 2,
+            "speed": 4,
+            "sensor": 10,
+            "save": 10
+        }, {
+            "hp": 13,
+            "evade": 9,
+            "edef": 8,
+            "heatcap": 8,
+            "hull": 2,
+            "agility": 1,
+            "systems": 0,
+            "engineering": 2,
+            "armor": 2,
+            "speed": 4,
+            "sensor": 10,
+            "save": 12
+        }, {
+            "hp": 15,
+            "evade": 10,
+            "edef": 8,
+            "heatcap": 12,
+            "hull": 3,
+            "agility": 1,
+            "systems": 1,
+            "engineering": 4,
+            "armor": 2,
+            "speed": 4,
+            "sensor": 10,
+            "save": 14
+        }],
+        "size": 1,
+        "systems": {
+            "base": [{
+                    "name": "Thermal Lance",
+                    "type": "weapon",
+                    "weapon_type": "Heavy Cannon",
+                    "tags": "4 heat (self)",
+                    "weapon_roll": {
+                        "flat": {
+                            "val": 1,
+                            "pertier": true
+                        },
+                        "accdiff": {
+                            "val": 1,
+                            "pertier": false
+                        }
+                    },
+                    "range": "Range 8",
+                    "damage": [6, 8, 10],
+                    "damage_type": "energy"
+                },
+                {
+                    "name": "Focus Down",
+                    "type": "trait",
+                    "effect": "If the Scourer hit a character with the Thermal Lance that it already hit with the Thermal Lance in the previous turn, that character also takes burn 5/7/8."
+                },
+                {
+                    "name": "Cooling Module",
+                    "type": "system",
+                    "effect": "If the scourer does not move (even involuntarily) between the end of its turn and start of its next turn, it reduces its heat to 0 at the start of its turn."
+                },
+                {
+                    "name": "Ablative Shielding",
+                    "type": "system",
+                    "effect": "The Scourer has resistance to energy damage"
+                }
+            ],
+            "optional": [{
+                    "name": "Supercharged",
+                    "type": "trait",
+                    "effect": "When the Scourer’s Focus Down trait activates, it’s target is also Shredded and Slowed until the end of its next turn."
+                },
+                {
+                    "name": "Emergency Vent",
+                    "type": "trait",
+                    "effect": "When the Scourer Overheats or becomes Shut Down, it immediately becomes invisible until the start of its next turn."
+                },
+                {
+                    "name": "Pulse Laser",
+                    "type": "weapon",
+                    "weapon_type": "Main Cannon",
+                    "tags": "4 heat (self)",
+                    "weapon_roll": {
+                        "flat": {
+                            "val": 2,
+                            "pertier": true
+                        }
+                    },
+                    "range": "Line 10",
+                    "damage": [4, 4, 4],
+                    "effect": "This weapon can attack twice at tier III",
+                    "damage_type": "energy"
+                },
+                {
+                    "name": "Flash Lense",
+                    "type": "system",
+                    "tags": "Quick Action, Recharge (6+)",
+                    "effect": "The Scourer targets a cone 5 area in a direction of its choosing. All characters in the area must pass a systems save or be jammed until the start of the Scourer’s next turn."
+                },
+                {
+                    "name": "Melt",
+                    "type": "system",
+                    "tags": "Quick Action, Recharge (5+)",
+                    "effect": "The scourer targets an object or drone in range 10, then makes a ranged attack, dealing 20 AP energy damage on hit."
+                }
+            ]
+        }
+    }    
 ]
