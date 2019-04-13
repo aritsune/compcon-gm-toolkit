@@ -72,7 +72,7 @@
                 },
                 {
                     "name": "Evasive Maneuvers",
-                    "type": "system, reaction",
+                    "type": "reaction",
                     "recharge": 6,
                     "effect": "In response to being hit by any ranged or melee attack, the mech can perform a barrel roll, flying 6 in any direction and causes the attack to miss. This movement does not provoke reactions and ignores engagement. The Ace must decide to take this reaction before damage is rolled, but after it knows the final result of the attack roll (hit, critical hit etc)."
                 }
@@ -87,7 +87,7 @@
                 },
                 {
                     "name": "Strafe",
-                    "type": "Trait",
+                    "type": "trait",
                     "tags": "Quick Action, 1/round",
                     "effect": "The Ace flies its speed in any direction in a strafing run, dealing 3/4/6 kinetic damage to any actor of its choice it passes over vertically or adjacent to (no roll required)."
                 },
