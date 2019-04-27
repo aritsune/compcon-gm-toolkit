@@ -81,8 +81,7 @@
                 {
                     "name": "Bombing Bay",
                     "type": "system",
-                    "limited": 3,
-                    "tags": "1/round",
+                    "tags": "Limited (3), 1/round",
                     "effect": "When this mech moves or boosts and is flying, it can drop a bomb on one character below as a free action it that it passes over vertically or adjacent to. Bombs create a blast 1 area with at least 1 space on their target. All affected targets must pass an agility save or take 6/8/10 explosive damage and be knocked prone."
                 },
                 {
@@ -121,10 +120,146 @@
         }
     },
     {
+    "name": "assassin",
+        "role": "striker",
+        "info": {
+            "flavor": "Assassin style mechs trend towards agility, damage, and speed. Their pilots sacrifice comfort for a chassis efficiency — unnecessary life-support systems, pilot care systems, communications systems, and others are stripped out and replaced with systems that increase processing power, run-silent ability, and increase chassis range. <br /> Assassin pilots work alone or in small groups, piloting their small, sleek mechs into territory thought impenetrable by their targets. One of the few doctrines to employ bladed weapons, assassin-style pilots train both in the cockpit and out of it to be able to fight with any weapon, in any theater, as efficiently as possible.",
+            "tactics": "The Assassin is the master of punishing a single character. Use its mark to pick a character and it’s high speed and Leap actions to close distance. You can combo the Assassin with other NPCs that inflict conditions such as stunned or prone for a nasty combination. By default the Assassin can only use melee attacks and is relatively vulnerable to sustained damage."
+        },
+        "stats": [
+            {
+                "hp": 15,
+                "evade": 12,
+                "edef": 8,
+                "heatcap": 7,
+                "hull": 0,
+                "agility": 2,
+                "systems": 1,
+                "engineering": -1,
+                "armor": 0,
+                "speed": 6,
+                "sensor": 10,
+                "save": 10
+            }, {
+                "hp": 15,
+                "evade": 15,
+                "edef": 8,
+                "heatcap": 7,
+                "hull": 1,
+                "agility": 3,
+                "systems": 1,
+                "engineering": 0,
+                "armor": 1,
+                "speed": 6,
+                "sensor": 10,
+                "save": 12
+            }, {
+                "hp": 15,
+                "evade": 17,
+                "edef": 8,
+                "heatcap": 7,
+                "hull": 1,
+                "agility": 4,
+                "systems": 2,
+                "engineering": 0,
+                "armor": 1,
+                "speed": 8,
+                "sensor": 10,
+                "save": 14
+            }
+        ],
+        "size": 1,
+        "systems": {
+            "base": [
+                {
+                    "name": "Kai Bioplating",
+                    "type": "trait",
+                    "effect": "This mech gains +1 Accuracy on all agility checks and saves. It can climb with no penalty, ignores difficult and dangerous terrain, and can jump half its speed vertically and its entire speed horizontally, in any combination."
+                },
+                {
+                    "type": "weapon",
+                    "name": "Heated Blade",
+                    "weapon_type": "Main Melee",
+                    "tags": "",
+                    "weapon_roll": {
+                        "flat": {
+                            "val": 1,
+                            "pertier": true
+                        },
+                        "accdiff": {
+                            "val": 2,
+                            "pertier": false
+                        }
+                    },
+                    "range": "Threat 2",
+                    "damage": [4, 5, 6],
+                    "effect": "This weapon deals double damage to targets suffering from the prone, shut down, shredded, immobilized, or stunned conditions.",
+                    "damage_type": "kinetic"
+                },
+                {
+                    "name": "Assassin's Mark",
+                    "type": "trait",
+                    "tags": "Quick Action"
+                    "effect": "The Assassin chooses a character in line of sight. For the rest of this scene, it has resistance to all damage from that target, its attacks are AP against that target, and it gains +2 accuracy on all saves from effects originating from that target. It can only change its target if its current target is destroyed."
+                },
+                {
+                    "name": "Leap",
+                    "type": "trait",
+                    "tags": "Quick Action",
+                    "recharge": 5,
+                    "effect": "The Assassin flies 6 spaces in any direction but must end its move on a surface. Characters adjacent to it when it lands must pass an agility save or be knocked prone."
+                }
+            ],
+            "optional": [
+                {
+                    "type": "weapon",
+                    "name": "Boltok Shotgun",
+                    "weapon_type": "Heavy CQB",
+                    "tags": "Loading, Knockback 2",
+                    "weapon_roll": {
+                        "flat": {
+                            "val": 0,
+                            "pertier": false
+                        }
+                    },
+                    "range": "Range 3, Threat 3",
+                    "damage": [10, 15, 20],
+                    "damage_type": "kinetic"
+                },
+                {
+                    "name": "Sap",
+                    "type": "trait",
+                    "tags": "Quick Tech",
+                    "recharge": 5,
+                    "effect": "A character adjacent to the Assassin must pass an engineering save or become stunned until the end of its next turn."
+                },
+                {
+                    "name": "Spinning Kick",
+                    "type": "trait",
+                    "tags": "Quick Action",
+                    "effect": "A target adjacent to the Assassin must pass a hull save or be knocked back 4 spaces away from the Assassin and knocked prone."
+                },
+                {
+                    "name": "Shroud Grenades",
+                    "type": "system",
+                    "recharge": 5,
+                    "tags": "Quick Action",
+                    "effect": "The Assassin creates a burst 3 zone of soft cover around itself. The zone disperses at the end of its next turn, or when the Assassin creates a new one. Characters other than Assassins cannot trace line of sight into or out of the zone (characters at least partly inside the zone can draw line of sight to each other normally)."
+                },
+                {
+                    "name": "Explosive Knives",
+                    "type": "system",
+                    "tags": "Quick Action, Limited (3)",
+                    "effect": "A knife can be thrown at any character in range 3 as a quick action. Make a ranged attack roll for +2 vs evasion/tier, attaching on hit. At the end of the target’s next turn, the knife explodes, dealing 6/8/10 explosive damage in a burst 1 area centered on the knife or mech."
+                }
+            ]
+        }
+    },
+    {
         "name": "assault",
         "role": "striker",
         "info": {
-            "flavor": "Assault doctrine mechs and their pilots are the most common main battle chassis found throughout the galaxy. Fitted with a localized version of a main battle rifle, sidearm, and a suite of systems to enhance movement, targeting, and defensive systems, an Assault Doctrine chassis is a straightforward, reliable, hardy combatant. Assault doctrine pilots are the cheapest to train and outfit: this does not make them any less of a threat when paired with a kit of their choice.",
+            "flavor": "Assault doctrine mechs and their pilots are the most common main battle chassis found throughout the galaxy. Fitted with a localized version of a main battle rifle, sidearm, and a suite of systems to enhance movement, targeting, and defensive systems, an Assault Doctrine chassis is a straightforward, reliable, hardy combatant. <br /> Assault doctrine pilots are the cheapest to train and outfit: this does not make them any less of a threat when paired with a kit of their choice.",
             "tactics": "The Assault is a straightforward, high damage dealer. Put it in a place where it’s toughness and decent range can be put to good use, and its use Brace reaction on sources of burst damage to maximize its survivability."
         },
         "stats": [
@@ -233,7 +368,7 @@
                 {
                     "name": "High Impact Rounds",
                     "type": "system",
-                    "effect": "The Heavy Assault rifle can be fired with high caliber rounds, adding +4 kinetic damage and the AP tag, but requiring a reload after firing it this way (as if it had the loading tag)"
+                    "effect": "The Heavy Assault rifle can be fired with high caliber rounds, adding +4 kinetic damage and the AP tag, but requiring a reload after firing it this way (as if it had the loading tag)."
                 },
                 {
                     "name": "Auto-targeting",
@@ -244,6 +379,276 @@
                     "name": "Rank Discipline",
                     "type": "trait",
                     "effect": "The Assault gains +1 Accuracy on all its attacks, checks, and saves as long as it’s adjacent to at least one friendly mech."
+                }
+            ]
+        }
+    },
+    {
+        "name": "berserker",
+        "role": "striker",
+        "info": {
+            "flavor": "Berserker doctrine mechs build to take advantage of advanced heat cycling systems to shunt system heat tax into an offensive force, increasing their weapon output by orders of magnitude.",
+            "tactics": "The Berserker is very scary up close and a great melee duelist. Get it as close as possible to enemy forces to maximize its potential. With a terrible heat cap and e-defense, it is vulnerable to tech attacks, and savvy enemies will force its aggression trait to trigger on its own allies, so keep it away from friendly forces."
+        },
+        "stats": [
+            {
+                "hp": 15,
+                "evade": 10,
+                "edef": 6,
+                "heatcap": 6,
+                "hull": 3,
+                "agility": 2,
+                "systems": -2,
+                "engineering": -1,
+                "armor": 1,
+                "speed": 5,
+                "sensor": 5,
+                "save": 10
+            }, {
+                "hp": 20,
+                "evade": 11,
+                "edef": 6,
+                "heatcap": 6,
+                "hull": 4,
+                "agility": 4,
+                "systems": -2,
+                "engineering": -1,
+                "armor": 1,
+                "speed": 5,
+                "sensor": 5,
+                "save": 12
+            }, {
+                "hp": 25,
+                "evade": 13,
+                "edef": 6,
+                "heatcap": 6,
+                "hull": 6,
+                "agility": 4,
+                "systems": -2,
+                "engineering": 0,
+                "armor": 1,
+                "speed": 5,
+                "sensor": 5,
+                "save": 14
+            }
+        ],
+        "size": 1,
+        "systems": {
+            "base": [
+                {
+                    "type": "weapon",
+                    "name": "Chain Axe",
+                    "weapon_type": "Heavy Melee",
+                    "weapon_roll": {
+                        "flat": {
+                            "val": 1,
+                            "pertier": true
+                        }
+                    },
+                    "range": "Threat 1",
+                    "damage": [7, 9, 11],
+                    "effect": "Critical hits from the Chain Axe cause targets damaged to become Shredded until the end of their next turn.",
+                    "damage_type": "kinetic"
+                },
+                {
+                    "name": "Aggression",
+                    "type": "trait",
+                    "effect": "The first time the Berserker takes damage each round, it must immediately make a Chain Axe attack as a reaction against a randomly determined adjacent target (allied or enemy)."
+                },
+                {
+                    "name": "Charge",
+                    "type": "trait",
+                    "tags": "Quick Action",
+                    "recharge": 5,
+                    "effect": "The Berserker moves its speed in a straight line, ignoring reactions and engagement, then makes a Chain Axe attack against a random character in range."
+                }
+            ],
+            "optional": [
+                {
+                    "name": "Molten Shield",
+                    "type": "system",
+                    "tags": "Shield, Reaction",
+                    "effect": "Once per round, the Berserker can activate this dispersal shield when it takes damage from any melee attack. The Berserker gains resistance to all the damage from the attack, and the attacker must pass an engineering save or take Burn 2/tier."
+                },
+                {
+                    "name": "Juggernaut",
+                    "type": "trait",
+                    "effect": "When the Berserker Charges, all characters (allied and enemy) it passes adjacent to during its Charge and all targets it ends adjacent to must pass a hull save or be knocked prone."
+                },
+                {
+                    "type": "weapon",
+                    "name": "Harpoon",
+                    "weapon_type": "Main CQB",
+                    "tags": "",
+                    "weapon_roll": {
+                        "flat": {
+                            "val": 2,
+                            "pertier": true
+                        }
+                    },
+                    "range": "Range 5, Threat 3",
+                    "damage": [2, 4, 6],
+                    "effect": "Targets struck by this weapon the same size or smaller than the Berserker are pulled in a straight line adjacent to the Berserker or as far as possible. Otherwise, the Berserker is pulled towards the target. The Berserker then grapples the target automatically if it’s adjacent.",
+                    "damage_type": "kinetic"
+                },
+                {
+                    "type": "weapon",
+                    "name": "Nail Gun",
+                    "weapon_type": "Main CQB",
+                    "tags": "",
+                    "weapon_roll": {
+                        "flat": {
+                            "val": 1,
+                            "pertier": true
+                        }
+                    },
+                    "range": "Range 5, Threat 3",
+                    "damage": [5, 7, 9],
+                    "effect": "Targets struck by this weapon must pass an agility save or become immobilized until the end of their next turn.",
+                    "damage_type": "kinetic"
+                },
+                {
+                    "name": "Retribution",
+                    "type": "trait",
+                    "effect": "When the Berserker takes damage, its next attack deals +2/3/4 bonus damage on hit. This effect stacks up to +8, but is lost after the Berserker makes any attack or at the end of the Berserker’s next turn."
+                }
+            ]
+        }
+    },
+    {
+        "name": "breacher",
+        "role": "striker",
+        "info": {
+            "flavor": "Notorious for their boarding capabilities, the Campbell Orbital Dynamics C-O MkIII chassis is a common sight among low and mid-orbit planetary defense forces and their pirate counterparts. Purpose built for policing actions, the C-O is a CQC focused platform that operates best with larger or more system-inclined support chassis, but presents a fierce threat in alpha strike scenarios. Best in <1G environments, the C-O (and like patterns) can be cumbersome outside of specific breach scenarios. While C-O in COD’s designation system stands for Combat-Orbital, most pilots refer to the MkIII as the Can Opener.",
+            "tactics": "The Breacher can do very high burst damage, but is inaccurate on its own. Use other sources of Accuracy such as Lock On, or support NPCs to boost its capabilities. The BREACH ram can make short work of cover. It is relatively slow and short ranged outside of its ram action, and its ram still provokes reactions (such as overwatch)."
+        },
+        "stats": [{
+            "hp": 18,
+            "evade": 9,
+            "edef": 7,
+            "heatcap": 7,
+            "hull": 2,
+            "agility": 0,
+            "systems": -1,
+            "engineering": 1,
+            "armor": 1,
+            "speed": 3,
+            "sensor": 5,
+            "save": 10
+        }, {
+            "hp": 20,
+            "evade": 11,
+            "edef": 7,
+            "heatcap": 7,
+            "hull": 3,
+            "agility": 1,
+            "systems": -1,
+            "engineering": 2,
+            "armor": 1,
+            "speed": 4,
+            "sensor": 5,
+            "save": 10
+        }, {
+            "hp": 22,
+            "evade": 13,
+            "edef": 7,
+            "heatcap": 8,
+            "hull": 4,
+            "agility": 2,
+            "systems": -1,
+            "engineering": 3,
+            "armor": 1,
+            "speed": 5,
+            "sensor": 5,
+            "save": 10
+        }],
+        "size": 1,
+        "systems": {
+            "base": [{
+                    "name": "Dual Shotguns",
+                    "type": "weapon",
+                    "weapon_type": "Main CQB",
+                    "tags": "",
+                    "weapon_roll": {
+                        "flat": {
+                            "val": 1,
+                            "pertier": true
+                        },
+                        "accdiff": {
+                            "val": -2,
+                            "pertier": false
+                        }
+                    },
+                    "range": "Range 3, Threat 3",
+                    "damage": [6, 8, 10],
+                    "damage_type": "kinetic",
+                    "effect": "The Breacher can attack twice with this weapon, choocking the same or different targets."
+                },
+                {
+                    "name": "BREACH Ram",
+                    "type": "Quick Action",
+                    "recharge": 6
+                    "effect": "The Breacher moves forward up to 6 spaces in a straight line as far as it can. It ignores engagement and can pass through, but not end its turn in, the space of other characters. Obstacles or objects such as cover in its path take 10 AP kinetic damage/tier. If an obstacle, wall, or piece of cover is destroyed, the Breacher passes through it and continues to pass through until it hits an obstacle it cannot destroy. All other characters passed through must pass an agility save or be pushed out of the Breacher’s path by the most direct route possible and knocked prone."
+                },
+                {
+                    "name": "Break Armor",
+                    "type": "trait",
+                    "effect": "A target struck more than twice by the Breacher’s Dual shotguns in the same turn becomes shredded for the rest of this scene."
+                }
+            ],
+            "optional": [{
+                    "name": "Bring the Pain",
+                    "type": "Full Action",
+                    "effect": "The Breacher chooses a character in range of its dual shotguns. It must be activated after the targeted character next round. At the start of the breacher’s next turn, if the target is still in range, the Breacher can attack that target twice with its dual shotguns (four times total) as a free action."
+                },
+                {
+                    "name": "Superior Ram",
+                    "type": "trait",
+                    "effect": "The Breacher’s BREACH Ram moves 10 spaces instead of 6 and characters hit make their agility save with 1 difficulty."
+                },
+                {
+                    "name": "Hunter Lock",
+                    "type": "Weapon",
+                    "weapon_type": "Quick Tech",
+                    "tags": "Smart",
+                    "weapon_roll": {
+                        "flat": {
+                            "val": 1,
+                            "pertier": true
+                        },
+                        "accdiff": {
+                            "val": 1,
+                            "pertier": false
+                        }
+                    },
+                    "range": "Sensor Range (5)",
+                    "effect": "On hit, all the Breacher’s attacks gain +1 accuracy/tier against that target, and 1/turn it can take the boost action as a Free Action, as long as it is made directly towards that target. The Breacher cannot change its target until it or the target is destroyed."
+                },
+                {
+                    "name": "Thermal Charge",
+                    "type": "weapon",
+                    "weapon_type": "Quick Action",
+                    "tags": "Limited (1)",
+                    "range": "Thrown 5, Blast 2",
+                    "damage": [3, 6, 9],
+                    "damage_type": "burn",
+                    "effect": "This weapon deals 10 AP kinetic damage/tier to walls, terrain, and deployables in the area."
+                },
+                {
+                    "name": "Flechette Shot",
+                    "type": "weapon",
+                    "weapon_type": "Auxiliary CQB",
+                    "tags": "",
+                    "weapon_roll": {
+                        "flat": {
+                            "val": 0,
+                            "pertier": false
+                        }
+                    },
+                    "range": "Range 3*, Threat 3",
+                    "damage": [2, 3, 4],
+                    "effect": "This attack creates a cone 3 area at its attack location, attacking all targets within.",
+                    "damage_type": "kinetic"
                 }
             ]
         }
@@ -367,8 +772,9 @@
                 {
                     "name": "Melt",
                     "type": "system",
-                    "tags": "Quick Action, Recharge (5+)",
-                    "effect": "The scourer targets an object or drone in range 10, then makes a ranged attack, dealing 20 AP energy damage on hit."
+                    "tags": "Quick Action",
+                    "recharge": 5,
+                    "effect": "The Scourer targets an object or drone in range 10, then makes a ranged attack, dealing 20 AP energy damage on hit."
                 }
             ]
         }
