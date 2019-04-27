@@ -147,11 +147,6 @@
         </b-container>
       </b-card>
     </transition>
-    <div>
-      <pre>
-          {{ npc && npc.systems.map(s => s.name) }}
-      </pre>
-    </div>
   </b-container>
 </template>
 
@@ -214,20 +209,20 @@ export default Vue.extend({
       this.npc = new NPC(this.selectedClass);
       console.log(this.selectedClass);
       this.systemsPicked = _.clone(this.npc.base_class_systems);
-      this.systemsAvailable = _.clone(this.npc.optionalSystems);
+      this.systemsAvailable = _.clone(this.npc.optional_class_systems);
       this.sortSystems();
       this.state = 'customizing';
     },
     sortSystems() {
       this.systemsPicked = _.orderBy(
         this.systemsPicked,
-        ['is_base', 'type', 'name'],
-        ['asc', 'desc', 'asc'],
+        ['base', 'type', 'name'],
+        ['desc', 'desc', 'asc'],
       );
       this.systemsAvailable = _.orderBy(
         this.systemsAvailable,
-        ['is_base', 'type', 'name'],
-        ['asc', 'desc', 'asc'],
+        ['base', 'type', 'name'],
+        ['desc', 'desc', 'asc'],
       );
     },
     removeSystem(i: number) {
