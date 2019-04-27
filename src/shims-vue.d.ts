@@ -4,3 +4,4 @@ declare module '*.vue' {
 }
 
 declare module 'vue-fragment';
+declare module 'vuedraggable';

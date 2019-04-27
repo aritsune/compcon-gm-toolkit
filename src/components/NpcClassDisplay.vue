@@ -13,18 +13,23 @@
     <p>
       {{ selectedClass.info.tactics }}
     </p>
-    <b-container
-      fluid
-      class="w-auto py-2 d-inline-block align-items-center"
-      v-for="systemCategory in ['base', 'optional']"
-      :key="systemCategory"
-    >
+    <b-container fluid class="w-auto py-2 d-inline-block align-items-center">
       <b-row>
         <b-col class="text-nowrap" style="line-height: 1.7em">
-          <b>{{ systemCategory }} systems:</b>
+          <b>Base systems:</b>
+        </b-col>
+        <b-col v-for="system in baseSystems" :key="system.name" class="px-1">
+          <system-button :system="system" />
+        </b-col>
+      </b-row>
+    </b-container>
+    <b-container fluid class="w-auto py-2 d-inline-block align-items-center">
+      <b-row>
+        <b-col class="text-nowrap" style="line-height: 1.7em">
+          <b>Optional systems:</b>
         </b-col>
         <b-col
-          v-for="system in selectedClass.systems[systemCategory]"
+          v-for="system in optionalSystems"
           :key="system.name"
           class="px-1"
         >
@@ -50,15 +55,29 @@
   </b-card>
 </template>
 
-<script>
-import SystemButton from './SystemButton';
+<script lang="ts">
+import Vue from 'vue';
+import SystemButton from './SystemButton.vue';
+import { NPCSystem } from '@/logic/interfaces/NPCSystem';
 
-export default {
+const systems: NPCSystem.Any[] = require('../../static/systems.json');
+
+export default Vue.extend({
   components: {
     SystemButton,
   },
   props: {
     selectedClass: Object,
   },
-};
+  computed: {
+    baseSystems(): NPCSystem.Any[] {
+      return systems.filter(s => s.class === this.selectedClass.name && s.base);
+    },
+    optionalSystems(): NPCSystem.Any[] {
+      return systems.filter(
+        s => s.class === this.selectedClass.name && !s.base,
+      );
+    },
+  },
+});
 </script>

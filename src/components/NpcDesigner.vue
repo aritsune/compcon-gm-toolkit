@@ -24,21 +24,21 @@
         <div class="text-uppercase font-weight-bold mb-1">Tier</div>
         <b-button-group>
           <b-button
+            :active="npc.tier === 0"
+            :variant="npc.tier === 0 ? 'primary' : 'outline-primary'"
+            @click="npc.tier = 0"
+            >1</b-button
+          >
+          <b-button
             :active="npc.tier === 1"
             :variant="npc.tier === 1 ? 'primary' : 'outline-primary'"
             @click="npc.tier = 1"
-            >1</b-button
+            >2</b-button
           >
           <b-button
             :active="npc.tier === 2"
             :variant="npc.tier === 2 ? 'primary' : 'outline-primary'"
             @click="npc.tier = 2"
-            >2</b-button
-          >
-          <b-button
-            :active="npc.tier === 3"
-            :variant="npc.tier === 3 ? 'primary' : 'outline-primary'"
-            @click="npc.tier = 3"
             >3</b-button
           >
         </b-button-group>
@@ -102,7 +102,7 @@
                     v-for="(system, i) in systemsPicked"
                     :key="system.name"
                     :system="system"
-                    :closable="!system.is_base"
+                    :closable="!system.base"
                     @closed="removeSystem(i)"
                   />
                 </draggable>
@@ -147,10 +147,15 @@
         </b-container>
       </b-card>
     </transition>
+    <div>
+      <pre>
+          {{ npc && npc.systems.map(s => s.name) }}
+      </pre>
+    </div>
   </b-container>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue';
 import _ from 'lodash';
 import NpcClassPicker from './NpcClassPicker.vue';
@@ -160,7 +165,11 @@ import CheckCircleIcon from 'vue-material-design-icons/CheckCircle.vue';
 import draggable from 'vuedraggable';
 import smoothReflow from 'vue-smooth-reflow';
 
-const fieldSorter = fields => (a, b) =>
+import NPCClass, { NPCStatBlock } from '@/logic/interfaces/NPCClass';
+import { NPCSystem } from '@/logic/interfaces/NPCSystem';
+import NPC from '@/logic/NPC.ts';
+
+const fieldSorter = (fields: string[]) => (a: any, b: any) =>
   fields
     .map(o => {
       let dir = 1;
@@ -185,29 +194,27 @@ export default Vue.extend({
   data() {
     return {
       state: 'picking-class',
-      selectedClass: undefined,
-      npc: { tier: 1 },
-      systemsPicked: [],
-      systemsAvailable: [],
+      selectedClass: null as NPCClass | null,
+      npc: (null as unknown) as NPC,
+      systemsPicked: [] as NPCSystem.Any[],
+      systemsAvailable: [] as NPCSystem.Any[],
     };
   },
   methods: {
-    pickClass(cl) {
+    pickClass(cl: NPCClass) {
       this.selectedClass = cl;
       this.state = 'viewing-class';
     },
     cancelClass() {
-      this.selectedClass = undefined;
+      this.selectedClass = null;
       this.state = 'picking-class';
     },
     confirmClass() {
-      this.npc.class = this.selectedClass;
-      this.npc.systems = [];
-      this.systemsPicked = _.clone(this.npc.class.systems.base).map(sys => ({
-        ...sys,
-        is_base: true,
-      }));
-      this.systemsAvailable = _.clone(this.npc.class.systems.optional);
+      if (!this.selectedClass) throw new Error('invalid class');
+      this.npc = new NPC(this.selectedClass);
+      console.log(this.selectedClass);
+      this.systemsPicked = _.clone(this.npc.base_class_systems);
+      this.systemsAvailable = _.clone(this.npc.optionalSystems);
       this.sortSystems();
       this.state = 'customizing';
     },
@@ -223,7 +230,7 @@ export default Vue.extend({
         ['asc', 'desc', 'asc'],
       );
     },
-    removeSystem(i) {
+    removeSystem(i: number) {
       const sys = _.pullAt(this.systemsPicked, i)[0];
       console.log(sys);
       this.systemsAvailable.push(sys);
@@ -231,8 +238,8 @@ export default Vue.extend({
     },
   },
   computed: {
-    npcStats() {
-      return this.selectedClass.stats[this.npc.tier - 1];
+    npcStats(): NPCStatBlock {
+      return this.npc.stats;
     },
   },
   mounted() {
@@ -243,7 +250,7 @@ export default Vue.extend({
   },
   watch: {
     systemsPicked() {
-      this.npc.systems = this.systemsPicked;
+      this.npc.optionalSystems = this.systemsPicked.filter(s => s && !s.base);
     },
   },
 });
