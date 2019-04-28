@@ -1,27 +1,27 @@
 <template>
-  <b-card class="npc-card mb-2" :class="`border-role--${npc.class.role}`">
+  <b-card class="npc-card mb-2" :class="`border-role--${npc.npcClass.role}`">
     <b-container fluid>
       <b-row class="align-items-center">
         <b-col
-          class="flex-grow-0 px-3 py-2 text-white npc-card-shrunk-title d-flex align-items-center"
-          :class="`bg-role--${npc.class.role}`"
+          cols="2"
+          class="px-3 py-2 text-white npc-card-shrunk-title d-flex align-items-center"
+          :class="`bg-role--${npc.npcClass.role}`"
         >
           <b-button
             size="sm"
             variant="outline-light"
-            style="pointer-events: none;"
-            class="mr-2"
+            style="pointer-events: none; width: 30px"
           >
-            {{ 'I'.repeat(npc.tier) }}</b-button
+            {{ 'I'.repeat(npc.tier + 1) }}</b-button
           >
-          <div>
-            {{ npc.class.name }}
+          <div class="mx-auto">
+            {{ npc.npcClass.name }}
           </div>
         </b-col>
         <b-col
           class="text-nowrap py-1 font-weight-bolder d-flex npc-card-systemlist"
         >
-          <system-button
+          <system-badge
             v-for="system in npc.systems"
             :key="system.name"
             :system="system"
@@ -48,17 +48,21 @@
   </b-card>
 </template>
 
-<script>
+<script lang="ts">
 // import PencilIcon from 'vue-material-design-icons/Pencil.vue';
 // import DeleteIcon from 'vue-material-design-icons/Delete.vue';
-import SystemButton from './SystemButton';
+import SystemBadge from './Badges/SystemBadge.vue';
+
+import NPCClass, { NPCStatBlock } from '@/logic/interfaces/NPCClass';
+import { NPCSystem } from '@/logic/interfaces/NPCSystem';
+import NPC from '@/logic/NPC.ts';
 
 export default {
   name: 'npc-card',
-  components: { SystemButton },
+  components: { SystemBadge },
   props: {
     npc: {
-      type: Object,
+      type: NPC,
       required: true,
     },
   },

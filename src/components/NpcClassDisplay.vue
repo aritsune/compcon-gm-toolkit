@@ -19,7 +19,7 @@
           <b>Base systems:</b>
         </b-col>
         <b-col v-for="system in baseSystems" :key="system.name" class="px-1">
-          <system-button :system="system" />
+          <system-badge :system="system" />
         </b-col>
       </b-row>
     </b-container>
@@ -33,7 +33,7 @@
           :key="system.name"
           class="px-1"
         >
-          <system-button :system="system" />
+          <system-badge :system="system" />
         </b-col>
       </b-row>
     </b-container>
@@ -57,14 +57,14 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import SystemButton from './SystemButton.vue';
+import SystemBadge from './Badges/SystemBadge.vue';
 import { NPCSystem } from '@/logic/interfaces/NPCSystem';
 
 const systems: NPCSystem.Any[] = require('../../static/systems.json');
 
 export default Vue.extend({
   components: {
-    SystemButton,
+    SystemBadge,
   },
   props: {
     selectedClass: Object,

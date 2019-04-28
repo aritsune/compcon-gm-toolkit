@@ -1,26 +1,15 @@
 <template>
-  <div>
-    <b-button
-      size="small"
-      :variant="`outline-system--${system.type}`"
-      :id="system.name"
-      class="system-btn"
-      @click="showModal"
-    >
+  <base-badge
+    :variant="`outline-system--${system.type}`"
+    :id="system.name"
+    @closed="$emit('closed')"
+    @added="$emit('added')"
+    v-bind="$props"
+  >
+    <template v-slot:button>
       {{ system.name }}
-      <span @click.stop="$emit('closed')">
-        <close-circle-icon v-if="closable" style="font-size: 13px;" />
-      </span>
-    </b-button>
-
-    <b-modal
-      centered
-      ref="sysmodal"
-      class="system-modal"
-      hide-header-close
-      hide-header
-      hide-footer
-    >
+    </template>
+    <template v-slot:modal>
       <h5
         class="system-modal-title mb-0"
         :class="`text-system--${system.type}`"
@@ -63,8 +52,8 @@
       <template v-if="system.effect">
         {{ system.effect }}
       </template>
-    </b-modal>
-  </div>
+    </template>
+  </base-badge>
 </template>
 
 <script lang="ts">
@@ -73,21 +62,20 @@ import Vue from 'vue';
 import DiceMultipleIcon from 'vue-material-design-icons/DiceMultiple.vue';
 import VectorLineIcon from 'vue-material-design-icons/VectorLine.vue';
 import FlareIcon from 'vue-material-design-icons/Flare.vue';
-import CloseCircleIcon from 'vue-material-design-icons/CloseCircle.vue';
+
+import BaseBadge from './BaseBadge.vue';
 
 import { NPCSystem } from '@/logic/interfaces/NPCSystem';
 
 export default Vue.extend({
   name: 'system-button',
-  components: { DiceMultipleIcon, VectorLineIcon, FlareIcon, CloseCircleIcon },
+  components: { BaseBadge, DiceMultipleIcon, VectorLineIcon, FlareIcon },
   props: {
-    system: Object,
+    system: { type: Object, required: true },
     closable: { type: Boolean, default: false },
+    addable: { type: Boolean, default: false },
   },
   methods: {
-    showModal() {
-      (this.$refs.sysmodal as any).show();
-    },
     printRoll(rollObj: NPCSystem.Roll, tech: boolean) {
       const { flat, accdiff } = rollObj;
       let output = '';

@@ -30,6 +30,10 @@ import Vue from 'vue';
 import NpcDesigner from './NpcDesigner.vue';
 import NpcCard from './NpcCard.vue';
 
+import NPCClass, { NPCStatBlock } from '@/logic/interfaces/NPCClass';
+import { NPCSystem } from '@/logic/interfaces/NPCSystem';
+import NPC from '@/logic/NPC.ts';
+
 import PlusIcon from 'vue-material-design-icons/Plus.vue';
 
 export default Vue.extend({

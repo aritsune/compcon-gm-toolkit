@@ -13,6 +13,8 @@ export interface NPCStatBlock {
   speed: number;
   sensor: number;
   save: number;
+  structure?: number;
+  stress?: number;
 }
 
 export default interface NPCClass {

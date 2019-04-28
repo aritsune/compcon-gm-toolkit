@@ -59,6 +59,8 @@
                 <th>SPD</th>
                 <th>SENSE</th>
                 <th>SAVE</th>
+                <th>STRUCT</th>
+                <th>STRESS</th>
               </tr>
             </thead>
             <tbody>
@@ -85,27 +87,15 @@
                 header="chosen systems"
                 class="pickercard"
               >
-                <draggable
-                  class="dragdiv systems-picked"
-                  v-model="systemsPicked"
-                  :group="{
-                    name: 'systems',
-                    pull: false,
-                  }"
-                  :sortable="false"
-                  filter=".systems-picked"
-                  @end="sortSystems"
-                  @change="sortSystems()"
-                  ghost-class="d-none"
-                >
-                  <system-button
-                    v-for="(system, i) in systemsPicked"
+                <div class="dragdiv">
+                  <system-badge
+                    v-for="system in npc.systems"
                     :key="system.name"
                     :system="system"
                     :closable="!system.base"
-                    @closed="removeSystem(i)"
+                    @closed="removeSystem(system)"
                   />
-                </draggable>
+                </div>
               </b-card>
             </b-col>
             <b-col cols="6">
@@ -114,20 +104,56 @@
                 header="available systems"
                 class="pickercard"
               >
-                <draggable
-                  class="dragdiv"
-                  v-model="systemsAvailable"
-                  group="systems"
-                  @end="sortSystems"
-                  @change="sortSystems"
-                  ghost-class="d-none"
-                >
-                  <system-button
+                <div class="dragdiv">
+                  <system-badge
                     v-for="system in systemsAvailable"
                     :key="system.name"
                     :system="system"
+                    addable
+                    @added="addSystem(system)"
                   />
-                </draggable>
+                </div>
+              </b-card>
+            </b-col>
+          </b-row>
+          <!-- Template picker -->
+          <b-row class="mt-3">
+            <b-col cols="6">
+              <b-card
+                bg-variant="light"
+                header="chosen templates"
+                class="pickercard"
+                :move="checkMove"
+              >
+                <div class="dragdiv">
+                  <template-badge
+                    v-for="template in npc.templates"
+                    :key="template.name"
+                    :tmp="template"
+                    closable
+                    @closed="npc.removeTemplate(template.name)"
+                  />
+                </div>
+              </b-card>
+            </b-col>
+            <b-col cols="6">
+              <b-card
+                bg-variant="light"
+                header="available templates"
+                class="pickercard"
+              >
+                <div class="dragdiv">
+                  <template-badge
+                    v-for="template in availableTemplates"
+                    :key="template.name"
+                    :tmp="template"
+                    :class="{
+                      templateUnavailable: templateIsUnavailable(template.name),
+                    }"
+                    addable
+                    @added="addTemplate(template.name)"
+                  />
+                </div>
               </b-card>
             </b-col>
           </b-row>
@@ -155,14 +181,19 @@ import Vue from 'vue';
 import _ from 'lodash';
 import NpcClassPicker from './NpcClassPicker.vue';
 import NpcClassDisplay from './NpcClassDisplay.vue';
-import SystemButton from './SystemButton.vue';
+
+import SystemBadge from './Badges/SystemBadge.vue';
+import TemplateBadge from './Badges/TemplateBadge.vue';
+
 import CheckCircleIcon from 'vue-material-design-icons/CheckCircle.vue';
-import draggable from 'vuedraggable';
 import smoothReflow from 'vue-smooth-reflow';
 
 import NPCClass, { NPCStatBlock } from '@/logic/interfaces/NPCClass';
 import { NPCSystem } from '@/logic/interfaces/NPCSystem';
 import NPC from '@/logic/NPC.ts';
+
+import templates from '@/logic/templates';
+import NPCTemplate from '../logic/interfaces/NPCTemplate';
 
 const fieldSorter = (fields: string[]) => (a: any, b: any) =>
   fields
@@ -182,17 +213,15 @@ export default Vue.extend({
   components: {
     NpcClassPicker,
     NpcClassDisplay,
-    draggable,
-    SystemButton,
+    SystemBadge,
+    TemplateBadge,
     CheckCircleIcon,
   },
   data() {
     return {
       state: 'picking-class',
       selectedClass: null as NPCClass | null,
-      npc: (null as unknown) as NPC,
-      systemsPicked: [] as NPCSystem.Any[],
-      systemsAvailable: [] as NPCSystem.Any[],
+      npc: null as NPC | null,
     };
   },
   methods: {
@@ -208,33 +237,51 @@ export default Vue.extend({
       if (!this.selectedClass) throw new Error('invalid class');
       this.npc = new NPC(this.selectedClass);
       console.log(this.selectedClass);
-      this.systemsPicked = _.clone(this.npc.base_class_systems);
-      this.systemsAvailable = _.clone(this.npc.optional_class_systems);
-      this.sortSystems();
       this.state = 'customizing';
     },
-    sortSystems() {
-      this.systemsPicked = _.orderBy(
-        this.systemsPicked,
-        ['base', 'type', 'name'],
-        ['desc', 'desc', 'asc'],
-      );
-      this.systemsAvailable = _.orderBy(
-        this.systemsAvailable,
-        ['base', 'type', 'name'],
-        ['desc', 'desc', 'asc'],
-      );
+    addSystem(system: NPCSystem.Any) {
+      this.npc!.pickSystem(system);
     },
-    removeSystem(i: number) {
-      const sys = _.pullAt(this.systemsPicked, i)[0];
-      console.log(sys);
-      this.systemsAvailable.push(sys);
-      this.sortSystems();
+    removeSystem(system: NPCSystem.Any) {
+      this.npc!.removeSystem(system);
+    },
+    checkMove(evt: any) {
+      return false;
+    },
+    addTemplate(templateName: string) {
+      if (!this.npc) throw new Error('no npc');
+      this.npc.addTemplate(templateName);
+    },
+    templateIsUnavailable(templateName: string): boolean {
+      if (!this.npc) throw new Error('no npc');
+      const template = templates.find(t => t.name === templateName);
+      const incompatibleNpcTemplates =
+        (template && template.incompatibleTemplates) || [];
+      return (
+        this.npc.incompatibleTemplateNames.includes(templateName) ||
+        this.npc._templates.some(tn => incompatibleNpcTemplates.includes(tn))
+      );
     },
   },
   computed: {
     npcStats(): NPCStatBlock {
+      if (!this.npc) throw new Error('no npc');
       return this.npc.stats;
+    },
+    availableTemplates(): NPCTemplate[] {
+      if (!this.npc) throw new Error('no npc');
+      return _.difference(templates, this.npc.templates);
+    },
+    systemsAvailable(): NPCSystem.Any[] {
+      if (!this.npc) throw new Error('no npc');
+      const preSort = this.npc.optional_class_systems.filter(
+        sys => !this.npc!.pickedSystems.includes(sys),
+      );
+      return _.orderBy(
+        preSort,
+        ['base', 'type', 'name'],
+        ['desc', 'desc', 'asc'],
+      );
     },
   },
   mounted() {
@@ -242,11 +289,6 @@ export default Vue.extend({
       this.$smoothReflow({
         el: '.window, .pickercard, .card-body',
       });
-  },
-  watch: {
-    systemsPicked() {
-      this.npc.optionalSystems = this.systemsPicked.filter(s => s && !s.base);
-    },
   },
 });
 </script>
@@ -293,5 +335,9 @@ export default Vue.extend({
   & > div {
     padding: 5px;
   }
+}
+.templateUnavailable {
+  opacity: 0.7;
+  pointer-events: none;
 }
 </style>

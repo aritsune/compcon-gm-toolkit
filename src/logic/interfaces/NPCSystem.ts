@@ -18,7 +18,7 @@ export module NPCSystem {
     };
   }
 
-  interface NonWeapon extends Base {
+  export interface NonWeapon extends Base {
     recharge?: number;
     type: 'system' | 'trait';
     action?:
@@ -32,7 +32,7 @@ export module NPCSystem {
     tech_roll?: Roll;
   }
 
-  interface Weapon extends Base {
+  export interface Weapon extends Base {
     type: 'weapon';
     weapon_type: [
       'Auxiliary' | 'Main' | 'Heavy' | 'Superheavy',
@@ -41,12 +41,15 @@ export module NPCSystem {
     // TODO: make tags into an array
     // tags: string[];
     weapon_roll: Roll;
+    smart?: true;
     weapon_range: {
       type: string;
       val: number;
     }[];
-    damage: [number, number, number];
-    damage_type: string;
+    damage: {
+      val: [number, number, number];
+      type: string;
+    }[];
   }
   export type Any = NonWeapon | Weapon;
 }
