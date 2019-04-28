@@ -1,6 +1,6 @@
 <template>
   <base-badge
-    :variant="`outline-system--${system.type}`"
+    :variant="`system--${system.type}`"
     :id="system.name"
     @closed="$emit('closed')"
     @added="$emit('added')"
@@ -38,7 +38,7 @@
           <vector-line-icon
             style="font-size: 24px; vertical-align: text-bottom;"
           />
-          {{ system.range }}
+          {{ printRange(system.weapon_range) }}
         </div>
         <div v-if="system.damage">
           <flare-icon style="font-size: 24px; vertical-align: text-bottom;" />
@@ -74,6 +74,7 @@ export default Vue.extend({
     system: { type: Object, required: true },
     closable: { type: Boolean, default: false },
     addable: { type: Boolean, default: false },
+    disabled: { type: Boolean, default: false },
   },
   methods: {
     actionName: (s: string): string => {
@@ -103,7 +104,7 @@ export default Vue.extend({
       }
       if (accdiff) {
         const word = accdiff.val > -1 ? 'Accuracy' : 'Difficulty';
-        output += ` with +${accdiff.val} ${word}`;
+        output += ` with +${Math.abs(accdiff.val)} ${word}`;
         if (accdiff.pertier) {
           output += '/tier';
         }
@@ -114,6 +115,9 @@ export default Vue.extend({
       return damageAry
         .map(damageObj => `${damageObj.val.join('/')} ${damageObj.type}`)
         .join(' + ');
+    },
+    printRange(rangeAry: { val: number; type: string }[]) {
+      return rangeAry.map(r => `${r.type} ${r.val}`).join(' ');
     },
   },
 });

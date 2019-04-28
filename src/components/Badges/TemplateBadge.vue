@@ -31,6 +31,7 @@ export default Vue.extend({
     tmp: { type: Object, required: true },
     closable: { type: Boolean, default: false },
     addable: { type: Boolean, default: false },
+    disabled: { type: Boolean, default: false },
   },
 });
 </script>

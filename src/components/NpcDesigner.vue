@@ -87,7 +87,7 @@
                 header="chosen systems"
                 class="pickercard"
               >
-                <div class="dragdiv">
+                <transition-group name="fade" tag="div" class="dragdiv">
                   <system-badge
                     v-for="system in npc.systems"
                     :key="system.name"
@@ -95,7 +95,7 @@
                     :closable="!system.base"
                     @closed="removeSystem(system)"
                   />
-                </div>
+                </transition-group>
               </b-card>
             </b-col>
             <b-col cols="6">
@@ -104,7 +104,7 @@
                 header="available systems"
                 class="pickercard"
               >
-                <div class="dragdiv">
+                <transition-group name="fade" tag="div" class="dragdiv">
                   <system-badge
                     v-for="system in systemsAvailable"
                     :key="system.name"
@@ -112,7 +112,7 @@
                     addable
                     @added="addSystem(system)"
                   />
-                </div>
+                </transition-group>
               </b-card>
             </b-col>
           </b-row>
@@ -125,7 +125,7 @@
                 class="pickercard"
                 :move="checkMove"
               >
-                <div class="dragdiv">
+                <transition-group name="fade" tag="div" class="dragdiv">
                   <template-badge
                     v-for="template in npc.templates"
                     :key="template.name"
@@ -133,7 +133,7 @@
                     closable
                     @closed="npc.removeTemplate(template.name)"
                   />
-                </div>
+                </transition-group>
               </b-card>
             </b-col>
             <b-col cols="6">
@@ -142,18 +142,16 @@
                 header="available templates"
                 class="pickercard"
               >
-                <div class="dragdiv">
+                <transition-group name="fade" tag="div" class="dragdiv">
                   <template-badge
                     v-for="template in availableTemplates"
                     :key="template.name"
                     :tmp="template"
-                    :class="{
-                      templateUnavailable: templateIsUnavailable(template.name),
-                    }"
+                    :disabled="templateIsUnavailable(template.name)"
                     addable
                     @added="addTemplate(template.name)"
                   />
-                </div>
+                </transition-group>
               </b-card>
             </b-col>
           </b-row>
@@ -332,12 +330,9 @@ export default Vue.extend({
   display: flex;
   flex-wrap: wrap;
   padding: 1.25em;
+  min-height: 82px;
   & > div {
     padding: 5px;
   }
-}
-.templateUnavailable {
-  opacity: 0.7;
-  pointer-events: none;
 }
 </style>
