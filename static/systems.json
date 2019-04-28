@@ -1186,6 +1186,7 @@
     "type": "weapon",
     "weapon_type": ["Heavy", "Cannon"],
     "tags": "Smart",
+    "smart": true,
     "weapon_roll": {
         "flat": {
             "val": 1,
@@ -1243,7 +1244,7 @@
     "effect": "At the start of its turn, the Engineer can move all its turrets up to 3 spaces in any direction.",
     "base": false
 }, {
-    "name": "Mobile Turrets",
+    "name": "Arsenal",
     "class": "engineer",
     "type": "system",
     "effect": "The Engineer can deploy stronger turrets, and can choose which to deploy when it uses its system. Each have the same statistics as a base turret, with the following changes: Inferno: The turret’s weapon becomes +1/tier vs evasion, cone 5, Burn 3/4/5 Hellstorm: The turret’s weapon becomes +1/tier vs evasion, range 15, blast 1, 2/3/4 explosive damage Hunter: The turrets gain reliable 1 Primed: When the turret or the engineer is destroyed, it explodes in a burst 1 area around it. Targets caught inside must pass an agility save or take 7/9/11 explosive damage",
@@ -1657,7 +1658,7 @@
         "val": 20
     }],
     "damage": [{
-        "val": [5, 5, 5],
+        "val": [5],
         "type": "energy"
     }],
     "effect": "This weapon can attack twice at tier II and three times at tier III.",
