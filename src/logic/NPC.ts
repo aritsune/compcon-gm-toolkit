@@ -105,7 +105,7 @@ export default class NPC {
     }
 
     for (const stat in tempStats) {
-      if (statCaps[stat] && statCaps[stat] < tempStats[stat]) {
+      if (statCaps[stat] && statCaps[stat] < (tempStats as any)[stat]) {
         tempStats = {
           ...tempStats,
           [stat]: statCaps[stat],
