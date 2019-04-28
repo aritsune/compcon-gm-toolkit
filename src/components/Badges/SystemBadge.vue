@@ -32,7 +32,7 @@
           <dice-multiple-icon
             style="font-size: 24px; vertical-align: text-bottom;"
           />
-          {{ printRoll(system.weapon_roll) }}
+          {{ printRoll(system.weapon_roll, system.smart) }}
         </div>
         <div>
           <vector-line-icon
@@ -40,9 +40,9 @@
           />
           {{ system.range }}
         </div>
-        <div>
+        <div v-if="system.damage">
           <flare-icon style="font-size: 24px; vertical-align: text-bottom;" />
-          {{ system.damage.join('/') }} {{ system.damage_type }} damage
+          {{ printDamage(system.damage) }}
         </div>
       </template>
       <template v-else-if="system.tags || system.action">
@@ -76,6 +76,18 @@ export default Vue.extend({
     addable: { type: Boolean, default: false },
   },
   methods: {
+    actionName: (s: string): string => {
+      const map = {
+        free: 'Free Action',
+        quick: 'Quick Action',
+        full: 'Full Action',
+        protocol: 'Protocol',
+        reaction: 'Reaction',
+        quicktech: 'Quick Tech',
+        fulltech: 'Full Tech',
+      } as any;
+      return map[s];
+    },
     printRoll(rollObj: NPCSystem.Roll, tech: boolean) {
       const { flat, accdiff } = rollObj;
       let output = '';
@@ -98,17 +110,10 @@ export default Vue.extend({
       }
       return output;
     },
-    actionName: (s: string): string => {
-      const map = {
-        free: 'Free Action',
-        quick: 'Quick Action',
-        full: 'Full Action',
-        protocol: 'Protocol',
-        reaction: 'Reaction',
-        quicktech: 'Quick Tech',
-        fulltech: 'Full Tech',
-      } as any;
-      return map[s];
+    printDamage(damageAry: { val: [number, number, number]; type: string }[]) {
+      return damageAry
+        .map(damageObj => `${damageObj.val.join('/')} ${damageObj.type}`)
+        .join(' + ');
     },
   },
 });

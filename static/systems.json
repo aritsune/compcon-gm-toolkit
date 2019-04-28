@@ -602,7 +602,7 @@
         "val": 8
     }],
     "damage": [{
-        "val": [3, 3, 3],
+        "val": [3],
         "type": "energy"
     }, {
         "val": [2, 4, 6],
@@ -1267,7 +1267,7 @@
         "val": 3
     }],
     "damage": [{
-        "val": [5, 5, 5],
+        "val": [5],
         "type": "kinetic"
     }],
     "effect": "This weapon can attack twice at tier II and three times at tier III",
@@ -1351,7 +1351,7 @@
         "val": 8
     }],
     "damage": [{
-        "val": [3, 3, 3],
+        "val": [3],
         "type": "burn"
     }],
     "effect": "This weapon can attack twice at tier II and three times at tier III",
@@ -2055,10 +2055,6 @@
             "pertier": false
         }
     },
-    "damage": [{
-        "val": [0, 0, 0],
-        "type": "none"
-    }],
     "weapon_range": [{
         "type": "range",
         "val": 15
@@ -2371,7 +2367,7 @@
         "val": 3
     }],
     "damage": [{
-        "val": [4, 4, 4],
+        "val": [4],
         "type": "kinetic"
     }],
     "effect": "This weapon can attack twice at tier II and three times at tier III.",

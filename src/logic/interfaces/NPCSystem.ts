@@ -46,8 +46,8 @@ export module NPCSystem {
       type: string;
       val: number;
     }[];
-    damage: {
-      val: [number, number, number];
+    damage?: {
+      val: number[];
       type: string;
     }[];
   }
