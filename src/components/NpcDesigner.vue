@@ -25,22 +25,23 @@
         <b-button-group>
           <b-button
             :active="npc.tier === 0"
-            :variant="npc.tier === 0 ? 'primary' : 'outline-primary'"
+            :variant="npc.tier === 0 ? 'secondary' : 'outline-secondary'"
             @click="npc.tier = 0"
-            >1</b-button
           >
+            <numeric1-box-icon style="font-size: 24px" />
+          </b-button>
           <b-button
             :active="npc.tier === 1"
-            :variant="npc.tier === 1 ? 'primary' : 'outline-primary'"
+            :variant="npc.tier === 1 ? 'secondary' : 'outline-secondary'"
             @click="npc.tier = 1"
-            >2</b-button
-          >
+            ><numeric2-box-icon style="font-size: 24px"
+          /></b-button>
           <b-button
             :active="npc.tier === 2"
-            :variant="npc.tier === 2 ? 'primary' : 'outline-primary'"
+            :variant="npc.tier === 2 ? 'secondary' : 'outline-secondary'"
             @click="npc.tier = 2"
-            >3</b-button
-          >
+            ><numeric3-box-icon style="font-size: 24px"
+          /></b-button>
         </b-button-group>
         <div class="text-uppercase font-weight-bold mb-1">Stats</div>
         <b-card class="stat-table-card mx-auto my-3" style="width: 80%">
@@ -104,9 +105,27 @@
                 header="available systems"
                 class="pickercard"
               >
+                <div class="picker-divider" v-if="systemsAvailable.length">
+                  Class
+                </div>
                 <transition-group name="fade" tag="div" class="dragdiv">
                   <system-badge
                     v-for="system in systemsAvailable"
+                    :key="system.name"
+                    :system="system"
+                    addable
+                    @added="addSystem(system)"
+                  />
+                </transition-group>
+                <div
+                  class="picker-divider"
+                  v-if="npc.genericSystemsAvailable.length"
+                >
+                  Generic
+                </div>
+                <transition-group name="fade" tag="div" class="dragdiv">
+                  <system-badge
+                    v-for="system in npc.genericSystemsAvailable"
                     :key="system.name"
                     :system="system"
                     addable
@@ -184,6 +203,11 @@ import SystemBadge from './Badges/SystemBadge.vue';
 import TemplateBadge from './Badges/TemplateBadge.vue';
 
 import CheckCircleIcon from 'vue-material-design-icons/CheckCircle.vue';
+
+import Numeric1BoxIcon from 'vue-material-design-icons/Numeric1Box.vue';
+import Numeric2BoxIcon from 'vue-material-design-icons/Numeric2Box.vue';
+import Numeric3BoxIcon from 'vue-material-design-icons/Numeric3Box.vue';
+
 import smoothReflow from 'vue-smooth-reflow';
 
 import NPCClass, { NPCStatBlock } from '@/logic/interfaces/NPCClass';
@@ -214,6 +238,9 @@ export default Vue.extend({
     SystemBadge,
     TemplateBadge,
     CheckCircleIcon,
+    Numeric1BoxIcon,
+    Numeric2BoxIcon,
+    Numeric3BoxIcon,
   },
   data() {
     return {
@@ -234,7 +261,6 @@ export default Vue.extend({
     confirmClass() {
       if (!this.selectedClass) throw new Error('invalid class');
       this.npc = new NPC(this.selectedClass);
-      console.log(this.selectedClass);
       this.state = 'customizing';
     },
     addSystem(system: NPCSystem.Any) {
@@ -327,15 +353,24 @@ export default Vue.extend({
   font-size: 0.7em;
 }
 .pickercard .card-body {
-  padding: 0;
+  padding: 1.25em 0;
+  min-height: 82px;
 }
 .dragdiv {
   display: flex;
   flex-wrap: wrap;
-  padding: 1.25em;
-  min-height: 82px;
+  padding: 0 1.25em;
   & > div {
     padding: 5px;
   }
+}
+.picker-divider {
+  color: #5a5353;
+  text-transform: uppercase;
+  font-size: 0.7em;
+  letter-spacing: 0.5em;
+  font-style: italic;
+  font-weight: bold;
+  margin: 10px 0;
 }
 </style>

@@ -5,6 +5,7 @@ import NPCTemplate from './interfaces/NPCTemplate';
 import _ from 'lodash';
 
 const systems: NPCSystem.Any[] = require('../../static/systems.json');
+const genericSystems: NPCSystem.Any[] = require('../../static/generic_systems.json');
 const templates: NPCTemplate[] = require('./templates').default;
 
 export default class NPC {
@@ -30,6 +31,10 @@ export default class NPC {
 
   get optional_class_systems() {
     return this.class_systems.filter(s => !s.base);
+  }
+
+  get genericSystemsAvailable() {
+    return genericSystems.filter(s => !this.pickedSystems.includes(s));
   }
 
   get name() {
