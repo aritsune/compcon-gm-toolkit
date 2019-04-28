@@ -288,7 +288,7 @@ export default Vue.extend({
     },
   },
   computed: {
-    npcStats(): NPCStatBlock {
+    npcStats(): object {
       if (!this.npc) throw new Error('no npc');
       return this.npc.stats;
     },
