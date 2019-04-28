@@ -9,10 +9,10 @@
       style="padding-top: 0; padding-bottom: 0"
       :style="{
         paddingRight: closable || addable ? 0 : null,
-        opacity: disabled ? 0.7 : 1,
-        'pointer-events': disabled ? 'none' : null,
+        opacity: incompatible ? 0.7 : 1,
+        'pointer-events': incompatible ? 'none' : null,
       }"
-      :class="{ disabled }"
+      :class="{ incompatible }"
     >
       <div style="height: 30px; line-height: 30px">
         <slot name="button" />
@@ -24,12 +24,12 @@
         v-if="closable || addable"
         :class="`border-${variant}`"
       >
-        <span v-if="disabled">
-          <circle-icon class="badgebutton" />
+        <span v-if="incompatible">
+          <plus-circle-outline-icon class="badgebutton" />
         </span>
         <template v-else>
           <span v-if="closable">
-            <close-circle-icon class="badgebutton" />
+            <minus-circle-icon class="badgebutton" />
           </span>
           <span v-else-if="addable">
             <plus-circle-icon class="badgebutton" />
@@ -54,20 +54,20 @@
 <script lang="ts">
 import Vue from 'vue';
 
-import CloseCircleIcon from 'vue-material-design-icons/CloseCircle.vue';
+import MinusCircleIcon from 'vue-material-design-icons/MinusCircle.vue';
 import PlusCircleIcon from 'vue-material-design-icons/PlusCircle.vue';
-import CircleIcon from 'vue-material-design-icons/Circle.vue';
+import PlusCircleOutlineIcon from 'vue-material-design-icons/PlusCircleOutline.vue';
 
 import { NPCSystem } from '@/logic/interfaces/NPCSystem';
 
 export default Vue.extend({
   name: 'system-button',
-  components: { CloseCircleIcon, PlusCircleIcon, CircleIcon },
+  components: { MinusCircleIcon, PlusCircleIcon, PlusCircleOutlineIcon },
   props: {
     closable: { type: Boolean, default: false },
     addable: { type: Boolean, default: false },
     variant: { type: String, default: 'secondary' },
-    disabled: { type: Boolean, default: false },
+    incompatible: { type: [Array, Boolean], default: false },
     id: { type: String },
   },
   methods: {
@@ -126,8 +126,7 @@ h6.system-modal-type {
   border-color: white;
 }
 
-.disabled {
+.incompatible {
   opacity: 0.7;
-  pointer-events: none;
 }
 </style>

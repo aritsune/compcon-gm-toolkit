@@ -70,6 +70,19 @@ export default class NPC {
   get incompatibleTemplateNames() {
     return _.uniq(_.flatten(this.templates.map(t => t.incompatibleTemplates)));
   }
+  incompatibleList(templateName: string) {
+    return _.uniq(
+      this.templates
+        .filter(t => t.incompatibleTemplates.includes(templateName))
+        .map(t => t.name)
+        .concat(
+          templates
+            .find(t => t.name === templateName)!
+            .incompatibleTemplates.filter(t => this._templates.includes(t)),
+        ),
+    );
+  }
+
   addTemplate(templateName: string) {
     if (this.incompatibleTemplateNames.includes(templateName))
       throw new Error(`incompatible template "${templateName}"!`);

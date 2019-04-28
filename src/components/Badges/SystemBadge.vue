@@ -74,7 +74,7 @@ export default Vue.extend({
     system: { type: Object, required: true },
     closable: { type: Boolean, default: false },
     addable: { type: Boolean, default: false },
-    disabled: { type: Boolean, default: false },
+    incompatible: { type: [Array, Boolean], default: false },
   },
   methods: {
     actionName: (s: string): string => {

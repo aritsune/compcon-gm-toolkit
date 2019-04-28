@@ -1,20 +1,34 @@
 <template>
-  <base-badge
-    :id="tmp.name"
-    v-bind="$props"
-    @closed="$emit('closed')"
-    @added="$emit('added')"
-  >
-    <template v-slot:button>
-      {{ tmp.name }}
-    </template>
+  <div>
+    <b-tooltip v-if="incompatible" :target="tmp.name">
+      <div style="font-size: 0.8em">
+        incompatible with:
+        <div style="text-transform: uppercase; font-weight: bold">
+          {{ incompatible.join(' ') }}
+        </div>
+      </div>
+    </b-tooltip>
+    <div
+      :id="tmp.name"
+      :style="{ cursor: incompatible ? 'not-allowed' : 'pointer' }"
+    >
+      <base-badge
+        v-bind="$props"
+        @closed="$emit('closed')"
+        @added="$emit('added')"
+      >
+        <template v-slot:button>
+          {{ tmp.name }}
+        </template>
 
-    <template v-slot:modal>
-      <h5 class="system-modal-title mb-0 text-secondary">
-        {{ tmp.name }}
-      </h5>
-    </template>
-  </base-badge>
+        <template v-slot:modal>
+          <h5 class="system-modal-title mb-0 text-secondary">
+            {{ tmp.name }}
+          </h5>
+        </template>
+      </base-badge>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -31,7 +45,7 @@ export default Vue.extend({
     tmp: { type: Object, required: true },
     closable: { type: Boolean, default: false },
     addable: { type: Boolean, default: false },
-    disabled: { type: Boolean, default: false },
+    incompatible: { type: [Array, Boolean], default: false },
   },
 });
 </script>

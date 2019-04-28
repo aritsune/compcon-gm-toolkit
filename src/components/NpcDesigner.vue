@@ -147,7 +147,7 @@
                     v-for="template in availableTemplates"
                     :key="template.name"
                     :tmp="template"
-                    :disabled="templateIsUnavailable(template.name)"
+                    :incompatible="templateIsIncompatible(template.name)"
                     addable
                     @added="addTemplate(template.name)"
                   />
@@ -250,14 +250,17 @@ export default Vue.extend({
       if (!this.npc) throw new Error('no npc');
       this.npc.addTemplate(templateName);
     },
-    templateIsUnavailable(templateName: string): boolean {
+    templateIsIncompatible(templateName: string): string[] | false {
       if (!this.npc) throw new Error('no npc');
       const template = templates.find(t => t.name === templateName);
       const incompatibleNpcTemplates =
         (template && template.incompatibleTemplates) || [];
       return (
-        this.npc.incompatibleTemplateNames.includes(templateName) ||
-        this.npc._templates.some(tn => incompatibleNpcTemplates.includes(tn))
+        (this.npc.incompatibleTemplateNames.includes(templateName) ||
+          this.npc._templates.some(tn =>
+            incompatibleNpcTemplates.includes(tn),
+          )) &&
+        this.npc.incompatibleList(templateName)
       );
     },
   },
