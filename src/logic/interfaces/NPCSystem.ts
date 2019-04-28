@@ -30,6 +30,9 @@ export module NPCSystem {
       | 'quicktech'
       | 'fulltech';
     tech_roll?: Roll;
+    stat_bonuses?: {
+      [key: string]: number;
+    };
   }
 
   export interface Weapon extends Base {

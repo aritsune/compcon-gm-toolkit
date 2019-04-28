@@ -28,24 +28,23 @@
             :variant="npc.tier === 0 ? 'secondary' : 'outline-secondary'"
             @click="npc.tier = 0"
           >
-            <numeric1-box-icon style="font-size: 24px" />
+            <numeric1-icon style="font-size: 24px" />
           </b-button>
           <b-button
             :active="npc.tier === 1"
             :variant="npc.tier === 1 ? 'secondary' : 'outline-secondary'"
             @click="npc.tier = 1"
-            ><numeric2-box-icon style="font-size: 24px"
+            ><numeric2-icon style="font-size: 24px"
           /></b-button>
           <b-button
             :active="npc.tier === 2"
             :variant="npc.tier === 2 ? 'secondary' : 'outline-secondary'"
             @click="npc.tier = 2"
-            ><numeric3-box-icon style="font-size: 24px"
+            ><numeric3-icon style="font-size: 24px"
           /></b-button>
         </b-button-group>
-        <div class="text-uppercase font-weight-bold mb-1">Stats</div>
         <b-card class="stat-table-card mx-auto my-3" style="width: 80%">
-          <table class="table stat-table">
+          <table class="table stat-table" style="table-layout: fixed">
             <thead class="text-uppercase bg-light" style="font-size: 0.7em;">
               <tr>
                 <th>HP</th>
@@ -70,11 +69,9 @@
                   v-for="(value, i) in Object.values(npcStats)"
                   :key="i + '--' + value"
                 >
-                  <transition name="fade" mode="out-in">
-                    <div :key="i + '--' + value">
-                      {{ value }}
-                    </div>
-                  </transition>
+                  <div>
+                    {{ value }}
+                  </div>
                 </th>
               </tr>
             </tbody>
@@ -204,9 +201,9 @@ import TemplateBadge from './Badges/TemplateBadge.vue';
 
 import CheckCircleIcon from 'vue-material-design-icons/CheckCircle.vue';
 
-import Numeric1BoxIcon from 'vue-material-design-icons/Numeric1Box.vue';
-import Numeric2BoxIcon from 'vue-material-design-icons/Numeric2Box.vue';
-import Numeric3BoxIcon from 'vue-material-design-icons/Numeric3Box.vue';
+import Numeric1Icon from 'vue-material-design-icons/Numeric1.vue';
+import Numeric2Icon from 'vue-material-design-icons/Numeric2.vue';
+import Numeric3Icon from 'vue-material-design-icons/Numeric3.vue';
 
 import smoothReflow from 'vue-smooth-reflow';
 
@@ -238,9 +235,9 @@ export default Vue.extend({
     SystemBadge,
     TemplateBadge,
     CheckCircleIcon,
-    Numeric1BoxIcon,
-    Numeric2BoxIcon,
-    Numeric3BoxIcon,
+    Numeric1Icon,
+    Numeric2Icon,
+    Numeric3Icon,
   },
   data() {
     return {

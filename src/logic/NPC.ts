@@ -102,7 +102,9 @@ export default class NPC {
   }
 
   get stats() {
-    let tempStats = _.clone(this.npcClass.stats[this.tier]);
+    let tempStats = (_.clone(this.npcClass.stats[this.tier]) as unknown) as {
+      [key: string]: number;
+    };
     tempStats.structure = 1;
     tempStats.stress = 1;
 
@@ -118,6 +120,21 @@ export default class NPC {
           if (!statCaps[stat] || cap < statCaps[stat]) {
             statCaps[stat] = cap;
           }
+        }
+      }
+    }
+
+    function typeGuard(s: NPCSystem.Any): s is NPCSystem.NonWeapon {
+      return s.hasOwnProperty('stat_bonuses');
+    }
+
+    const systemsWithBonus = this._pickedSystems.filter(typeGuard);
+
+    for (const _system of systemsWithBonus) {
+      const system = _system as NPCSystem.NonWeapon;
+      for (const stat in (system as NPCSystem.NonWeapon).stat_bonuses) {
+        if (tempStats.hasOwnProperty(stat)) {
+          tempStats[stat] += system.stat_bonuses![stat];
         }
       }
     }
