@@ -75,8 +75,8 @@ export default Vue.extend({
       (this.$refs.sysmodal as any).show();
     },
     emitEvent() {
-      if (this.closable) this.$emit('closed');
-      else if (this.addable) this.$emit('added');
+      if (this.$props.closable) this.$emit('closed');
+      else if (this.$props.addable) this.$emit('added');
     },
   },
 });
