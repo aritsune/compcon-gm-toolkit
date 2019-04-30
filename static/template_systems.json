@@ -529,7 +529,7 @@
     },
 
     {
-        "name": "",
+        "name": "Scout Drone",
 
         "class": "mercenary",
         "type": "system",
@@ -602,7 +602,7 @@
     },
 
     {
-        "name": "",
+        "name": "Boarding Clutch",
 
         "class": "pirate",
         "type": "weapon",
@@ -639,7 +639,7 @@
     },
 
     {
-        "name": "",
+        "name": "Borer Missiles",
 
         "class": "pirate",
         "type": "system",
@@ -661,7 +661,7 @@
     },
 
     {
-        "name": "",
+        "name": "Slaver Signal",
 
         "class": "pirate",
         "type": "system",
@@ -726,7 +726,7 @@
     },
 
     {
-        "name": "",
+        "name": "Thumper grenades",
 
         "class": "spacer",
         "type": "system",
