@@ -4,9 +4,11 @@ import NPCTemplate from './interfaces/NPCTemplate';
 
 import _ from 'lodash';
 
+const npcClasses: NPCClass[] = require('../../static/classes.json');
 const systems: NPCSystem.Any[] = require('../../static/systems.json');
 const genericSystems: NPCSystem.Any[] = require('../../static/generic_systems.json');
 const templates: NPCTemplate[] = require('./templates').default;
+const templateSystems: NPCSystem.Any[] = require('../../static/template_systems.json');
 
 export default class NPC {
   npcClass: NPCClass;
@@ -35,6 +37,15 @@ export default class NPC {
 
   get genericSystemsAvailable() {
     return genericSystems.filter(s => !this.pickedSystems.includes(s));
+  }
+
+  get templateSystemsAvailable() {
+    return _.groupBy(
+      templateSystems
+        .filter(s => this._templates.includes(s.class))
+        .filter(s => !this.pickedSystems.includes(s)),
+      'class',
+    );
   }
 
   get name() {
@@ -101,6 +112,10 @@ export default class NPC {
     this._templates = _.without(this._templates, templateName);
   }
 
+  get features() {
+    return _.uniqBy(_.flatten(this.templates.map(t => t.features)), 'name');
+  }
+
   get stats() {
     let tempStats = (_.clone(this.npcClass.stats[this.tier]) as unknown) as {
       [key: string]: number;
@@ -113,7 +128,7 @@ export default class NPC {
     };
 
     for (const template of this.templates) {
-      tempStats = template.statTransform(tempStats);
+      if (template.statTransform) tempStats = template.statTransform(tempStats);
       if (template.statCaps) {
         for (const stat in template.statCaps) {
           const cap = template.statCaps[stat];
@@ -149,5 +164,36 @@ export default class NPC {
     }
 
     return tempStats;
+  }
+
+  serialize() {
+    return {
+      class: this.npcClass.name,
+      tier: this.tier,
+      name: this._name,
+      templates: this._templates,
+      systems: this._pickedSystems.map(s => s.name),
+    };
+  }
+
+  static deserialize(obj: {
+    class: string;
+    tier: 0 | 1 | 2;
+    name?: string;
+    templates: string[];
+    systems: string[];
+  }) {
+    const cl = npcClasses.find(c => c.name === obj.class);
+    if (!cl) throw new Error('invalid class');
+    let npc = new NPC(cl, obj.tier);
+    npc.tier = obj.tier;
+    if (obj.name) npc.name = obj.name;
+    npc._templates = obj.templates;
+    for (const sysName of obj.systems) {
+      const sys = systems.concat(genericSystems).find(s => s.name === sysName);
+      if (!sys) throw new Error(`invalid system ${sysName}`);
+      npc.pickSystem(sys);
+    }
+    return npc;
   }
 }

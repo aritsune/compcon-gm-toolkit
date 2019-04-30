@@ -25,58 +25,41 @@
         <b-button-group>
           <b-button
             :active="npc.tier === 0"
-            :variant="npc.tier === 0 ? 'secondary' : 'outline-secondary'"
+            :variant="
+              npc.tier === 0
+                ? `role--${npc.npcClass.role}`
+                : `outline-role--${npc.npcClass.role}`
+            "
             @click="npc.tier = 0"
           >
             <numeric1-icon style="font-size: 24px" />
           </b-button>
           <b-button
             :active="npc.tier === 1"
-            :variant="npc.tier === 1 ? 'secondary' : 'outline-secondary'"
+            :variant="
+              npc.tier === 1
+                ? `role--${npc.npcClass.role}`
+                : `outline-role--${npc.npcClass.role}`
+            "
             @click="npc.tier = 1"
             ><numeric2-icon style="font-size: 24px"
           /></b-button>
           <b-button
             :active="npc.tier === 2"
-            :variant="npc.tier === 2 ? 'secondary' : 'outline-secondary'"
+            :variant="
+              npc.tier === 2
+                ? `role--${npc.npcClass.role}`
+                : `outline-role--${npc.npcClass.role}`
+            "
             @click="npc.tier = 2"
             ><numeric3-icon style="font-size: 24px"
           /></b-button>
         </b-button-group>
-        <b-card class="stat-table-card mx-auto my-3" style="width: 80%">
-          <table class="table stat-table" style="table-layout: fixed">
-            <thead class="text-uppercase bg-light" style="font-size: 0.7em;">
-              <tr>
-                <th>HP</th>
-                <th>EVADE</th>
-                <th>EDEF</th>
-                <th>HEAT</th>
-                <th>H</th>
-                <th>A</th>
-                <th>S</th>
-                <th>E</th>
-                <th>ARMOR</th>
-                <th>SPD</th>
-                <th>SENSE</th>
-                <th>SAVE</th>
-                <th>STRUCT</th>
-                <th>STRESS</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th
-                  v-for="(value, i) in Object.values(npcStats)"
-                  :key="i + '--' + value"
-                >
-                  <div>
-                    {{ value }}
-                  </div>
-                </th>
-              </tr>
-            </tbody>
-          </table>
-        </b-card>
+        <npc-stat-table :statblock="npcStats" />
+        <b-row>
+          <npc-feature-list :features="npc.features" />
+        </b-row>
+        <hr />
         <b-container fluid>
           <b-row>
             <b-col cols="6">
@@ -129,6 +112,26 @@
                     @added="addSystem(system)"
                   />
                 </transition-group>
+                <div
+                  v-for="tmp in Object.keys(npc.templateSystemsAvailable)"
+                  :key="tmp"
+                >
+                  <div
+                    class="picker-divider"
+                    v-if="npc.templateSystemsAvailable[tmp].length"
+                  >
+                    {{ tmp }}
+                  </div>
+                  <transition-group name="fade" tag="div" class="dragdiv">
+                    <system-badge
+                      v-for="system in npc.templateSystemsAvailable[tmp]"
+                      :key="system.name"
+                      :system="system"
+                      addable
+                      @added="addSystem(system)"
+                    />
+                  </transition-group>
+                </div>
               </b-card>
             </b-col>
           </b-row>
@@ -195,6 +198,8 @@ import Vue from 'vue';
 import _ from 'lodash';
 import NpcClassPicker from './NpcClassPicker.vue';
 import NpcClassDisplay from './NpcClassDisplay.vue';
+import NpcStatTable from './NpcStatTable.vue';
+import NpcFeatureList from './NpcFeatureList.vue';
 
 import SystemBadge from './Badges/SystemBadge.vue';
 import TemplateBadge from './Badges/TemplateBadge.vue';
@@ -232,6 +237,8 @@ export default Vue.extend({
   components: {
     NpcClassPicker,
     NpcClassDisplay,
+    NpcStatTable,
+    NpcFeatureList,
     SystemBadge,
     TemplateBadge,
     CheckCircleIcon,
@@ -239,11 +246,17 @@ export default Vue.extend({
     Numeric2Icon,
     Numeric3Icon,
   },
+  props: {
+    editing: { type: Boolean, default: false },
+    editingnpc: { type: NPC, required: false },
+  },
   data() {
     return {
-      state: 'picking-class',
-      selectedClass: null as NPCClass | null,
-      npc: null as NPC | null,
+      state: this.editing ? 'customizing' : 'picking-class',
+      selectedClass: (this.editing
+        ? this.editingnpc.npcClass
+        : null) as NPCClass | null,
+      npc: (this.editing ? this.editingnpc : null) as NPC | null,
     };
   },
   methods: {
@@ -324,25 +337,6 @@ export default Vue.extend({
 .flavor {
   font-size: 0.9em;
 }
-.stat-table-card .card-body {
-  padding: 0;
-}
-.stat-table {
-  margin-bottom: 0;
-  tbody th {
-    font-size: 1.3em !important;
-  }
-  thead th {
-    border-bottom-width: 1px;
-    border-top: none;
-  }
-  th {
-    padding: 0.5em;
-  }
-  th:not(:last-child) {
-    border-right: 1px #dee2e6 solid;
-  }
-}
 .pickercard .card-header {
   padding: 5px 0;
   font-weight: bold;
@@ -360,6 +354,7 @@ export default Vue.extend({
   & > div {
     padding: 5px;
   }
+  margin-bottom: 10px;
 }
 .picker-divider {
   color: #5a5353;
@@ -369,5 +364,6 @@ export default Vue.extend({
   font-style: italic;
   font-weight: bold;
   margin: 10px 0;
+  margin-top: 0;
 }
 </style>
