@@ -45,7 +45,7 @@ export default Vue.extend({
       if (str.length < maxlength) {
         return str;
       } else {
-        return str.replace(/(?<=\w)[aeiou]/gi, '').replace(/ /gi, '') + '';
+        return str.replace(/[aeiou]/g, '').replace(/ /gi, '') + '';
       }
     },
   },
