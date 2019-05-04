@@ -26,6 +26,14 @@
           <b-button
             size="sm"
             variant="outline-light"
+            @click="$emit('duplicate')"
+            class="ml-2"
+          >
+            <duplicate style="font-size: 16px;" />
+          </b-button>
+          <b-button
+            size="sm"
+            variant="outline-light"
             @click="confirmDelete"
             class="ml-2"
           >
@@ -110,6 +118,7 @@ import Pips from './Pips.vue';
 import System from './System.vue';
 
 import Pencil from 'vue-material-design-icons/Pencil.vue';
+import Duplicate from 'vue-material-design-icons/ContentCopy.vue';
 import Delete from 'vue-material-design-icons/Delete.vue';
 
 import NPC from '@/logic/NPC.ts';
@@ -128,6 +137,7 @@ export default Vue.extend({
     System,
     Pencil,
     Delete,
+    Duplicate
   },
   computed: {
     shownSystems(): NPCSystem.Any[] {

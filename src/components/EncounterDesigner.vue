@@ -39,14 +39,16 @@
             @edit="editNPC([i, npc])"
           />
         </div> -->
-        <b-container fluid class="mb-4">
+        <b-container fluid class="mb-4 w-100">
           <b-row>
             <MockupCard
+              class="mb-4"
               v-for="(npc, i) in npcs"
               :key="i"
               :npc="npc"
               editable
               @delete="deleteNPC(i)"
+              @duplicate="duplicateNPC([i, npc])"
               @edit="editNPC([i, npc])"
             />
           </b-row>
@@ -119,6 +121,12 @@ export default Vue.extend({
     },
     deleteNPC(i: number) {
       _.pullAt(this.npcs, i);
+      this.npcs = [...this.npcs];
+    },
+    duplicateNPC(payload: [number, NPC]) {
+      const [i, npc] = payload;
+      const npcCopy = _.clone(npc);
+      this.npcs.splice( i, 0, npcCopy );
       this.npcs = [...this.npcs];
     },
     editNPC(payload: [number, NPC]) {
