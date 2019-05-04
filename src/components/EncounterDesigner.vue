@@ -112,7 +112,6 @@ export default Vue.extend({
     onNewNPC(npc: NPC) {
       if (this.state === 'creating-npc') {
         this.npcs.push(npc);
-        console.log(npc);
       } else if (this.state === 'editing-npc' && this.editingNPC) {
         const [i, npc] = this.editingNPC;
         this.npcs[i] = npc;
@@ -145,7 +144,6 @@ export default Vue.extend({
       fileInput.click();
     },
     loadEncounter(ev: Event) {
-      console.log('loadEncounter');
       const fileInput = ev.target as HTMLInputElement;
       const file = fileInput.files![0];
       if (!file) return;
@@ -156,8 +154,6 @@ export default Vue.extend({
         this.npcs = parsed.map(NPC.deserialize);
       };
       reader.readAsText(file);
-      // fileInput.type = 'text';
-      // fileInput.type = 'file';
     },
   },
 });
