@@ -4,7 +4,7 @@
       <b class="goblinchan-header" v-if="tips.length" key="header"
         >GOBLIN-CHAN'S TIPS</b
       >
-      <div class="popover bs-popover-top " v-for="(tip, i) in tips" :key="i">
+      <div class="popover bs-popover-top " v-for="(tip, i) in tips" :key="tip">
         <div
           class="arrow"
           style="right: 90px;"

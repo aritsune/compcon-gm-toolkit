@@ -17,7 +17,6 @@
 import Vue from 'vue';
 import EncounterDesigner from './components/EncounterDesigner.vue';
 import smoothReflow from 'vue-smooth-reflow';
-import MockupCard from './components/MockupCard/Mockup.vue';
 
 import NPC from '@/logic/NPC.ts';
 
