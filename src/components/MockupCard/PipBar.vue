@@ -20,8 +20,8 @@
             </div>
         </div>
         <div class="pips" :style="`max-width: calc(${breakAt * 18}px)`">
-            <filled-circle-icon style="font-size: 24px" v-for="i in value" :key="'fill' + i" />
-            <circle-icon style="font-size: 24px" v-for="i in (max - value)" :key="'empt' + i" />
+            <filled-circle-icon style="font-size: 24px" v-for="i in value" :key="i" />
+            <circle-icon style="font-size: 24px" v-for="i in (max - value)" :key="value + i" />
         </div>
     </div>
 </template>
