@@ -126,7 +126,7 @@ export default Vue.extend({
     duplicateNPC(payload: [number, NPC]) {
       const [i, npc] = payload;
       const npcCopy = _.clone(npc);
-      this.npcs.splice( i, 0, npcCopy );
+      this.npcs.splice(i, 0, npcCopy);
       this.npcs = [...this.npcs];
     },
     editNPC(payload: [number, NPC]) {

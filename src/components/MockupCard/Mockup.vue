@@ -137,7 +137,7 @@ export default Vue.extend({
     System,
     Pencil,
     Delete,
-    Duplicate
+    Duplicate,
   },
   computed: {
     shownSystems(): NPCSystem.Any[] {
