@@ -19,6 +19,9 @@ export const NPCTips = (npc: NPC): string[] => {
   if (templates.includes('elite'))
     optionalString =
       'As an Elite, the NPC should have between 1 and 3 modules from the following categories: ';
+  else if (templates.includes('ultra'))
+    optionalString =
+      'As an Ultra, the NPC should have between 2 and 4 modules from the following categories: ';
   else
     optionalString =
       'The NPC should have between 0 and 2 modules from the following categories: ';
