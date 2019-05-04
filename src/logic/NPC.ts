@@ -110,6 +110,9 @@ export default class NPC {
   }
   removeTemplate(templateName: string) {
     this._templates = _.without(this._templates, templateName);
+    this._pickedSystems = this._pickedSystems.filter(
+      sys => sys.class !== templateName,
+    );
   }
 
   get features() {

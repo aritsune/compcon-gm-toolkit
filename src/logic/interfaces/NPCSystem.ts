@@ -6,7 +6,10 @@ export module NPCSystem {
     effect_short?: string;
     hide_on_card?: boolean;
     base: boolean;
-    tags?: string;
+    tags?: {
+      id: string;
+      val?: number | number[];
+    }[];
   }
 
   export interface Roll {
@@ -43,8 +46,6 @@ export module NPCSystem {
       'Auxiliary' | 'Main' | 'Heavy' | 'Superheavy',
       'CQB' | 'Rifle' | 'Cannon' | 'Nexus' | 'Launcher' | 'Melee'
     ];
-    // TODO: make tags into an array
-    // tags: string[];
     weapon_roll: Roll;
     smart?: true;
     weapon_range: {

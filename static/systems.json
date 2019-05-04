@@ -9,7 +9,9 @@
     "class": "ace",
     "name": "Missile Launcher",
     "weapon_type": ["Main", "Launcher"],
-    "tags": "Seeking",
+    "tags": [{
+        "id": "seeking"
+    }],
     "weapon_roll": {
         "flat": {
             "val": 1,
@@ -40,7 +42,12 @@
     "name": "Bombing Bay",
     "class": "ace",
     "type": "system",
-    "tags": "Limited (3), 1/round",
+    "tags": [{
+        "id": "limited",
+        "val": 3
+    }, {
+        "id": "1/round"
+    }],
     "effect": "When this mech moves or boosts and is flying, it can drop a bomb on one character below as a free action it that it passes over vertically or adjacent to. Bombs create a blast 1 area with at least 1 space on their target. All affected targets must pass an agility save or take 6/8/10 explosive damage and be knocked prone.",
     "base": false
 }, {
@@ -48,7 +55,9 @@
     "class": "ace",
     "type": "trait",
     "action": "quick",
-    "tags": "1/round",
+    "tags": [{
+        "id": "1/round"
+    }],
     "effect": "The Ace flies its speed in any direction in a strafing run, dealing 3/4/6 kinetic damage to any actor of its choice it passes over vertically or adjacent to (no roll required).",
     "base": false
 }, {
@@ -56,7 +65,11 @@
     "type": "weapon",
     "name": "Missile Swarm",
     "weapon_type": ["Main", "Launcher"],
-    "tags": "Seeking, Loading",
+    "tags": [{
+        "id": "seeking"
+    }, {
+        "id": "loading"
+    }],
     "weapon_roll": {
         "flat": {
             "val": 1,
@@ -136,7 +149,12 @@
     "class": "assassin",
     "name": "Boltok Shotgun",
     "weapon_type": ["Heavy", "CQB"],
-    "tags": "Loading, Knockback 2",
+    "tags": [{
+        "id": "loading"
+    }, {
+        "id": "knockback",
+        "val": 2
+    }],
     "weapon_roll": {
         "flat": {
             "val": 0,
@@ -183,7 +201,10 @@
     "class": "assassin",
     "type": "system",
     "action": "quick",
-    "tags": "Limited (3)",
+    "tags": [{
+        "id": "limited",
+        "val": 3
+    }],
     "effect": "A knife can be thrown at any character in range 3 as a quick action. Make a ranged attack roll for +2 vs evasion/tier, attaching on hit. At the end of the target’s next turn, the knife explodes, dealing 6/8/10 explosive damage in a burst 1 area centered on the knife or mech.",
     "base": false
 }, {
@@ -191,7 +212,10 @@
     "type": "weapon",
     "name": "Heavy Assault Rifle",
     "weapon_type": ["Main", "Rifle"],
-    "tags": "Reliable 2/3/4",
+    "tags": [{
+        "id": "reliable",
+        "val": [2, 3, 4]
+    }],
     "weapon_roll": {
         "flat": {
             "val": 1,
@@ -241,7 +265,11 @@
     "type": "weapon",
     "name": "Underslung Grenade Launcher",
     "weapon_type": ["Auxiliary", "Launcher"],
-    "tags": "Loading, Arcing",
+    "tags": [{
+        "id": "loading"
+    }, {
+        "id": "arcing"
+    }],
     "weapon_roll": {
         "flat": {
             "val": 1,
@@ -326,7 +354,9 @@
     "base": false,
     "name": "Molten Shield",
     "type": "system",
-    "tags": "Shield",
+    "tags": [{
+        "id": "shield"
+    }],
     "action": "reaction",
     "effect": "Once per round, the Berserker can activate this dispersal shield when it takes damage from any melee attack. The Berserker gains resistance to all the damage from the attack, and the attacker must pass an engineering save or take Burn 2/tier."
 }, {
@@ -395,7 +425,6 @@
     "name": "Dual Shotguns",
     "type": "weapon",
     "weapon_type": ["Main", "CQB"],
-    "tags": "",
     "weapon_roll": {
         "flat": {
             "val": 1,
@@ -451,7 +480,9 @@
     "name": "Hunter Lock",
     "type": "trait",
     "action": "quicktech",
-    "tags": "Smart",
+    "tags": [{
+        "id": "smart"
+    }],
     "tech_roll": {
         "flat": {
             "val": 1,
@@ -469,8 +500,11 @@
     "name": "Thermal Charge",
     "type": "system",
     "action": "quick",
-    "tags": "Limited (1), Thrown 5, Blast 2",
-    "effect": "Deals 3 Burn/tier. This weapon deals 10 AP kinetic damage/tier to walls, terrain, and deployables in the area."
+    "tags": [{
+        "id": "limited",
+        "val": 1
+    }],
+    "effect": "Thrown 5, Blast 2. Deals 3 Burn/tier. This weapon deals 10 AP kinetic damage/tier to walls, terrain, and deployables in the area."
 }, {
     "class": "breacher",
     "base": false,
@@ -501,7 +535,10 @@
     "name": "Thermal Lance",
     "type": "weapon",
     "weapon_type": ["Heavy", "Cannon"],
-    "tags": "4 heat (self)",
+    "tags": [{
+        "id": "heatself",
+        "val": 4
+    }],
     "weapon_roll": {
         "flat": {
             "val": 1,
@@ -556,7 +593,10 @@
     "name": "Pulse Laser",
     "type": "weapon",
     "weapon_type": ["Main", "Cannon"],
-    "tags": "4 heat (self)",
+    "tags": [{
+        "id": "heatself",
+        "val": 4
+    }],
     "weapon_roll": {
         "flat": {
             "val": 2,
@@ -615,7 +655,9 @@
     "name": "Defense Net",
     "class": "aegis",
     "type": "system",
-    "tags": "Shield",
+    "tags": [{
+        "id": "shield"
+    }],
     "action": "full",
     "recharge": 4,
     "effect": "This system spreads a powerful shimmering repulsion shield over a large area. While this system is active, this mech is immobilized, but all ranged, melee, or tech attacks against any character or object within a burst 3 zone around this mech originating outside of that zone take +2 Difficulty. Attacks out of the zone or between targets that are both inside of the zone are unaffected. It can be deactivated as a full action, and it automatically deactivates if the Aegis is stunned, jammed, or destroyed. If the Aegis is involuntarily moved (such as from knock back), the field does not deactivate, but moves with it.",
@@ -630,7 +672,9 @@
     "name": "Adaptive Shielding",
     "class": "aegis",
     "type": "trait",
-    "tags": "1/round",
+    "tags": [{
+        "id": "1/round"
+    }],
     "effect": "The first time a round an allied character to the Aegis inside the defense net is damaged, all allied characters inside gain resistance to the damage type of the triggering attack until the end of the Aegis’s next turn.",
     "base": false
 }, {
@@ -650,7 +694,11 @@
     "class": "aegis",
     "type": "system",
     "action": "quick",
-    "tags": "Shield, Deployable",
+    "tags": [{
+        "id": "shield"
+    }, {
+        "id": "deployable"
+    }],
     "recharge": 5,
     "effect": "The Aegis creates a line 3 section of hardlight, which grants hard cover against incoming fire. Characters that benefit from this cover have resistance to damage from line, blast, and cone attacks. The cover is immune to damage.",
     "base": false
@@ -659,7 +707,10 @@
     "class": "aegis",
     "type": "system",
     "action": "full",
-    "tags": "Limited(1)",
+    "tags": [{
+        "id": "limited",
+        "val": 1
+    }],
     "effect": "The Aegis creates a pitch black wall of blinkspace that takes up a free line 10 zone 5 spaces high that must have at least one point within 5 spaces of the Aegis. The wall completely blocks line of sight between its two sides and no effect or attack can be drawn across it. Any character that starts its turn on the wall or crosses it for the first time on its turn has a 50% chance to be lost in blinkspace momentarily. If this occurs, remove the mech from play. It returns at the end of its next turn, in any free space chosen by that character within range 10 of either side of the wall. If there is no space available, it returns when there is. The wall disappears when the Aegis is destroyed or it uses an action to deactivate it, also returning any stranded mechs.",
     "base": false
 }, {
@@ -667,7 +718,10 @@
     "class": "archer",
     "type": "weapon",
     "weapon_type": ["Main", "Cannon"],
-    "tags": "Reliable 2/3/4",
+    "tags": [{
+        "id": "reliable",
+        "val": [2, 3, 4]
+    }],
     "weapon_roll": {
         "flat": {
             "val": 2,
@@ -701,7 +755,9 @@
     "class": "archer",
     "type": "trait",
     "action": "reaction",
-    "tags": "1/round",
+    "tags": [{
+        "id": "1/round"
+    }],
     "effect": "In response to any character in range 10 and line of sight starting any movement, the Archer can interrupt that movement. If the character continues to move, the Archer can immediately attack it as a reaction. The character can choose to cancel that move, losing the action or movement. If they do so, the Archer does not get to attack, but still spends its reaction.",
     "base": false
 }, {
@@ -716,7 +772,9 @@
     "name": "Blinding Shells",
     "class": "archer",
     "type": "trait",
-    "tags": "1/round",
+    "tags": [{
+        "id": "1/round"
+    }],
     "effect": "The Archer can force a target struck by its attacks to pass an engineering save or only have line of sight to adjacent spaces until the end of its next turn",
     "base": false
 }, {
@@ -732,7 +790,9 @@
     "class": "archer",
     "type": "trait",
     "action": "reaction",
-    "tags": "1/round",
+    "tags": [{
+        "id": "1/round"
+    }],
     "effect": "In response to any enemy movement, the Archer can make the boost action as a reaction after that movement completes.",
     "base": false
 }, {
@@ -824,7 +884,12 @@
     "class": "barricade",
     "type": "system",
     "action": "quick",
-    "tags": "Drone, Limited(1)",
+    "tags": [{
+        "id": "drone"
+    }, {
+        "id": "limited",
+        "val": 1
+    }],
     "effect": "The Barricade rapidly prints and deploys a snare drone in a free adjacent space. This drone is size 1/2, has 10/12/14 evasion and e-defense and 5 HP/tier. When any hostile mech moves within range 3 of the drone or starts its turn in range of the drone, it emits a pulse, immediately immobilizing that mech until the drone is destroyed (no save allowed).",
     "base": false
 }, {
@@ -832,7 +897,11 @@
     "class": "bastion",
     "type": "weapon",
     "weapon_type": ["Main", "Launcher"],
-    "tags": "Arcing, Loading",
+    "tags": [{
+        "id": "arcing"
+    }, {
+        "id": "loading"
+    }],
     "weapon_roll": {
         "flat": {
             "val": 1,
@@ -856,7 +925,9 @@
     "class": "bastion",
     "type": "weapon",
     "weapon_type": ["Heavy", "Melee"],
-    "tags": "Knockback 1",
+    "tags": [{
+        "id": "knockback 1"
+    }],
     "weapon_roll": {
         "flat": {
             "val": 1,
@@ -909,14 +980,18 @@
     "class": "bastion",
     "type": "trait",
     "action": "reaction",
-    "tags": "1/round",
+    "tags": [{
+        "id": "1/round"
+    }],
     "effect": "When an allied mech is damaged, if the mech is range 5 of the Bastion and the bastion is not immobilized, it can immediately move adjacent to that mech and take that damage instead of the targeted mech.",
     "base": false
 }, {
     "name": "Hypo-reinforcement Servos",
     "class": "bastion",
     "type": "system",
-    "tags": "shield",
+    "tags": [{
+        "id": "shield"
+    }],
     "effect": "The Bastion reduces all the damage from the very first attack it takes a round to 0. This effect refreshes at the start of its turn.",
     "base": false
 }, {
@@ -924,7 +999,11 @@
     "class": "bombard",
     "type": "weapon",
     "weapon_type": ["Superheavy", "Cannon"],
-    "tags": "Ordnance, Arcing",
+    "tags": [{
+        "id": "ordnance"
+    }, {
+        "id": "arcing"
+    }],
     "weapon_roll": {
         "flat": {
             "val": 2,
@@ -984,7 +1063,9 @@
     "class": "bombard",
     "type": "system",
     "action": "quick",
-    "tags": "Drone",
+    "tags": [{
+        "id": "drone"
+    }],
     "effect": "The Bombard targets a space in line of sight and within range 25 and fires a disposable size 1/2 drone(10 HP/tier, 10 evasion/e-defense) to that space where it hovers in place. The drone emits a burst 2 area around itself. Characters of the Bombard’s choice in the area lose invisibility while in the area, cannot hide in the area and immediately lose hiding if they move into or start their turn in the area, and the Bombard attacks characters in the area with +1 Accuracy. The Drone takes damage normally, including from the Bombard’s attacks. The Bombard can only have one drone deployed at a time, and if it deploys a new drone, the old one disintegrates.",
     "base": false
 }, {
@@ -992,7 +1073,13 @@
     "class": "bombard",
     "type": "weapon",
     "weapon_type": ["Main", "Cannon"],
-    "tags": "Loading, Ordnance, Knockback 3",
+    "tags": [{
+        "id": "loading"
+    }, {
+        "id": "ordnance"
+    }, {
+        "id": "knockback 3"
+    }],
     "weapon_roll": {
         "flat": {
             "val": 1,
@@ -1060,7 +1147,9 @@
     "name": "Point-Defense Shield",
     "class": "cataphract",
     "type": "system",
-    "tags": "shield",
+    "tags": [{
+        "id": "shield"
+    }],
     "effect": "The Cataphract has resistance to all damage from the closest hostile character to it (if multiple characters qualify, this system does not function).",
     "base": true
 }, {
@@ -1068,7 +1157,9 @@
     "class": "cataphract",
     "type": "system",
     "action": "quick",
-    "tags": "1/round",
+    "tags": [{
+        "id": "1/round"
+    }],
     "effect": "A character in range 5 and line of sight of the cataphract must pass a hull save or become pulled adjacent to the cataphract or as far as possible, then grappled by the Cataphract if they are adjacent.",
     "base": false
 }, {
@@ -1106,7 +1197,9 @@
     "class": "demolisher",
     "type": "weapon",
     "weapon_type": ["Superheavy", "Melee"],
-    "tags": "AP",
+    "tags": [{
+        "id": "ap"
+    }],
     "weapon_roll": {
         "flat": {
             "val": 1,
@@ -1131,7 +1224,9 @@
     "name": "Entrench",
     "class": "demolisher",
     "type": "trait",
-    "tags": "1/round",
+    "tags": [{
+        "id": "1/round"
+    }],
     "effect": "The Demolisher can immediately gain resistance to all the damage of any one attack that just hit it, but becomes slowed until the end of its next turn.",
     "base": true
 }, {
@@ -1187,7 +1282,9 @@
     "class": "engineer",
     "type": "weapon",
     "weapon_type": ["Heavy", "Cannon"],
-    "tags": "Smart",
+    "tags": [{
+        "id": "smart"
+    }],
     "smart": true,
     "weapon_roll": {
         "flat": {
@@ -1210,7 +1307,9 @@
     "class": "engineer",
     "type": "system",
     "action": "quick",
-    "tags": "Drone",
+    "tags": [{
+        "id": "drone"
+    }],
     "effect": "The engineer deploys a self-building turret in an adjacent, open space. The turret is an immobile size 1/2 drone with simple AI that attacks the nearest hostile target. It has evasion and e-defense 10 and 5/8/10 HP. It attacks on the Engineer’s turn for +1/tier vs evasion, range 10, 4/5/6 kinetic damage, but can take no other actions. All turrets are disabled if the Engineer is destroyed. It can deploy a maximum of 6 turrets at once.",
     "base": true
 }, {
@@ -1280,7 +1379,6 @@
     "class": "goliath",
     "type": "system",
     "action": "quick",
-    "tags": "",
     "recharge": 4,
     "effect": "A character in line of sight and sensor range gains +3 difficulty to attack any character other than the Goliath until the start of the Goliath’s next turn.",
     "base": true
@@ -1341,7 +1439,11 @@
     "class": "hive",
     "type": "weapon",
     "weapon_type": ["Main", "Nexus"],
-    "tags": "Smart, Seeking",
+    "tags": [{
+        "id": "smart"
+    }, {
+        "id": "seeking"
+    }],
     "smart": true,
     "weapon_roll": {
         "flat": {
@@ -1377,7 +1479,9 @@
     "class": "hive",
     "type": "system",
     "action": "quick",
-    "tags": "Drone",
+    "tags": [{
+        "id": "drone"
+    }],
     "recharge": 4,
     "effect": "The Hive creates a blast 1 area in a free area within sensor range. The area remains until the end of the current scene or the Hive is destroyed. Targets allied to the Hive with any part of them in the area gain soft cover. Otherwise, any other character that starts its turn at least partly in the area or moves into it for the first time on its turn takes 2 Burn/tier. The Hive can deploy any number of Razor Swarms.",
     "base": true
@@ -1405,7 +1509,9 @@
     "class": "hive",
     "type": "system",
     "action": "quicktech",
-    "tags": "Drone",
+    "tags": [{
+        "id": "drone"
+    }],
     "tech_roll": {
         "flat": {
             "val": 2,
@@ -1423,7 +1529,9 @@
     "class": "hive",
     "type": "weapon",
     "weapon_type": ["Main", "Nexus"],
-    "tags": "Smart",
+    "tags": [{
+        "id": "smart"
+    }],
     "smart": true,
     "weapon_roll": {
         "flat": {
@@ -1510,7 +1618,9 @@
     "class": "hornet",
     "type": "system",
     "action": "reaction",
-    "tags": "1/round",
+    "tags": [{
+        "id": "1/round"
+    }],
     "effect": "The Hornet can use a reaction to attempt to electronically jam a target in its sensor range that is attempting to make an attack roll. The target must pass a systems save or lose its attack (it can still make other attacks as normal).",
     "base": false
 }, {
@@ -1525,7 +1635,9 @@
     "class": "hornet",
     "type": "weapon",
     "weapon_type": ["Auxiliary", "Launcher"],
-    "tags": "Smart",
+    "tags": [{
+        "id": "smart"
+    }],
     "smart": true,
     "weapon_roll": {
         "flat": {
@@ -1644,7 +1756,9 @@
     "class": "operator",
     "type": "weapon",
     "weapon_type": ["Heavy", "Rifle"],
-    "tags": "AP",
+    "tags": [{
+        "id": "ap"
+    }],
     "weapon_roll": {
         "flat": {
             "val": 2,
@@ -1716,7 +1830,9 @@
     "class": "operator",
     "type": "weapon",
     "weapon_type": ["Auxiliary", "Launcher"],
-    "tags": "Seeking",
+    "tags": [{
+        "id": "seeking"
+    }],
     "weapon_roll": {
         "flat": {
             "val": 1,
@@ -1807,7 +1923,10 @@
     "class": "pyro",
     "type": "weapon",
     "weapon_type": ["Heavy", "CQB"],
-    "tags": "4 heat (self)",
+    "tags": [{
+        "id": "heatself",
+        "val": 4
+    }],
     "weapon_roll": {
         "flat": {
             "val": 1,
@@ -1841,7 +1960,9 @@
     "name": "FIREBREAK shield",
     "class": "pyro",
     "type": "system",
-    "tags": "shield",
+    "tags": [{
+        "id": "shield"
+    }],
     "effect": "At the end of its turn, the Pyro creates a line 4 energy field in free spaces it can see, 4 spaces high, oriented so it has at least 1 space adjacent to the pyro. The shield is so hot that it melts munitions, warps targeting, and reflects energy blasts fired at the pyro. If any ranged or melee attack without the seeking tag would be made in such a way that it crosses the line (even if it doesn’t target the pyro), roll a d6. On a 4+, the pyro reduces all damage from the attack to 0 and cancels all other effects the attack would have. The field disappears at the start of the pyro’s turn, or if the pyro is stunned, shut down, or moved for any reason.",
     "base": true
 }, {
@@ -1861,7 +1982,11 @@
     "class": "pyro",
     "type": "weapon",
     "weapon_type": ["Main", "Launcher"],
-    "tags": "Arcing, Loading",
+    "tags": [{
+        "id": "arcing"
+    }, {
+        "id": "loading"
+    }],
     "weapon_roll": {
         "flat": {
             "val": 1,
@@ -1888,7 +2013,9 @@
     "class": "pyro",
     "type": "system",
     "action": "reaction",
-    "tags": "shield",
+    "tags": [{
+        "id": "shield"
+    }],
     "effect": "Once per round, the Pyro can activate this dispersal shield when it takes damage from any melee attack. The Pyro gains resistance to all the damage from the attack, and the attacker must pass an engineering save or take Burn 2/tier.",
     "base": false
 }, {
@@ -1904,7 +2031,15 @@
     "class": "rainmaker",
     "type": "weapon",
     "weapon_type": ["Main", "Launcher"],
-    "tags": "Arcing, Reliable 1/2/2, Knockback 1",
+    "tags": [{
+        "id": "arcing"
+    }, {
+        "id": "reliable",
+        "val": [1, 2, 2]
+    }, {
+        "id": "knockback",
+        "val": 1
+    }],
     "weapon_roll": {
         "flat": {
             "val": 2,
@@ -1946,7 +2081,9 @@
     "name": "HOUND missile",
     "class": "rainmaker",
     "type": "system",
-    "tags": "Drone",
+    "tags": [{
+        "id": "drone"
+    }],
     "action": "quick",
     "recharge": 6,
     "effect": "Choose a target within range 20 and line of sight. The Rainmaker fires a hound missile at the target, which is a drone with size 1/2, evasion/e-defense 10, and 10/15/20 HP. The missile primes on the turn that it is fired, deploying in an adjacent space, then flies 5 at the start of each of the rainmaker’s subsequent turns. If its target suffers from the Lock On condition, its movement increases to 10. It must move as far as possible directly towards its target, but maneuvers around cover and obstacles as long as there is space to do so. If the missile’s movement causes it to collide with any character, it detonates for a blast 1 explosion. Characters caught inside must pass an agility save or take 16/20/24 energy damage and half on a successful check.",
@@ -1978,7 +2115,6 @@
     "class": "ronin",
     "type": "weapon",
     "weapon_type": ["Main", "Melee"],
-    "tags": "",
     "weapon_roll": {
         "flat": {
             "val": 2,
@@ -2004,7 +2140,11 @@
     "class": "ronin",
     "type": "system",
     "action": "reaction",
-    "tags": "shield, 1/round",
+    "tags": [{
+        "id": "shield"
+    }, {
+        "id": "1/round"
+    }],
     "effect": "When damaged by a ranged weapon attack, the Ronin can roll a d6 as a reaction. On a roll of a 4+, the Ronin gains resistance to all the damage from that attack, and the target must repeat the attack roll against itself, dealing damage on a success.",
     "base": true
 }, {
@@ -2046,7 +2186,9 @@
     "class": "scout",
     "type": "weapon",
     "weapon_type": ["Main", "Rifle"],
-    "tags": "Smart",
+    "tags": [{
+        "id": "smart"
+    }],
     "smart": true,
     "weapon_roll": {
         "flat": {
@@ -2123,7 +2265,11 @@
     "class": "seeder",
     "type": "weapon",
     "weapon_type": ["Main", "Launcher"],
-    "tags": "Arcing, Knockback 1",
+    "tags": [{
+        "id": "arcing"
+    }, {
+        "id": "knockback 1"
+    }],
     "weapon_roll": {
         "flat": {
             "val": 2,
@@ -2147,7 +2293,11 @@
     "class": "seeder",
     "type": "system",
     "action": "quick",
-    "tags": "Mine, 1/turn",
+    "tags": [{
+        "id": "mine"
+    }, {
+        "id": "1/turn"
+    }],
     "effect": "The Seeder deploys a mine in a free space within range 3. The mine is invisible and untargetable but can be revealed by a character looking for the mine taking a successful systems check if the mine is in that character’s sensor range. The mine triggers when any hostile character passes over its space, forcing a save for any character in a burst 1 area around it (allied or hostile). It can be disarmed by moving on top of it and passing a successful systems check as a quick action, but triggers if the check fails. The seeder chooses from the following mines: Stun Mine - Engineering save. A character that fails this save is stunned until the end of its next turn. Explosive Mine - Agility save. 8/12/16 explosive damage, and half on a successful check. Sealant Mine - Hull save. A character that fails this save is immobilized until the end of its next turn, then slowed until the end of its subsequent turn. Shock Mine - Systems save. A character that fails this save is Jammed until the end of its next turn, then impaired until the end of its subsequent turn.",
     "base": true
 }, {
@@ -2172,7 +2322,9 @@
     "name": "Grav Mine",
     "class": "seeder",
     "type": "system",
-    "tags": "Mine",
+    "tags": [{
+        "id": "mine"
+    }],
     "action": "quick",
     "effect": "A target in range 5 and line of sight to the Seeder must pass a systems save or have a mine attached to them. The seeder can detonate any grav mines at the start of its turn as a free action, causing any affected mech to take 2/3/4 AP explosive damage, no attack roll required, and be pulled 3 spaces in a direction of the Seeder’s choosing.",
     "base": false
@@ -2181,7 +2333,9 @@
     "class": "seeder",
     "type": "system",
     "action": "full",
-    "tags": "Mine",
+    "tags": [{
+        "id": "mine"
+    }],
     "recharge": 5,
     "effect": "The seeder fires small seeker mines at one to three characters of the seeder’s choice in range 5 and line of sight. Those targets must pass an agility save or have a mine latch on to them. At the start of the seeder’s next turn, the mines explode for a burst 1 explosion on each character for 3/5/7 explosive damage. Characters can take damage from more than one mine.",
     "base": false
@@ -2190,7 +2344,6 @@
     "class": "sentinel",
     "type": "weapon",
     "weapon_type": ["Main", "CQB"],
-    "tags": "",
     "weapon_roll": {
         "flat": {
             "val": 1,
@@ -2266,7 +2419,9 @@
     "class": "sentinel",
     "type": "system",
     "action": "reaction",
-    "tags": "1/round",
+    "tags": [{
+        "id": "1/round"
+    }],
     "effect": "In response to any enemy movement, the Sentinel can make the boost action as a reaction.",
     "base": false
 }, {
@@ -2274,7 +2429,9 @@
     "class": "sentinel",
     "type": "trait",
     "action": "free",
-    "tags": "1/turn",
+    "tags": [{
+        "id": "1/turn"
+    }],
     "effect": "At the start of its turn, the Sentinel can nominate an allied character within range 5 as a free action. Once per turn, when that character is targeted by an attack, the Sentinel can immediately make a single overwatch attack against the attacker if it is in range as a reaction, interrupting that attack.",
     "base": false
 }, {
@@ -2282,7 +2439,13 @@
     "class": "sniper",
     "type": "weapon",
     "weapon_type": ["Superheavy", "Rifle"],
-    "tags": "Loading, Ordnance, AP",
+    "tags": [{
+        "id": "loading"
+    }, {
+        "id": "ordnance"
+    }, {
+        "id": "ap"
+    }],
     "weapon_roll": {
         "flat": {
             "val": 2,
@@ -2328,7 +2491,9 @@
     "class": "sniper",
     "type": "trait",
     "action": "reaction",
-    "tags": "1/round",
+    "tags": [{
+        "id": "1/round"
+    }],
     "effect": "1/round, in response to any character in range 20 and line of sight starting any movement, the Sniper can interrupt that movement. If the character continues to move, the Sniper can immediately attack it as a reaction. The character can choose to cancel that move, losing the action or movement. If they do so, the Sniper does not get to attack, but still spends its reaction.",
     "base": false
 }, {
@@ -2350,7 +2515,9 @@
     "class": "sniper",
     "type": "system",
     "action": "quick",
-    "tags": "Grenade",
+    "tags": [{
+        "id": "grenade"
+    }],
     "recharge": 5,
     "effect": "The Sniper creates a burst 3 zone of soft cover around itself. The zone disperses at the end of its next turn, or when the Sniper creates a new one. Characters other than this mech cannot trace line of sight into or out of the zone (characters at least partly inside the zone can draw line of sight to each other normally).",
     "base": false
@@ -2463,7 +2630,9 @@
     "class": "support",
     "type": "system",
     "action": "quick",
-    "tags": "Drone",
+    "tags": [{
+        "id": "drone"
+    }],
     "recharge": 5,
     "effect": "As a quick action, the support fires a drone to a point within range 5 of its position, where it hovers. The drone can be attacked and destroyed. It is a size 1/2 drone with evasion and edefense 10/12/14 and 5 8/10 HP. The drone clamps on to the next allied mech to move through or adjacent to that drone’s space and discharges, healing that mech 5/10/15 HP.",
     "base": true
@@ -2507,7 +2676,9 @@
     "class": "support",
     "type": "system",
     "action": "full",
-    "tags": "Drone",
+    "tags": [{
+        "id": "drone"
+    }],
     "recharge": 6,
     "effect": "The support chooses another mech within range 5, then fires a self-deploying drone(Size 1/2, 5 HP/tier, 10 evasion/e-defense) at that mech. The drone clamps on to the targeted mech and occupies the same space as it. At the start of each of its turns, while the drone is deployed on that target, that target can heal 5/8/10 HP. In addition, it gains +1 Accuracy on all checks, saves, and attacks. The drone can be shot off and destroyed.",
     "base": false
