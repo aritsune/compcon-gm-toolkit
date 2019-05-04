@@ -81,57 +81,61 @@
             </b-col>
             <b-col cols="6">
               <b-card
+                no-body
                 bg-variant="light"
                 header="available systems"
                 class="pickercard"
               >
-                <div class="picker-divider" v-if="systemsAvailable.length">
-                  Class
-                </div>
-                <transition-group name="fade" tag="div" class="dragdiv">
-                  <system-badge
-                    v-for="system in systemsAvailable"
-                    :key="system.name"
-                    :system="system"
-                    addable
-                    @added="addSystem(system)"
-                  />
-                </transition-group>
-                <div
-                  class="picker-divider"
-                  v-if="npc.genericSystemsAvailable.length"
-                >
-                  Generic
-                </div>
-                <transition-group name="fade" tag="div" class="dragdiv">
-                  <system-badge
-                    v-for="system in npc.genericSystemsAvailable"
-                    :key="system.name"
-                    :system="system"
-                    addable
-                    @added="addSystem(system)"
-                  />
-                </transition-group>
-                <div
-                  v-for="tmp in Object.keys(npc.templateSystemsAvailable)"
-                  :key="tmp"
-                >
-                  <div
-                    class="picker-divider"
-                    v-if="npc.templateSystemsAvailable[tmp].length"
+                <b-tabs card pills nav-class="tabnav">
+                  <b-tab
+                    :title="npc.npcClass.name"
+                    active
+                    :title-link-class="`btn-outline-role--${npc.npcClass.role}`"
                   >
-                    {{ tmp }}
-                  </div>
-                  <transition-group name="fade" tag="div" class="dragdiv">
-                    <system-badge
-                      v-for="system in npc.templateSystemsAvailable[tmp]"
-                      :key="system.name"
-                      :system="system"
-                      addable
-                      @added="addSystem(system)"
-                    />
-                  </transition-group>
-                </div>
+                    <transition-group name="fade" tag="div" class="dragdiv">
+                      <system-badge
+                        v-for="system in systemsAvailable"
+                        :key="system.name"
+                        :system="system"
+                        addable
+                        @added="addSystem(system)"
+                      />
+                    </transition-group>
+                  </b-tab>
+                  <b-tab
+                    title="generic"
+                    :title-link-class="`btn-outline-secondary`"
+                  >
+                    <transition-group name="fade" tag="div" class="dragdiv">
+                      <system-badge
+                        v-for="system in npc.genericSystemsAvailable"
+                        :key="system.name"
+                        :system="system"
+                        addable
+                        @added="addSystem(system)"
+                      />
+                    </transition-group>
+                  </b-tab>
+                  <template
+                    v-for="tmp in Object.keys(npc.templateSystemsAvailable)"
+                  >
+                    <b-tab
+                      :title="tmp"
+                      :key="tmp"
+                      :title-link-class="`btn-outline-template`"
+                    >
+                      <transition-group name="fade" tag="div" class="dragdiv">
+                        <system-badge
+                          v-for="system in npc.templateSystemsAvailable[tmp]"
+                          :key="system.name"
+                          :system="system"
+                          addable
+                          @added="addSystem(system)"
+                        />
+                      </transition-group>
+                    </b-tab>
+                  </template>
+                </b-tabs>
               </b-card>
             </b-col>
           </b-row>
@@ -143,6 +147,7 @@
                 header="chosen templates"
                 class="pickercard"
                 :move="checkMove"
+                style="height: 200px"
               >
                 <transition-group name="fade" tag="div" class="dragdiv">
                   <template-badge
@@ -160,6 +165,7 @@
                 bg-variant="light"
                 header="available templates"
                 class="pickercard"
+                style="height: 200px"
               >
                 <transition-group name="fade" tag="div" class="dragdiv">
                   <template-badge
@@ -190,6 +196,9 @@
         </b-container>
       </b-card>
     </transition>
+    <transition name="slide">
+      <GoblinChan v-if="npc && tips.length" :tips="tips" key="goblinchan" />
+    </transition>
   </b-container>
 </template>
 
@@ -219,6 +228,9 @@ import NPC from '@/logic/NPC.ts';
 import templates from '@/logic/templates';
 import NPCTemplate from '../logic/interfaces/NPCTemplate';
 
+import GoblinChan from './GoblinChan.vue';
+import { NPCTips } from '@/logic/Tips';
+
 const fieldSorter = (fields: string[]) => (a: any, b: any) =>
   fields
     .map(o => {
@@ -245,6 +257,7 @@ export default Vue.extend({
     Numeric1Icon,
     Numeric2Icon,
     Numeric3Icon,
+    GoblinChan,
   },
   props: {
     editing: { type: Boolean, default: false },
@@ -320,6 +333,10 @@ export default Vue.extend({
         ['desc', 'desc', 'asc'],
       );
     },
+    tips(): string[] {
+      if (!this.npc) return [];
+      return NPCTips(this.npc);
+    },
   },
   mounted() {
     this.$smoothReflow &&
@@ -337,6 +354,9 @@ export default Vue.extend({
 .flavor {
   font-size: 0.9em;
 }
+.pickercard {
+  height: 350px;
+}
 .pickercard .card-header {
   padding: 5px 0;
   font-weight: bold;
@@ -346,6 +366,8 @@ export default Vue.extend({
 .pickercard .card-body {
   padding: 1.25em 0;
   min-height: 82px;
+  max-height: 321px;
+  overflow-y: auto;
 }
 .dragdiv {
   display: flex;
@@ -360,10 +382,63 @@ export default Vue.extend({
   color: #5a5353;
   text-transform: uppercase;
   font-size: 0.7em;
-  letter-spacing: 0.5em;
-  font-style: italic;
   font-weight: bold;
   margin: 10px 0;
   margin-top: 0;
+}
+::-webkit-scrollbar {
+  width: 7px;
+  display: none;
+}
+</style>
+
+<style lang="scss">
+.tabnav {
+  font-size: 0.7em;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-style: italic;
+  &::before {
+    content: 'FROM:';
+    line-height: 45px;
+    margin-right: 5px;
+  }
+}
+.tabnav li {
+  padding: 0 5px;
+  margin: 5px 0px;
+  a {
+    border: 1px solid;
+    // color: #5a6268 !important;
+    // border-color: #5a6268 !important;
+    transition-property: background-color, color;
+    transition: 250ms ease;
+    &.active,
+    &:hover {
+      // background-color: #5a6268 !important;
+      color: white !important;
+    }
+  }
+}
+.tab-pane {
+  height: calc(350px - 70px - 27px);
+  overflow-y: auto;
+}
+.slide-enter-active {
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.slide-leave-active {
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.slide-enter,
+.slide-leave-to {
+  transform: translateY(100px);
+  opacity: 0;
 }
 </style>

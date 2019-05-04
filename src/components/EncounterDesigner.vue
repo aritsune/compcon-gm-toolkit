@@ -32,13 +32,25 @@
             <content-save-icon style="font-size: 24px" @click="saveEncounter" />
           </b-button>
         </div>
-        <div v-for="(npc, i) in npcs" :key="i">
+        <!-- <div v-for="(npc, i) in npcs" :key="i">
           <npc-card
             :npc="npc"
             @delete="deleteNPC(i)"
             @edit="editNPC([i, npc])"
           />
-        </div>
+        </div> -->
+        <b-container fluid class="mb-4">
+          <b-row>
+            <MockupCard
+              v-for="(npc, i) in npcs"
+              :key="i"
+              :npc="npc"
+              editable
+              @delete="deleteNPC(i)"
+              @edit="editNPC([i, npc])"
+            />
+          </b-row>
+        </b-container>
         <b-button
           size="sm"
           block
@@ -63,7 +75,8 @@
 <script lang="ts">
 import Vue from 'vue';
 import NpcDesigner from './NpcDesigner.vue';
-import NpcCard from './NpcCard.vue';
+
+import MockupCard from './MockupCard/Mockup.vue';
 
 import NPCClass, { NPCStatBlock } from '@/logic/interfaces/NPCClass';
 import { NPCSystem } from '@/logic/interfaces/NPCSystem';
@@ -78,7 +91,13 @@ import { saveAs } from 'file-saver';
 
 export default Vue.extend({
   name: 'encounter-designer',
-  components: { NpcDesigner, NpcCard, PlusIcon, ContentSaveIcon, FolderIcon },
+  components: {
+    NpcDesigner,
+    PlusIcon,
+    ContentSaveIcon,
+    FolderIcon,
+    MockupCard,
+  },
   data: () => ({
     state: 'designing',
     npcs: [] as NPC[],

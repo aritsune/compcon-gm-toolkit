@@ -16,15 +16,21 @@
         v-bind="$props"
         @closed="$emit('closed')"
         @added="$emit('added')"
+        variant="template"
       >
         <template v-slot:button>
           {{ tmp.name }}
         </template>
 
         <template v-slot:modal>
-          <h5 class="system-modal-title mb-0 text-secondary">
+          <h5 class="system-modal-title mb-0 text-template">
             {{ tmp.name }}
           </h5>
+          <h6 class="system-modal-type my-1 text-template">
+            TEMPLATE
+          </h6>
+          <hr />
+          <p v-html="tmp.description"></p>
         </template>
       </base-badge>
     </div>

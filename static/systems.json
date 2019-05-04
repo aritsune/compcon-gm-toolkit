@@ -233,6 +233,7 @@
     "type": "trait",
     "action": "reaction",
     "effect": "The Assault gains resistance to all the damage from one attack that just hit it.",
+    "effect_short": "Gain resistance to attack that just hit",
     "base": true
 }, {
     "class": "assault",
@@ -265,7 +266,8 @@
     "type": "system",
     "action": "quick",
     "recharge": 6,
-    "effect": "All characters in a line 8 area drawn from the Assault must pass a hull save or take 6/8/10 kinetic damage, or half on a successful save."
+    "effect": "All characters in a line 8 area drawn from the Assault must pass a hull save or take 6/8/10 kinetic damage, or half on a successful save.",
+    "effect_short": "Line 8: hull save or take 10 K else half"
 }, {
     "class": "assault",
     "base": false,

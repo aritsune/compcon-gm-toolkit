@@ -17,11 +17,13 @@
 import Vue from 'vue';
 import EncounterDesigner from './components/EncounterDesigner.vue';
 import smoothReflow from 'vue-smooth-reflow';
+import MockupCard from './components/MockupCard/Mockup.vue';
+
+import NPC from '@/logic/NPC.ts';
 
 export default Vue.extend({
   mixins: [smoothReflow],
   name: 'app',
-  data: () => ({}),
   components: { EncounterDesigner },
   mounted() {
     this.$smoothReflow &&

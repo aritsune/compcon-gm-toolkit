@@ -2,6 +2,7 @@ import { NPCStatBlock } from './NPCClass';
 
 export default interface NPCTemplate {
   name: string;
+  description: string;
   features: {
     name: string;
     description: string;

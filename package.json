@@ -13,6 +13,7 @@
     "bootstrap-vue": "^2.0.0-rc.13",
     "file-saver": "^2.0.1",
     "lodash": "^4.17.11",
+    "objects-to-csv": "^1.2.1",
     "vue": "^2.6.6",
     "vue-fragment": "^1.5.0",
     "vue-material-design-icons": "^3.1.0",

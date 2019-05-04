@@ -3,6 +3,8 @@ export module NPCSystem {
     name: string;
     class: string;
     effect?: string;
+    effect_short?: string;
+    hide_on_card?: boolean;
     base: boolean;
     tags?: string;
   }

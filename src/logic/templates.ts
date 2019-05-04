@@ -3,6 +3,8 @@ import NPCTemplate from './interfaces/NPCTemplate';
 const templates: NPCTemplate[] = [
   {
     name: 'ultra',
+    description:
+      'In Lancer, Ultra-type enemies are typically the most dangerous individual enemies a party can face. Ultra-type enemies are high-tier enemies that do not have to fill command roles. Ultras are champions, favored warriors, major domos: they might command a few units in a retinue or lead armies from the front, but they do not typically engage in grand strategy.<br>An Ultra can serve as a ‘boss’ NPC, capable of taking on multiple mechs at the same time. Since an Ultra has additional structure, it uses structure damage tables like the players, and becomes many times more resilient. Since keeping track of an Ultra is more difficult than a regular NPC, and Ultras are many times more powerful than a regular NPC, it’s recommended you only use one in any given combat encounter.',
     features: [
       {
         name: 'Bonus activations',
@@ -44,6 +46,8 @@ const templates: NPCTemplate[] = [
   },
   {
     name: 'elite',
+    description:
+      'Elite-type enemies create tougher, more powerful enemies that are a step down from Ultras. Elites get a bonus activation and additional structure, allowing them to make structure checks like players and effectively doubling their HP. Unlike Ultras, Elites don’t enter the CRITICAL state and are destroyed normally when reaching 0 HP.',
     features: [
       {
         name: 'Bonus Activation',
@@ -62,6 +66,8 @@ const templates: NPCTemplate[] = [
   },
   {
     name: 'grunt',
+    description:
+      'Grunt-type enemies in Lancer are the most common enemies faced en-mass by players. Grunts are a step above cannon fodder, typically using mass-produced or stock mechs: cheap and trained to be disciplined fighters before deadly ones. Alone, a grunt-type enemy may not be a threat, but in a group, they can present an overwhelming mass of bodies and fire that threatens even the most powerful individual.',
     features: [
       {
         name: 'Chaff',
@@ -85,6 +91,8 @@ const templates: NPCTemplate[] = [
   },
   {
     name: 'veteran',
+    description:
+      'Veteran-type enemies are hardened, experienced fighters that have survived direct engagement with their foes. Their encounter with your players is not their first rodeo: their ability to withstand morale shocks is far higher than an untested greenhorn. Use the Veteran template if you want to make a more memorable character.',
     features: [
       {
         name: 'Veterancy',
@@ -102,6 +110,8 @@ const templates: NPCTemplate[] = [
   },
   {
     name: 'exotic',
+    description:
+      'Exotic-type enemies are, even for a galaxy of wonders, strange and dangerous enemies. Some feature unique technologies not yet available to the wider galaxy, others wield primitive weapon styles updated to the modern day, and others carry equipment or adopt tactics that are alien to Union doctrine.',
     features: [
       {
         name: 'Xenotech',
@@ -124,6 +134,8 @@ const templates: NPCTemplate[] = [
 
   {
     name: 'drone',
+    description:
+      'Drone-type enemies are mechs or subaltern frames that are autonomous extensions of companion/concierge units or combat NHPs.',
     features: [
       {
         name: 'No Pilot',
@@ -148,6 +160,8 @@ const templates: NPCTemplate[] = [
 
   {
     name: 'mercenary',
+    description:
+      'Mercenary-type enemies are foes that offer their services to the highest bidder. They may have attachments to a faith or flag, but when it comes to doing their business, they’re loyal only to gold.',
     features: [
       {
         name: 'Opportunist',
@@ -166,6 +180,8 @@ const templates: NPCTemplate[] = [
 
   {
     name: 'commander',
+    description:
+      'Commander-type enemies operate on a grand scale, controlling fleets and armies across worlds and in interstellar space. They might not be the best individual combatant, but they can bring out the best in the best of their forces.',
     features: [],
     traits: [
       {
@@ -183,6 +199,8 @@ const templates: NPCTemplate[] = [
   },
   {
     name: 'pirate',
+    description:
+      'Pirate-type enemies live on the boundaries, in the forgotten bolt-holes of occupied space. They are far-ranging, operating around blink gates, interstellar shipping lanes, and near flagged but not-yet colonized worlds.<br>Pirate-type groups are usually small, with their base of operations hidden a short-to-medium distance from the area that they are first encountered. Usually they are motivated by profit and materiel goods, not ideology or religion -- a good thing for a savvy negotiator.<br>Pirate-type enemies commonly operate in mixed groups of fast, deadly subline ships, fighter/bombers, and clutches of marines and  chassis. They prefer hit-and-run style overwhelming ambush attacks, aim to capture rather than kill, and don’t like to engage in pitched battles.<br>Pirate-type enemies can be found across the galaxy wherever the law is spread thin, resources travel, and people are desperate.',
     features: [
       {
         name: 'Pirate modules',
@@ -202,6 +220,8 @@ const templates: NPCTemplate[] = [
 
   {
     name: 'spacer',
+    description:
+      'Spacer-type enemies are born and bred in the hard vacuum of deep space. They are adept at maneuvering in and around the difficult, kinetic, low-gravity environments found only in space: blink stations, space stations, among asteroid fields, in low orbit over worlds, and between ships in military and commercial fleets.',
     features: [
       {
         name: 'Optional modules',
@@ -220,6 +240,8 @@ const templates: NPCTemplate[] = [
   },
   {
     name: 'Outworlder',
+    description:
+      'Outworlder-type enemies are found in the distal/proximal areas of the galaxy. They are, typically, more rugged and independent than other enemy types, able to operate on a shoestring -- or without one! -- for extended periods of time.',
     features: [
       {
         name: 'Resourceful',
@@ -239,6 +261,8 @@ const templates: NPCTemplate[] = [
 
   {
     name: 'vehicle',
+    description:
+      'Vehicle-type enemies are in-atmosphere military or civilian vehicles found throughout the galaxy.<br>You can use any of the mech classes and apply this template to convert that mech into a vehicle. They lose the mech tag and gain the vehicle tag.',
     features: [
       {
         name: 'Limited Maneuverability',
@@ -266,11 +290,13 @@ const templates: NPCTemplate[] = [
       },
     ],
     traits: [],
-    incompatibleTemplates: [],
+    incompatibleTemplates: ['ship'],
   },
 
   {
     name: 'ship',
+    description:
+      'Ship-type enemies are any military or civilian vehicles that are flight capable and operate primarily in space, outside the bounds of atmosphere (though many can operate in-atmos if need be).<br>You can use any of the mech classes and apply this template to convert that mech into a ship. They lose the mech tag and gain the vehicle tag.',
     features: [
       {
         name: 'Flier',
@@ -309,7 +335,7 @@ const templates: NPCTemplate[] = [
         hp: stats.hp + 5,
       };
     },
-    incompatibleTemplates: [],
+    incompatibleTemplates: ['vehicle'],
   },
 ];
 

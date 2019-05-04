@@ -103,7 +103,7 @@ export default Vue.extend({
         output += '/tier';
       }
       if (accdiff) {
-        const word = accdiff.val > -1 ? 'Accuracy' : 'Difficulty';
+        const word = accdiff.val > -1 ? '+' : '-';
         output += ` with +${Math.abs(accdiff.val)} ${word}`;
         if (accdiff.pertier) {
           output += '/tier';
@@ -145,5 +145,10 @@ h6.system-modal-type {
 }
 .system-modal {
   white-space: initial;
+}
+body,
+body.modal-open {
+  padding: 0 !important;
+  overflow-y: auto;
 }
 </style>

@@ -3,6 +3,7 @@
         "class": "generic",
         "type": "trait",
         "effect": "This character gains +1 armor, up to a maximum of +4",
+        "hide_on_card": true,
         "base": false,
         "stat_bonuses": { "armor": 1 }
     },
@@ -12,6 +13,7 @@
         "class": "generic",
         "type": "trait",
         "effect": "This character gains +2 heat capacity.",
+        "hide_on_card": true,
         "base": false,
         "stat_bonuses": { "heatcap": 2 }
     },
@@ -29,6 +31,7 @@
         "class": "generic",
         "type": "trait",
         "effect": "This character gains +5 HP",
+        "hide_on_card": true,
         "base": false,
         "stat_bonuses": { "hp": 5 }
     },
