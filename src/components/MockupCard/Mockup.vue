@@ -1,5 +1,5 @@
 <template>
-  <b-col cols="4">
+  <b-col :cols="4">
     <b-card
       :border-variant="`role--${npc.npcClass.role}`"
       no-body=""
@@ -43,11 +43,17 @@
       </b-card-header>
       <b-card-body class="px-0 npc-card-body">
         <div class="d-flex align-items-center justify-content-between px-3">
-          <div class="label">HP</div>
-          <pips :count="npc.stats.hp" />
-          <div class="label">HEAT</div>
-          <pips :count="npc.stats.heatcap" />
+          <pip-bar label="HP" :max="npc.stats.hp" :rollover="npc.stats.structure > 1" />
+          <pip-bar label="HEAT" :max="npc.stats.heatcap" :rollover="npc.stats.stress > 1" />
         </div>
+        <template v-if="npc.stats.structure > 1 || npc.stats.stress > 1">
+          <hr />
+          <div class="d-flex align-items-center justify-content-between px-3" 
+          >
+            <pip-bar label="STRUCT" :max="npc.stats.structure" />
+            <pip-bar label="STRESS" :max="npc.stats.stress" />
+          </div>
+        </template>
         <hr />
         <div class="d-flex align-items-center justify-content-between px-3">
           <div class="label">EVADE</div>
@@ -114,7 +120,7 @@
 <script lang="ts">
 import Vue from 'vue';
 
-import Pips from './Pips.vue';
+import PipBar from './PipBar.vue';
 import System from './System.vue';
 
 import Pencil from 'vue-material-design-icons/Pencil.vue';
@@ -133,7 +139,7 @@ export default Vue.extend({
     editable: { type: Boolean, default: false },
   },
   components: {
-    Pips,
+    PipBar,
     System,
     Pencil,
     Delete,
