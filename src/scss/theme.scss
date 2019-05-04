@@ -1,5 +1,4 @@
-$theme-colors: (
-  "role--striker": #bd3f39,
+$theme-colors: ("role--striker": #bd3f39,
   "role--tank": #d67e08,
   "role--controller": #398ad6,
   "role--support": #6aa84f,
@@ -13,4 +12,20 @@ $theme-colors: (
 );
 
 @import '~bootstrap/scss/bootstrap.scss';
+
+@each $theme-color in map-keys($map: $theme-colors) {
+  .popover.popover-#{$theme-color} {
+    border-color: map-get($theme-colors, $theme-color);
+
+    * {
+      color: $theme-color !important;
+    }
+
+    .arrow::before {
+      border-top-color: map-get($theme-colors, $theme-color);
+    }
+  }
+}
+
+
 @import '~bootstrap-vue/src/index.scss';

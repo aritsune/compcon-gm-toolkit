@@ -4,15 +4,22 @@
       <b class="goblinchan-header" v-if="tips.length" key="header"
         >GOBLIN-CHAN'S TIPS</b
       >
-      <div class="popover bs-popover-top " v-for="(tip, i) in tips" :key="tip">
+      <div
+        class="popover bs-popover-top popover-success"
+        :class="tip.satisfied ? 'popover-success' : 'popover-danger'"
+        v-for="(tip, i) in tips"
+        :key="tip.id"
+      >
         <div
           class="arrow"
           style="right: 90px;"
           v-if="i === tips.length - 1"
         ></div>
-        <div class="tipbody">
-          {{ tip }}
-        </div>
+        <div
+          class="tipbody"
+          :class="tip.satisfied ? 'text-success' : 'text-danger'"
+          v-html="tip.text"
+        />
       </div>
     </transition-group>
     <div>

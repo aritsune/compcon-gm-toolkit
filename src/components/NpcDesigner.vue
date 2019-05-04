@@ -333,7 +333,7 @@ export default Vue.extend({
         ['desc', 'desc', 'asc'],
       );
     },
-    tips(): string[] {
+    tips(): object[] {
       if (!this.npc) return [];
       return NPCTips(this.npc);
     },
@@ -355,7 +355,7 @@ export default Vue.extend({
   font-size: 0.9em;
 }
 .pickercard {
-  height: 350px;
+  height: 230px;
 }
 .pickercard .card-header {
   padding: 5px 0;
@@ -366,7 +366,7 @@ export default Vue.extend({
 .pickercard .card-body {
   padding: 1.25em 0;
   min-height: 82px;
-  max-height: 321px;
+  max-height: 319px;
   overflow-y: auto;
 }
 .dragdiv {
@@ -423,7 +423,7 @@ export default Vue.extend({
   }
 }
 .tab-pane {
-  height: calc(350px - 70px - 27px);
+  height: calc(230px - 70px - 29px);
   overflow-y: auto;
 }
 .slide-enter-active {

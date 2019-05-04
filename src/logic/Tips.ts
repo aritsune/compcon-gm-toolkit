@@ -1,9 +1,10 @@
 import _ from 'lodash';
-
 import NPC from './NPC';
 
-export const NPCTips = (npc: NPC): string[] => {
-  const output: string[] = [];
+export type Tip = { id: string; text: string; satisfied: boolean };
+
+export const NPCTips = (npc: NPC): Tip[] => {
+  const output: Tip[] = [];
 
   const { systems } = npc;
   const templates = npc._templates;
@@ -12,41 +13,81 @@ export const NPCTips = (npc: NPC): string[] => {
     _.intersection(['mercenary', 'pirate', 'spacer'], npc._templates),
   );
 
-  const classOrGenericSystemsCount = systems.filter(
-    sys => optionalModuleCategories.includes && !sys.base,
-  ).length;
   let optionalString;
-  if (templates.includes('elite'))
-    optionalString =
-      'As an Elite, the NPC should have between 1 and 3 modules from the following categories: ';
-  else if (templates.includes('ultra'))
-    optionalString =
-      'As an Ultra, the NPC should have between 2 and 4 modules from the following categories: ';
-  else
-    optionalString =
-      'The NPC should have between 0 and 2 modules from the following categories: ';
-  optionalString += optionalModuleCategories.map(_.capitalize).join(', ');
 
-  output.push(optionalString);
+  let minOptionalModules = 0;
+  let maxOptionalModules = 2;
+
+  if (templates.includes('elite')) {
+    optionalString = 'As an Elite, the ';
+    minOptionalModules += 1;
+    maxOptionalModules += 1;
+  } else if (templates.includes('ultra')) {
+    optionalString = 'As an Ultra, the ';
+    minOptionalModules += 2;
+    maxOptionalModules += 2;
+  } else optionalString = 'The ';
+
+  optionalString += `NPC should have between <b>${minOptionalModules}</b> and <b>${maxOptionalModules}</b>  modules from the following categories: `;
+
+  optionalString +=
+    '<br />' +
+    optionalModuleCategories
+      .map(_.capitalize)
+      .map(s => `<b>${s}</b>`)
+      .join(', ');
+
+  const classOrGenericSystemsCount = systems.filter(
+    sys => optionalModuleCategories.includes(sys.class) && !sys.base,
+  ).length;
+
+  output.push({
+    id: 'optional',
+    text: optionalString + `<br />It has <b>${classOrGenericSystemsCount}</b>.`,
+    satisfied:
+      classOrGenericSystemsCount >= minOptionalModules &&
+      classOrGenericSystemsCount <= maxOptionalModules,
+  });
 
   if (templates.includes('exotic')) {
-    output.push('The NPC should have one or two exotic modules.');
+    const exoticSystemsCount = systems.filter(sys => sys.class === 'exotic')
+      .length;
+    output.push({
+      id: 'exotic',
+      text: 'The NPC should have one or two exotic modules.',
+      satisfied: exoticSystemsCount >= 1 && exoticSystemsCount <= 2,
+    });
   }
 
   if (templates.includes('commander')) {
-    output.push('The NPC should have one commander trait.');
+    const commanderTraitCount = systems.filter(sys => sys.class === 'commander')
+      .length;
+    output.push({
+      id: 'commander',
+      text: `The NPC should have <b>one</b> commander trait. It has <b>${commanderTraitCount}</b>.`,
+      satisfied: commanderTraitCount === 1,
+    });
   }
 
   if (templates.includes('veteran')) {
-    output.push(
-      `The Veteran should have at most ${npc.tier + 1} Veteran traits.`,
-    );
+    const veteranTraitMax = npc.tier + 1;
+    const veteranTraitCount = systems.filter(sys => sys.class === 'veteran')
+      .length;
+    output.push({
+      id: 'veteran',
+      text: `The Veteran should have at most <b>${veteranTraitMax}</b> Veteran traits. It has <b>${veteranTraitCount}</b>.`,
+      satisfied: veteranTraitCount <= veteranTraitMax,
+    });
   }
 
   if (templates.includes('ultra')) {
     const ultraSystemsCount = systems.filter(sys => sys.class === 'ultra')
       .length;
-    output.push('The Ultra should have 1-3 Ultra traits or modules.');
+    output.push({
+      id: 'ultra',
+      text: 'The Ultra should have 1-3 Ultra traits or modules.',
+      satisfied: ultraSystemsCount >= 1 && ultraSystemsCount <= 3,
+    });
   }
 
   return output;
