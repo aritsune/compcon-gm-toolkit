@@ -1,0 +1,16 @@
+NPC Builder:
+    ☐ Naming NPCs
+    ☐ Unlock other NPC's systems
+Encounter Builder:
+    ☐ Randomize Encounter (with random or my NPCs)
+Encounter Runner:
+    ☐ NPC status tracking
+    ☐ Recharge roll button
+Rework the back end:
+    ☐ Concept of "NPC schematic" and "NPC instance"
+    ☐ separate encounter and NPC editors
+    ☐ encounter editor "new npc" button adds a precreated npc or redirects to npc editor
+    ☐ after creating an encounter, you can run it, this will let you track npc combat info
+
+Bugs:
+    ☐ Grunts do not have heat 0 (add quip in npc card about grunts?)
