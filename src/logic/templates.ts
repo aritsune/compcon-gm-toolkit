@@ -81,9 +81,9 @@ const templates: NPCTemplate[] = [
       },
     ],
     traits: [],
-    statTransform: stats => stats,
     statCaps: {
       hp: 1,
+      heatcap: 1,
       structure: 1,
       stress: 1,
     },
