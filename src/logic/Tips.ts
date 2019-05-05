@@ -28,7 +28,7 @@ export const NPCTips = (npc: NPC): Tip[] => {
     maxOptionalModules += 2;
   } else optionalString = 'The ';
 
-  optionalString += `NPC should have between <b>${minOptionalModules}</b> and <b>${maxOptionalModules}</b>  modules from the following categories: `;
+  optionalString += `NPC should have between <b>${minOptionalModules}</b> and <b>${maxOptionalModules}</b> modules <i>total</i> from the following categories: `;
 
   optionalString +=
     '<br />' +
@@ -54,7 +54,7 @@ export const NPCTips = (npc: NPC): Tip[] => {
       .length;
     output.push({
       id: 'exotic',
-      text: 'The NPC should have one or two exotic modules.',
+      text: `The NPC should have <b>one or two</b> exotic modules.<br/>It has ${exoticSystemsCount}.`,
       satisfied: exoticSystemsCount >= 1 && exoticSystemsCount <= 2,
     });
   }
@@ -85,7 +85,7 @@ export const NPCTips = (npc: NPC): Tip[] => {
       .length;
     output.push({
       id: 'ultra',
-      text: 'The Ultra should have 1-3 Ultra traits or modules.',
+      text: `The Ultra should have <b>1-3</b> Ultra traits or modules.</br>It has ${ultraSystemsCount}.`,
       satisfied: ultraSystemsCount >= 1 && ultraSystemsCount <= 3,
     });
   }
