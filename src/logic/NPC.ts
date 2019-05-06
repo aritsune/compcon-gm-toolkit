@@ -181,15 +181,14 @@ export default class NPC {
 
   static deserialize(obj: {
     class: string;
-    tier: 0 | 1 | 2;
+    tier: number;
     name?: string;
     templates: string[];
     systems: string[];
   }) {
     const cl = npcClasses.find(c => c.name === obj.class);
     if (!cl) throw new Error('invalid class');
-    let npc = new NPC(cl, obj.tier);
-    npc.tier = obj.tier;
+    let npc = new NPC(cl, obj.tier as 0 | 1 | 2);
     if (obj.name) npc.name = obj.name;
     npc._templates = obj.templates;
     for (const sysName of obj.systems) {
