@@ -1,9 +1,12 @@
 <template>
-    <v-card>
-        <v-card-title class="primary white--text">
-            <span class="headline">
+    <v-card :color="`role--${npc.npcClass.role}`">
+        <v-card-title class="white--text" :class="`role--${npc.npcClass.role}`">
+            <div class="headline">
                 {{ npc.name }}
-            </span>
+            </div>
+            <div class="headline ml-2">
+                {{ npc.npcClass.name }}
+            </div>
         </v-card-title>
         <v-container fluid>
             <v-layout justify-space-between px-2>
@@ -38,10 +41,8 @@
 
 <script>
 import NPC from '@/logic/NPC';
-import PipBar from '@/components/NpcCard/PipBar.vue'
 
 export default {
-    components: { PipBar },
     computed: {
         npc() {
             return this.$store.state.npcDesigner.npcs[parseInt(this.$route.params.id)]
