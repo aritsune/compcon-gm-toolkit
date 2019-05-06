@@ -5,7 +5,7 @@ import Home from './views/Home.vue';
 
 import NpcDesignerIndex from './views/NpcDesigner/NpcDesignerIndex.vue';
 import NpcsList from './views/NpcDesigner/NpcsList.vue';
-import Npc from './views/NpcDesigner/Npc.vue';
+import NpcDisplay from './views/NpcDesigner/Npc.vue';
 
 Vue.use(Router);
 
@@ -30,7 +30,7 @@ export default new Router({
         {
           path: '/npc/:id',
           name: 'npc',
-          component: Npc,
+          component: NpcDisplay,
         },
       ],
     },
