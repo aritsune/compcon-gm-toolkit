@@ -1,8 +1,17 @@
 <template>
-    <v-btn class="file-btn" outline large color="secondary" v-ripple="{color: 'primary'}">
-        <v-icon class="main-icon" left>{{icon}}</v-icon>
-        <div class="file-btn-text">{{name}}</div>
-        <v-icon right class="ml-auto more-icon" v-if="more">mdi-dots-vertical</v-icon>
+    <v-btn
+        class="file-btn"
+        outline
+        large
+        color="secondary"
+        v-ripple="{ color: 'primary' }"
+        :to="to"
+    >
+        <v-icon class="main-icon" left>{{ icon }}</v-icon>
+        <div class="file-btn-text">{{ name }}</div>
+        <div class="ml-auto">
+            <slot name="extra-icons" />
+        </div>
     </v-btn>
 </template>
 
@@ -11,7 +20,7 @@ export default {
     props: {
         name: { type: String, required: true },
         icon: { type: String, default: 'mdi-file' },
-        more: { type: Boolean, default: false },
+        to: { type: String, default: '#' },
     }
 }
 </script>
@@ -72,6 +81,10 @@ export default {
 
 .file-btn .more-icon:not(:hover) {
     color: rgba(0,0,0,.60) !important;
+}
+
+.more-list .v-list__tile__title {
+    font-size: 15px !important;
 }
 
 </style>

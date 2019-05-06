@@ -2,7 +2,10 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 import Home from './views/Home.vue';
-import NpcDesigner from './views/NpcDesigner.vue';
+
+import NpcDesignerIndex from './views/NpcDesigner/NpcDesignerIndex.vue';
+import NpcsList from './views/NpcDesigner/NpcsList.vue';
+import Npc from './views/NpcDesigner/Npc.vue';
 
 Vue.use(Router);
 
@@ -17,8 +20,19 @@ export default new Router({
     },
     {
       path: '/npc-designer',
-      name: 'npc-designer',
-      component: NpcDesigner,
+      component: NpcDesignerIndex,
+      children: [
+        {
+          path: '',
+          name: 'npc-list',
+          component: NpcsList,
+        },
+        {
+          path: '/npc/:id',
+          name: 'npc',
+          component: Npc,
+        },
+      ],
     },
   ],
 });
