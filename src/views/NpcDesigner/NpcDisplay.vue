@@ -41,6 +41,7 @@
             </v-container>
         </v-card-title>
         <v-container fluid>
+            <!-- Stats -->
             <v-layout wrap justify-space-around class="statblock">
                 <v-flex
                     xs6
@@ -56,6 +57,7 @@
                 </v-flex>
             </v-layout>
             <v-divider class="my-3" />
+            <!-- HASE -->
             <v-layout wrap justify-space-around class="statblock">
                 <v-flex
                     xs6
@@ -76,6 +78,7 @@
                     </div>
                 </v-flex>
             </v-layout>
+            <!-- Features -->
             <template v-if="npc.features.length">
                 <v-divider class="my-3" />
                 <div class="hidden-xs-only">
@@ -88,6 +91,7 @@
                         {{ npc.features.length }} items
                     </h6>
                 </div>
+                <!-- Feature cards -->
                 <v-layout wrap justify-center>
                     <v-flex
                         xs12
@@ -96,29 +100,12 @@
                         v-for="feature in npc.features"
                         :key="feature.name"
                     >
-                        <v-card
-                            class="primary--text"
-                            style="max-height: 250px; overflow-y: hidden; cursor: pointer;"
-                            height="100%"
-                            v-ripple
-                        >
-                            <v-card-title
-                                :class="`primary white--text`"
-                                class="system-name"
-                            >
-                                {{ feature.name }}
-                            </v-card-title>
-                            <v-card-text
-                                class="primary--text"
-                                style="overflow-y: hidden;"
-                            >
-                                {{ feature.description }}
-                            </v-card-text>
-                        </v-card>
+                        <feature-card :feature="feature" />
                     </v-flex>
                 </v-layout>
             </template>
             <v-divider class="my-3" />
+            <!-- Systems header -->
             <div class="hidden-xs-only">
                 <h6 class="title text-xs-left grey--text text--darken-1">
                     Systems
@@ -127,7 +114,7 @@
                     {{ npc.systems.length }} items
                 </h6>
             </div>
-            <!-- Systems -->
+            <!-- System cards -->
             <v-layout wrap justify-center>
                 <v-flex
                     xs12
@@ -136,43 +123,17 @@
                     v-for="system in npc.systems"
                     :key="system.name"
                 >
-                    <v-card
-                        :class="`system--${system.type}--text`"
-                        style="max-height: 250px; overflow-y: hidden; cursor: pointer;"
-                        height="100%"
-                        v-ripple="{
-                            class: system.effect
-                                ? `system--${system.type}--text`
-                                : 'white--text',
-                        }"
-                    >
-                        <v-card-title
-                            :class="`system--${system.type} white--text`"
-                            class="system-name"
-                            :style="{
-                                height: !(system.effect_short || system.effect)
-                                    ? '100%'
-                                    : 'auto',
-                            }"
-                        >
-                            {{ system.name }}
-                        </v-card-title>
-                        <v-card-text
-                            class="primary--text"
-                            v-if="system.effect_short || system.effect"
-                            style="overflow-y: hidden;"
-                        >
-                            {{ system.effect_short || system.effect }}
-                        </v-card-text>
-                    </v-card>
+                    <system-card :system="system" />
                 </v-flex>
             </v-layout>
         </v-container>
         <v-divider class="my-1" />
+        <!-- Actions -->
         <v-card-actions class="mb-1">
             <v-btn flat :color="`role--${npc.npcClass.role}`" class="ml-auto"
                 >Edit</v-btn
             >
+            <!-- Delete dialog -->
             <v-dialog v-model="deleteDialog" persistent max-width="290">
                 <template v-slot:activator="{ on }">
                     <v-btn
@@ -215,7 +176,12 @@ import NPC from '@/logic/NPC';
 import _ from 'lodash';
 import { Dictionary } from 'vue-router/types/router';
 
+import SystemCard from '@/components/Cards/SystemCard.vue'
+import FeatureCard from '@/components/Cards/FeatureCard.vue'
+
 export default Vue.extend({
+    name: 'npc-display',
+    components: { SystemCard, FeatureCard },
     data: () => ({
         deleteDialog: false,
     }),
@@ -269,14 +235,5 @@ export default Vue.extend({
 .label {
     font-size: 1em;
     font-weight: bold;
-}
-.system-name {
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
-    text-transform: uppercase;
-    font-size: 0.9em;
-    padding: 0.8em;
-    justify-content: center;
-    white-space: nowrap;
 }
 </style>
