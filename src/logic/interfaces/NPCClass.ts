@@ -25,5 +25,5 @@ export default interface NPCClass {
     tactics: string;
   };
   stats: NPCStatBlock[];
-  size: number;
+  size: number[];
 }

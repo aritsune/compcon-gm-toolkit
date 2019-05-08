@@ -1,5 +1,6 @@
 <template>
     <v-card :class="`role--${npc.npcClass.role}--text`">
+        <!-- Header -->
         <v-card-title
             class="white--text d-flex"
             :class="`role--${npc.npcClass.role}`"
@@ -235,8 +236,9 @@ export default Vue.extend({
                 'EDEF': npcst.edef,
                 'SENSE': npcst.sensor,
                 'SAVE': npcst.save,
+                'SIZE': this.npc.size,
             }
-            return _.pickBy(obj, _.identity);
+            return _.pickBy(obj, o => o !== null);
         }
     },
     methods: {

@@ -1,3 +1,5 @@
+Other:
+    ☐ Componentify system & feature badges
 NPC Builder:
     ☐ Naming NPCs
     ☐ Unlock other NPC's systems
@@ -14,3 +16,4 @@ Rework the back end:
 
 Bugs:
     ☐ Grunts do not have heat 0 (add quip in npc card about grunts?)
+    ✔ Variable size & npc class doesn't have size @done(19-05-08 13:43)

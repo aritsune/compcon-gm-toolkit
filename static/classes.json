@@ -45,7 +45,7 @@
             "sensor": 10,
             "save": 14
         }],
-        "size": 1
+        "size": [1]
     },
     {
         "name": "assassin",
@@ -94,7 +94,7 @@
             "sensor": 10,
             "save": 14
         }],
-        "size": 1
+        "size": [0.5, 1]
     },
     {
         "name": "assault",
@@ -143,7 +143,7 @@
             "sensor": 8,
             "save": 14
         }],
-        "size": 1
+        "size": [1]
     },
     {
         "name": "berserker",
@@ -192,7 +192,7 @@
             "sensor": 5,
             "save": 14
         }],
-        "size": 1
+        "size": [1]
     },
     {
         "name": "breacher",
@@ -241,7 +241,7 @@
             "sensor": 5,
             "save": 10
         }],
-        "size": 1
+        "size": [1]
     },
     {
         "name": "scourer",
@@ -290,7 +290,7 @@
             "sensor": 10,
             "save": 14
         }],
-        "size": 1
+        "size": [1]
     },
 
     {
@@ -340,7 +340,7 @@
             "sensor": 5,
             "save": 12
         }],
-        "size": 2
+        "size": [2]
     },
 
     {
@@ -390,7 +390,7 @@
             "sensor": 10,
             "save": 15
         }],
-        "size": 2
+        "size": [2]
     },
 
     {
@@ -440,7 +440,7 @@
             "sensor": 15,
             "save": 15
         }],
-        "size": 3
+        "size": [3]
     },
 
     {
@@ -490,7 +490,7 @@
             "sensor": 8,
             "save": 14
         }],
-        "size": 1
+        "size": [1]
     },
 
     {
@@ -540,7 +540,7 @@
             "sensor": 10,
             "save": 14
         }],
-        "size": 1
+        "size": [1]
     },
 
     {
@@ -590,7 +590,7 @@
             "sensor": 15,
             "save": 16
         }],
-        "size": 1
+        "size": [1]
     },
 
     {
@@ -640,7 +640,7 @@
             "sensor": 15,
             "save": 18
         }],
-        "size": 2
+        "size": [2]
     },
 
     {
@@ -690,7 +690,7 @@
             "sensor": 20,
             "save": 18
         }],
-        "size": 0.5
+        "size": [0.5]
     },
 
     {
@@ -740,7 +740,7 @@
             "sensor": 10,
             "save": 17
         }],
-        "size": 1
+        "size": [1]
     },
 
     {
@@ -790,7 +790,7 @@
             "sensor": 10,
             "save": 16
         }],
-        "size": 0.5
+        "size": [0.5]
     },
 
     {
@@ -840,7 +840,7 @@
             "sensor": 15,
             "save": 18
         }],
-        "size": 1
+        "size": [1]
     },
 
     {
@@ -890,7 +890,7 @@
             "sensor": 10,
             "save": 12
         }],
-        "size": 1
+        "size": [1]
     },
 
     {
@@ -940,7 +940,7 @@
             "sensor": 10,
             "save": 15
         }],
-        "size": 0.5
+        "size": [0.5]
     },
 
     {
@@ -990,7 +990,7 @@
             "sensor": 20,
             "save": 17
         }],
-        "size": 0.5
+        "size": [0.5]
     },
 
     {
@@ -1040,7 +1040,7 @@
             "sensor": 20,
             "save": 15
         }],
-        "size": 0.5
+        "size": [0.5, 1]
     },
 
     {
@@ -1090,7 +1090,7 @@
             "sensor": 10,
             "save": 14
         }],
-        "size": 2
+        "size": [2]
     },
 
     {
@@ -1140,7 +1140,7 @@
             "sensor": 15,
             "save": 16
         }],
-        "size": 1
+        "size": [1]
     },
 
     {
@@ -1190,7 +1190,7 @@
             "sensor": 15,
             "save": 14
         }],
-        "size": 1
+        "size": [1]
     },
 
     {
@@ -1240,7 +1240,7 @@
             "sensor": 10,
             "save": 14
         }],
-        "size": 1
+        "size": [1]
     },
 
     {
@@ -1290,213 +1290,205 @@
             "sensor": 15,
             "save": 15
         }],
-        "size": 1
+        "size": [1]
     },
     {
-    "name": "cataphract",
+        "name": "cataphract",
         "role": "striker",
         "info": {
             "flavor": "The Cataphract doctrine is common among rapid-strike kits that emphasize mobility, shock, and tenacity. Cataphract squadrons are feared across the galaxy for their ability to overwhelm defenses in moments: from an otherwise static line, a squadron of low and angular chassis burst overhead, heavy cannons and PDF guns carving seemingly impossible paths through a suddenly futile defense.",
             "tactics": "The Cataphract is a very mobile striker. Take advantage of its ability to move through other characters to put it in the back lines, where it can use its Impale ability to drag vulnerable targets into a disadvantageous position. Position the cataphract so it has one character close to it to take advantage of its shield. Note the cataphract still provokes reactions with its movement, so use its abilities carefully."
         },
-        "stats": [
-            {
-                "hp": 15,
-                "evade": 10,
-                "edef": 8,
-                "heatcap": 6,
-                "hull": 1,
-                "agility": 1,
-                "systems": 0,
-                "engineering": 0,
-                "armor": 0,
-                "speed": 8,
-                "sensor": 5,
-                "save": 12
-            }, {
-                "hp": 17,
-                "evade": 11,
-                "edef": 8,
-                "heatcap": 7,
-                "hull": 2,
-                "agility": 3,
-                "systems": 0,
-                "engineering": 0,
-                "armor": 0,
-                "speed": 8,
-                "sensor": 5,
-                "save": 14
-            }, {
-                "hp": 20,
-                "evade": 12,
-                "edef": 8,
-                "heatcap": 8,
-                "hull": 4,
-                "agility": 4,
-                "systems": 0,
-                "engineering": 0,
-                "armor": 0,
-                "speed": 8,
-                "sensor": 5,
-                "save": 16
-            }
-        ],
-        "size": 1
+        "stats": [{
+            "hp": 15,
+            "evade": 10,
+            "edef": 8,
+            "heatcap": 6,
+            "hull": 1,
+            "agility": 1,
+            "systems": 0,
+            "engineering": 0,
+            "armor": 0,
+            "speed": 8,
+            "sensor": 5,
+            "save": 12
+        }, {
+            "hp": 17,
+            "evade": 11,
+            "edef": 8,
+            "heatcap": 7,
+            "hull": 2,
+            "agility": 3,
+            "systems": 0,
+            "engineering": 0,
+            "armor": 0,
+            "speed": 8,
+            "sensor": 5,
+            "save": 14
+        }, {
+            "hp": 20,
+            "evade": 12,
+            "edef": 8,
+            "heatcap": 8,
+            "hull": 4,
+            "agility": 4,
+            "systems": 0,
+            "engineering": 0,
+            "armor": 0,
+            "speed": 8,
+            "sensor": 5,
+            "save": 16
+        }],
+        "size": [1]
     },
 
     {
-    "name": "engineer",
+        "name": "engineer",
         "role": "striker",
         "info": {
             "flavor": "Engineer doctrine chassis are common throughout the galaxy, their patterns unique to the world or theater in which they operate, but their charge the same: defend, maintain, secure. Engineers operate best in the mid to rear of the line, coordinating the defense of important positions and ensuring total operational deployment of all mission assets. Remember: if your chassis can’t make it to the line, you lose.",
             "tactics": "The Engineer’s turrets are a potent force multiplier. Since it can put down one a turn, if the turrets are not dealt with, the engineer’s potential damage can skyrocket, especially with the mark it can put on enemies. Without the mark, turrets will attack the nearest target, which players can use to control who takes damage."
         },
-        "stats": [
-            {
-                "hp": 20,
-                "evade": 7,
-                "edef": 10,
-                "heatcap": 10,
-                "hull": -1,
-                "agility": -1,
-                "systems": 1,
-                "engineering": 3,
-                "armor": 0,
-                "speed": 3,
-                "sensor": 15,
-                "save": 10
-            }, {
-                "hp": 20,
-                "evade": 9,
-                "edef": 10,
-                "heatcap": 12,
-                "hull": -1,
-                "agility": -1,
-                "systems": 2,
-                "engineering": 4,
-                "armor": 0,
-                "speed": 3,
-                "sensor": 15,
-                "save": 12
-            }, {
-                "hp": 20,
-                "evade": 11,
-                "edef": 12,
-                "heatcap": 14,
-                "hull": 14,
-                "agility": -1,
-                "systems": 3,
-                "engineering": 6,
-                "armor": 0,
-                "speed": 3,
-                "sensor": 15,
-                "save": 14
-            }
-        ],
-        "size": 1
+        "stats": [{
+            "hp": 20,
+            "evade": 7,
+            "edef": 10,
+            "heatcap": 10,
+            "hull": -1,
+            "agility": -1,
+            "systems": 1,
+            "engineering": 3,
+            "armor": 0,
+            "speed": 3,
+            "sensor": 15,
+            "save": 10
+        }, {
+            "hp": 20,
+            "evade": 9,
+            "edef": 10,
+            "heatcap": 12,
+            "hull": -1,
+            "agility": -1,
+            "systems": 2,
+            "engineering": 4,
+            "armor": 0,
+            "speed": 3,
+            "sensor": 15,
+            "save": 12
+        }, {
+            "hp": 20,
+            "evade": 11,
+            "edef": 12,
+            "heatcap": 14,
+            "hull": 14,
+            "agility": -1,
+            "systems": 3,
+            "engineering": 6,
+            "armor": 0,
+            "speed": 3,
+            "sensor": 15,
+            "save": 14
+        }],
+        "size": [1]
     },
 
     {
-    "name": "spectre",
+        "name": "spectre",
         "role": "striker",
         "info": {
             "flavor": "Spectre doctrine chassis emphasize the ability not to be hit over pure defensive shielding. Employing cutting-edge optical and systemic camouflage, Spectres vanish from the battlefield and all active/passive scans, flickering in and out of vision and shattering their image and radar signatures, confusing the eye and the sweep. Their weapons do not mark their doctrine: their power comes from the ability to operate unseen.",
             "tactics": "The Spectre is a mobile striker that shines against characters off on their own. Use its prowl ability, it’s high reach, and high speed to move through front lines to vulnerable targets off on their own, such as snipers. The Spectre can hide any time normally, since it’s permanently invisible. It relies on invisibility for its own survivability, since it is not very resilient without it."
         },
-        "stats": [
-            {
-                "hp": 10,
-                "evade": 10,
-                "edef": 8,
-                "heatcap": 7,
-                "hull": -2,
-                "agility": 3,
-                "systems": 1,
-                "engineering": 0,
-                "armor": 0,
-                "speed": 4,
-                "sensor": 5,
-                "save": 10
-            }, {
-                "hp": 10,
-                "evade": 14,
-                "edef": 10,
-                "heatcap": 7,
-                "hull": -2,
-                "agility": 5,
-                "systems": 2,
-                "engineering": 0,
-                "armor": 0,
-                "speed": 5,
-                "sensor": 5,
-                "save": 12
-            }, {
-                "hp": 10,
-                "evade": 18,
-                "edef": 12,
-                "heatcap": 7,
-                "hull": -2,
-                "agility": 6,
-                "systems": 3,
-                "engineering": 1,
-                "armor": 0,
-                "speed": 6,
-                "sensor": 5,
-                "save": 10
-            }
-        ],
-        "size": 1
+        "stats": [{
+            "hp": 10,
+            "evade": 10,
+            "edef": 8,
+            "heatcap": 7,
+            "hull": -2,
+            "agility": 3,
+            "systems": 1,
+            "engineering": 0,
+            "armor": 0,
+            "speed": 4,
+            "sensor": 5,
+            "save": 10
+        }, {
+            "hp": 10,
+            "evade": 14,
+            "edef": 10,
+            "heatcap": 7,
+            "hull": -2,
+            "agility": 5,
+            "systems": 2,
+            "engineering": 0,
+            "armor": 0,
+            "speed": 5,
+            "sensor": 5,
+            "save": 12
+        }, {
+            "hp": 10,
+            "evade": 18,
+            "edef": 12,
+            "heatcap": 7,
+            "hull": -2,
+            "agility": 6,
+            "systems": 3,
+            "engineering": 1,
+            "armor": 0,
+            "speed": 6,
+            "sensor": 5,
+            "save": 10
+        }],
+        "size": [1]
     },
 
     {
-    "name": "ronin",
+        "name": "ronin",
         "role": "striker",
         "info": {
             "flavor": "Ronin doctrine chassis differ from Berserker and DEMOLISHER pattern chassis in that they have been purpose-built by boutique fabricators to excel in melee combat. Ronin patterns are common among martial cultures and event-combat firms both. Tactical applications for Ronin chassis are difficult in cultures where ranged weapons are preferred, but there is a certain prestige earned by pilots who adopt ancient weapons in the modern day and survive. That being said the availability of stasis and mag based defensive technology has made the Ronin doctrine marginally more viable in modern combat.",
             "tactics": "The Ronin is a no-nonsense, high damage melee attacker. It’s Perfect Parry means attacking it with ranged weapons is a dangerous proposition. The Ronin suffers against armor and relies on accuracy to deal a lot of its damage."
         },
-        "stats": [
-            {
-                "hp": 18,
-                "evade": 10,
-                "edef": 7,
-                "heatcap": 7,
-                "hull": 1,
-                "agility": 2,
-                "systems": -1,
-                "engineering": -1,
-                "armor": 0,
-                "speed": 5,
-                "sensor": 5,
-                "save": 10
-            }, {
-                "hp": 20,
-                "evade": 13,
-                "edef": 7,
-                "heatcap": 7,
-                "hull": 2,
-                "agility": 4,
-                "systems": -1,
-                "engineering": -1,
-                "armor": 0,
-                "speed": 5,
-                "sensor": 10,
-                "save": 13
-            }, {
-                "hp": 22,
-                "evade": 16,
-                "edef": 7,
-                "heatcap": 7,
-                "hull": 4,
-                "agility": 5,
-                "systems": -1,
-                "engineering": -1,
-                "armor": 0,
-                "speed": 10,
-                "sensor": 10,
-                "save": 15
-            }
-        ],
-        "size": 1
+        "stats": [{
+            "hp": 18,
+            "evade": 10,
+            "edef": 7,
+            "heatcap": 7,
+            "hull": 1,
+            "agility": 2,
+            "systems": -1,
+            "engineering": -1,
+            "armor": 0,
+            "speed": 5,
+            "sensor": 5,
+            "save": 10
+        }, {
+            "hp": 20,
+            "evade": 13,
+            "edef": 7,
+            "heatcap": 7,
+            "hull": 2,
+            "agility": 4,
+            "systems": -1,
+            "engineering": -1,
+            "armor": 0,
+            "speed": 5,
+            "sensor": 10,
+            "save": 13
+        }, {
+            "hp": 22,
+            "evade": 16,
+            "edef": 7,
+            "heatcap": 7,
+            "hull": 4,
+            "agility": 5,
+            "systems": -1,
+            "engineering": -1,
+            "armor": 0,
+            "speed": 10,
+            "sensor": 10,
+            "save": 15
+        }],
+        "size": [1]
     }
 ]

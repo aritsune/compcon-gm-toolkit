@@ -15,6 +15,7 @@ export default class NPC {
   npcClass: NPCClass;
   tier: 0 | 1 | 2;
   private _name?: string;
+  size: number;
 
   private _pickedSystems: NPCSystem.Any[] = [];
   _templates: string[] = [];
@@ -29,6 +30,7 @@ export default class NPC {
     }
     this.npcClass = npcClass;
     this.tier = tier || 0;
+    this.size = this.npcClass.size[0];
   }
 
   get class_systems() {
@@ -182,6 +184,7 @@ export default class NPC {
       class: this.npcClass.name,
       tier: this.tier,
       name: this._name,
+      size: this.size,
       templates: this._templates,
       systems: this._pickedSystems.map(s => s.name),
     };
@@ -194,6 +197,7 @@ export default class NPC {
     name?: string;
     templates: string[];
     systems: string[];
+    size?: number;
   }) {
     const cl = npcClasses.find(c => c.name === obj.class);
     if (!cl) throw new Error('invalid class');
@@ -205,6 +209,7 @@ export default class NPC {
       if (!sys) throw new Error(`invalid system ${sysName}`);
       npc.pickSystem(sys);
     }
+    if (obj.size) npc.size = obj.size;
     return npc;
   }
 }
