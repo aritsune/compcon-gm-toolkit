@@ -124,6 +124,9 @@ export default {
   box-shadow: none;
   border: 1px solid !important;
 }
+.v-dialog .v-card {
+    border: none !important;
+}
 .spin-enter-active, .spin-leave-active {
   transition: all .5s cubic-bezier(0.25, 0.8, 0.5, 1);
   position: absolute;
@@ -136,5 +139,9 @@ export default {
 }
 .spin-enter, .spin-leave-to {
   opacity: 0;
+}
+.grow-shrink-0 > * {
+    flex-grow: 0 !important;
+    flex-shrink: 0 !important;
 }
 </style>
