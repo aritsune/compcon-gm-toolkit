@@ -1,5 +1,5 @@
 <template>
-    <v-container mt-5 class="v-container">
+    <v-container class="v-container">
         <v-fade-transition mode="out-in">
             <router-view />
         </v-fade-transition>
