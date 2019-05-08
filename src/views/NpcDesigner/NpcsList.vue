@@ -63,7 +63,6 @@
             persistent
             max-width="290"
         >
-            <template v-slot:activator="{ on }"> </template>
             <v-card>
                 <v-card-title class="headline"
                     >Delete {{ deletingNPC.name }}?</v-card-title
