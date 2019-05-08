@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <v-container fluid>
         <!-- Header -->
         <v-layout align-center>
             <h3 class="headline text-xs-left ml-2 grey--text text--darken-1">
@@ -89,7 +89,7 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
-    </div>
+    </v-container>
 </template>
 
 <script>
