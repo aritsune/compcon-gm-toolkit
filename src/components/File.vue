@@ -3,9 +3,9 @@
         class="file-btn"
         outline
         large
-        color="secondary"
+        :color="color"
         v-ripple="{ color: 'primary' }"
-        :to="to"
+        @click="$router.push(to)"
     >
         <v-icon class="main-icon" left>{{ icon }}</v-icon>
         <div class="file-btn-text">{{ name }}</div>
@@ -20,7 +20,8 @@ export default {
     props: {
         name: { type: String, required: true },
         icon: { type: String, default: 'mdi-file' },
-        to: { type: String, default: '#' },
+        color: { type: String, default: 'secondary' },
+        to: { type: String },
     }
 }
 </script>
