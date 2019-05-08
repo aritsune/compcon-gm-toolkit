@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import npcDesigner from './npc-designer';
+import npcDesigner from './npcDesigner';
 
 Vue.use(Vuex);
 

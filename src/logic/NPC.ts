@@ -11,6 +11,7 @@ const templates: NPCTemplate[] = require('./templates').default;
 const templateSystems: NPCSystem.Any[] = require('../../static/template_systems.json');
 
 export default class NPC {
+  id: string;
   npcClass: NPCClass;
   tier: 0 | 1 | 2;
   private _name?: string;
@@ -18,7 +19,14 @@ export default class NPC {
   private _pickedSystems: NPCSystem.Any[] = [];
   _templates: string[] = [];
 
-  constructor(npcClass: NPCClass, tier?: 0 | 1 | 2) {
+  constructor(npcClass: NPCClass, tier?: 0 | 1 | 2, id?: string) {
+    if (id) {
+      this.id = id;
+    } else {
+      this.id = Math.random()
+        .toString(36)
+        .substr(2, 12);
+    }
     this.npcClass = npcClass;
     this.tier = tier || 0;
   }
@@ -180,6 +188,7 @@ export default class NPC {
   }
 
   static deserialize(obj: {
+    id: string;
     class: string;
     tier: number;
     name?: string;
@@ -188,7 +197,7 @@ export default class NPC {
   }) {
     const cl = npcClasses.find(c => c.name === obj.class);
     if (!cl) throw new Error('invalid class');
-    let npc = new NPC(cl, obj.tier as 0 | 1 | 2);
+    let npc = new NPC(cl, obj.tier as 0 | 1 | 2, obj.id);
     if (obj.name) npc.name = obj.name;
     npc._templates = obj.templates;
     for (const sysName of obj.systems) {
