@@ -182,8 +182,8 @@ import { Dictionary } from 'vue-router/types/router';
 export default class NpcBuilder extends Vue {
     @Prop(Object) readonly preNpc!: NPC
 
-    editingName: boolean = false;
-    newName: string = '';
+    editingName = false;
+    newName = '';
     npc = _.clone(this.preNpc);
     
     get stats() {
