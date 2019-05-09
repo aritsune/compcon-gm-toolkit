@@ -116,17 +116,63 @@
                 </v-flex>
             </v-layout>
             <v-divider class="my-3" />
-            <h6 class="subheading text-xs-left grey--text text--darken-1">
-                Notes
+            <v-text-field
+                outline
+                label="Notes"
+                v-model="npc.notes"
+                :color="`role--${npc.npcClass.role}`"
+            >
+            </v-text-field>
+            <v-divider class="mt-2 mb-3" />
+            <h6 class="title mb-2 text-xs-left grey--text text--darken-1">
+                Systems
             </h6>
-            <v-text-field v-model="npc.notes" color="grey"> </v-text-field>
+            <v-layout>
+                <v-flex xs6>
+                    <v-card class="picker-card">
+                        <v-container>
+                            <v-layout justify-start grow-shrink-0 wrap>
+                                <system-button
+                                    v-for="system in npc.systems"
+                                    :key="system.name"
+                                    :system="system"
+                                    :closable="!system.base"
+                                />
+                            </v-layout>
+                        </v-container>
+                    </v-card>
+                </v-flex>
+                <v-flex xs6>
+                    <v-card class="picker-card">
+                        <v-tabs dark color="primary" slider-color="secondary">
+                            <v-tab v-for="n in 3" :key="n" ripple>
+                                Item {{ n }}
+                            </v-tab>
+                            <v-tab-item v-for="n in 3" :key="n">
+                                <v-container fluid>
+                                    <v-layout justify-start grow-shrink-0 wrap>
+                                        <system-button
+                                            v-for="system in systemsAvailable"
+                                            :key="system.name"
+                                            :system="system"
+                                            :addable="true"
+                                            @add="addSystem(system)"
+                                        />
+                                    </v-layout>
+                                </v-container>
+                            </v-tab-item>
+                        </v-tabs>
+                    </v-card>
+                </v-flex>
+            </v-layout>
         </v-card-text>
+        <v-divider class="my-1" />
         <v-card-actions class="mb-1 mr-2">
             <v-btn
                 flat
                 :color="`role--${npc.npcClass.role}`"
                 class="ml-auto"
-                to="/npc-designer/"
+                @click="$router.push('/npc-designer/')"
                 >Done</v-btn
             >
         </v-card-actions>
@@ -137,15 +183,17 @@
 import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
 import _ from 'lodash';
 // components
-import File from "@/components/File.vue";
-import AddButton from "@/components/AddButton.vue";
+import SystemButton from "@/components/NpcDesigner/SystemButton.vue";
 // vuex
 import { mapState } from 'vuex';
 
 import NPC from '../../logic/NPC';
 import { Dictionary } from 'vue-router/types/router';
+import { NPCSystem } from '../../logic/interfaces/NPCSystem';
 
-@Component
+@Component({
+    components: { SystemButton }
+})
 export default class NpcBuilder extends Vue {
     @Prop(Object) readonly preNpc!: NPC
 
@@ -170,6 +218,17 @@ export default class NpcBuilder extends Vue {
         return _.pickBy(obj, o => o !== null);
     }
 
+    get systemsAvailable(): NPCSystem.Any[] {
+      const preSort = this.npc.optional_class_systems.filter(
+        sys => !this.npc!.pickedSystems.includes(sys),
+      );
+      return _.orderBy(
+        preSort,
+        ['base', 'type', 'name'],
+        ['desc', 'desc', 'asc'],
+      );
+    }
+
     editName() {
         this.editingName = true;
         this.newName = (this.npc as NPC)._name || '';
@@ -188,6 +247,10 @@ export default class NpcBuilder extends Vue {
     @Watch('npc', {deep: true})
     onEditNPC(val: NPC) {
         this.$store.commit('npcDesigner/edit', val)
+    }
+
+    addSystem(system: NPCSystem.Any) {
+        alert(system.name)
     }
 
 }
@@ -221,4 +284,12 @@ export default class NpcBuilder extends Vue {
     font-size: 24px;
     margin-left: 60%;
 } */
+.picker-card {
+    border-color: rgba(0, 0, 0, 0.125) !important;
+    background-color: #f8f9fa !important;
+    height: 100%;
+}
+.picker-card .v-tabs__bar {
+    border-radius: 0;
+}
 </style>
