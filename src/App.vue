@@ -4,7 +4,8 @@
             <v-toolbar-side-icon key="back" @click.stop="hitSideIcon">
                 <transition name="spin">
                     <v-icon v-if="backButton" key="back">mdi-arrow-left</v-icon>
-                    <v-icon v-else key="menu">mdi-menu</v-icon>
+                    <v-icon v-else-if="!drawer" key="menu">mdi-menu</v-icon>
+                    <v-icon v-else key="x">mdi-close</v-icon>
                 </transition>
             </v-toolbar-side-icon>
             <v-toolbar-title class="font-weight-light">
@@ -15,10 +16,31 @@
                 </v-fade-transition>
             </v-toolbar-title>
         </v-toolbar>
+        <!-- <v-bottom-nav v-else color="primary" dark>
+            <v-btn dark>
+                <span>Video</span>
+                <v-icon>ondemand_video</v-icon>
+            </v-btn>
+
+            <v-btn dark>
+                <span>Music</span>
+                <v-icon>music_note</v-icon>
+            </v-btn>
+
+            <v-btn dark>
+                <span>Book</span>
+                <v-icon>book</v-icon>
+            </v-btn>
+
+            <v-btn dark>
+                <span>Image</span>
+                <v-icon>image</v-icon>
+            </v-btn>
+        </v-bottom-nav> -->
 
         <v-navigation-drawer
             v-model="drawer"
-            fixed
+            absolute
             app
             clipped
             disable-resize-watcher
@@ -124,11 +146,11 @@ export default {
   box-shadow: none;
   border: 1px solid !important;
 }
-.v-dialog .v-card {
+.v-dialog .v-card, .v-select-list {
     border: none !important;
 }
 .spin-enter-active, .spin-leave-active {
-  transition: all .5s cubic-bezier(0.25, 0.8, 0.5, 1);
+  transition: all 200ms cubic-bezier(0.4, 0.0, 0.2, 1);
   position: absolute;
 }
 .spin-leave-to {

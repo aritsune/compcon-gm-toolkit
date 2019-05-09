@@ -6,7 +6,7 @@
                 NPCs
             </h3>
             <v-flex ml-auto style="padding: 7px; flex-grow: 0;">
-                <add-button text="Create NPC" />
+                <add-button text="Create NPC" to="/npc-designer/new" />
             </v-flex>
         </v-layout>
         <v-divider class="mb-3" />
@@ -15,7 +15,7 @@
             tag="div"
             class="layout row wrap justify-start"
         >
-            <v-flex v-for="npc in npcs" :key="npc.id" xs12 sm6 md3 xl2>
+            <v-flex v-for="npc in npcs" :key="npc.id" xs12 sm6 md2>
                 <File
                     :name="npc.name"
                     icon="mdi-account"
@@ -37,7 +37,10 @@
                             </template>
 
                             <v-list class="more-list">
-                                <v-list-tile v-ripple @click="() => null">
+                                <v-list-tile
+                                    v-ripple
+                                    :to="`/npc-designer/edit/${npc.id}`"
+                                >
                                     <v-list-tile-title>Edit</v-list-tile-title>
                                 </v-list-tile>
                                 <v-list-tile

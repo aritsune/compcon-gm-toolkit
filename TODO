@@ -1,12 +1,20 @@
 Other:
-    ☐ Componentify system & feature badges
+    ✔ Componentify system & feature badges @done(19-05-09 00:37)
+    ☐ Visual party between NPCDisplay and NPCDesigner
 NPC Builder:
-    ☐ Naming NPCs
-    ☐ Unlock other NPC's systems
+    ☐ Class details in class picker
+    ✔ Naming NPCs @done(19-05-09 00:38)
+    ☐ Template picker
+    ☐ System picker
+        ☐ Unlock other NPC's systems
+    ☐ Goblin-chan
 Encounter Builder:
+    ☐ Pick NPCs, name the individuals, multiplier
     ☐ Randomize Encounter (with random or my NPCs)
 Encounter Runner:
-    ☐ NPC status tracking
+    ☐ RunnerNpcDisplay component like in old version
+    ☐ NPC status effect tracking
+        ☐ Custom statuses
     ☐ Recharge roll button
 Rework the back end:
     ☐ Concept of "NPC schematic" and "NPC instance"

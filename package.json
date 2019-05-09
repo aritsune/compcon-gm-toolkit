@@ -16,13 +16,16 @@
     "lodash": "^4.17.11",
     "objects-to-csv": "^1.2.1",
     "vue": "^2.6.6",
+    "vue-class-component": "^7.1.0",
     "vue-fragment": "^1.5.0",
     "vue-material-design-icons": "^3.1.0",
+    "vue-property-decorator": "^8.1.1",
     "vue-router": "^3.0.1",
     "vue-smooth-reflow": "^0.1.12",
     "vuedraggable": "^2.20.0",
     "vuetify": "^1.5.5",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "vuex-persistedstate": "^2.5.4"
   },
   "devDependencies": {
     "@mdi/font": "^3.6.95",

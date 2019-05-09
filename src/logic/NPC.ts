@@ -14,7 +14,8 @@ export default class NPC {
   id: string;
   npcClass: NPCClass;
   tier: 0 | 1 | 2;
-  private _name?: string;
+  _name?: string;
+  notes?: string;
   size: number;
 
   private _pickedSystems: NPCSystem.Any[] = [];
@@ -181,6 +182,7 @@ export default class NPC {
 
   serialize() {
     return {
+      id: this.id,
       class: this.npcClass.name,
       tier: this.tier,
       name: this._name,

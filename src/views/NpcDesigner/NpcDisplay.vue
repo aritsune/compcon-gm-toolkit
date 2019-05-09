@@ -130,7 +130,11 @@
         <v-divider class="my-1" />
         <!-- Actions -->
         <v-card-actions class="mb-1">
-            <v-btn flat :color="`role--${npc.npcClass.role}`" class="ml-auto"
+            <v-btn
+                flat
+                :color="`role--${npc.npcClass.role}`"
+                class="ml-auto"
+                @click="$router.replace(`/npc-designer/edit/${npc.id}`)"
                 >Edit</v-btn
             >
             <!-- Delete dialog -->
@@ -171,7 +175,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
 import NPC from '@/logic/NPC';
 import _ from 'lodash';
 import { Dictionary } from 'vue-router/types/router';
@@ -179,42 +183,38 @@ import { Dictionary } from 'vue-router/types/router';
 import SystemCard from '@/components/Cards/SystemCard.vue'
 import FeatureCard from '@/components/Cards/FeatureCard.vue'
 
-export default Vue.extend({
-    name: 'npc-display',
-    components: { SystemCard, FeatureCard },
-    data: () => ({
-        deleteDialog: false,
-    }),
-    computed: {
-        npc(): NPC {
-            return this.$store.state.npcDesigner.npcs.find((n: NPC) => n.id === this.$route.params.id)
-        },
-        stats(): Dictionary<number | null> {
-            const npcst = this.npc.stats
-            let obj: {[key: string]: number | null} = {
-                'HP': npcst.hp,
-                'HEAT': npcst.heatcap,
-                'STRUCTURE': npcst.structure > 1 ? npcst.structure : null,
-                'STRESS': npcst.stress > 1 ? npcst.stress : null,
-                'ARMOR': npcst.armor,
-                'SPEED': npcst.speed,
-                'EVADE': npcst.evade,
-                'EDEF': npcst.edef,
-                'SENSE': npcst.sensor,
-                'SAVE': npcst.save,
-                'SIZE': this.npc.size,
-            }
-            return _.pickBy(obj, o => o !== null);
-        }
-    },
-    methods: {
-        deleteSelf() {
-            this.deleteDialog = false;
-            this.$store.commit('npcDesigner/delete', this.npc.id)
-            this.$router.replace('/npc-designer')
-        }
-    }
+
+@Component({
+    components: { SystemCard, FeatureCard }
 })
+export default class NpcDisplay extends Vue {
+    @Prop(Object) readonly npc!: NPC;
+    deleteDialog = false;
+
+    get stats(): Dictionary<number> {
+        const npcst = this.npc.stats
+        let obj: {[key: string]: number | null} = {
+            'HP': npcst.hp,
+            'HEAT': npcst.heatcap,
+            'STRUCTURE': npcst.structure > 1 ? npcst.structure : null,
+            'STRESS': npcst.stress > 1 ? npcst.stress : null,
+            'ARMOR': npcst.armor,
+            'SPEED': npcst.speed,
+            'EVADE': npcst.evade,
+            'EDEF': npcst.edef,
+            'SENSE': npcst.sensor,
+            'SAVE': npcst.save,
+            'SIZE': this.npc.size,
+        }
+        return _.pickBy(obj, o => o !== null) as Dictionary<number>;
+    }
+
+    deleteSelf() {
+        this.deleteDialog = false;
+        this.$store.commit('npcDesigner/delete', this.npc.id)
+        this.$router.replace('/npc-designer')
+    }
+}
 </script>
 
 <style scoped>

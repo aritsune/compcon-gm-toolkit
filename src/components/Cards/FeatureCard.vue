@@ -1,11 +1,10 @@
 <template>
     <v-card
         class="primary--text"
-        style="max-height: 250px; overflow-y: hidden; cursor: pointer;"
+        style="max-height: 250px; overflow-y: hidden; cursor: default;"
         height="100%"
-        v-ripple
     >
-        <v-card-title :class="`primary white--text`" class="system-name">
+        <v-card-title :class="`primary white--text`" class="feature-name">
             {{ feature.name }}
         </v-card-title>
         <v-card-text class="primary--text" style="overflow-y: hidden;">
@@ -21,6 +20,14 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.feature-name {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    padding: 0.8em;
+    justify-content: center;
+    white-space: nowrap;
+}
 </style>

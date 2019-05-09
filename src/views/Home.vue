@@ -7,7 +7,7 @@
         fill-height
     >
         <v-layout align-center wrap>
-            <v-flex xs12 sm4>
+            <v-flex xs12 md4>
                 <HomeCard
                     title="NPC Designer"
                     icon="mdi-account-edit"
@@ -16,7 +16,7 @@
                 />
             </v-flex>
 
-            <v-flex xs12 sm4>
+            <v-flex xs12 md4>
                 <HomeCard
                     title="Encounter Builder"
                     icon="mdi-account-multiple-plus"
@@ -25,7 +25,7 @@
                 />
             </v-flex>
 
-            <v-flex xs12 sm4>
+            <v-flex xs12 md4>
                 <HomeCard
                     title="Encounter Runner"
                     icon="mdi-account-group"
