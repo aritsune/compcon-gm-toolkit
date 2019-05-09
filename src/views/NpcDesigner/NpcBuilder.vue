@@ -129,39 +129,6 @@
                 to="/npc-designer/"
                 >Done</v-btn
             >
-            <!-- Delete dialog -->
-            <!-- <v-dialog v-model="deleteDialog" persistent max-width="290">
-                <template v-slot:activator="{ on }">
-                    <v-btn
-                        flat
-                        :color="`role--${npc.npcClass.role}`"
-                        class="mr-3"
-                        v-on="on"
-                        >Delete</v-btn
-                    >
-                </template>
-                <v-card>
-                    <v-card-title class="headline"
-                        >Delete {{ npc.name }}?</v-card-title
-                    >
-                    <v-card-text>This cannot be undone.</v-card-text>
-                    <v-card-actions>
-                        <v-spacer></v-spacer>
-                        <v-btn
-                            :color="`role--${npc.npcClass.role}`"
-                            flat
-                            @click="deleteSelf"
-                            >OK</v-btn
-                        >
-                        <v-btn
-                            :color="`role--${npc.npcClass.role}`"
-                            flat
-                            @click="deleteDialog = false"
-                            >Cancel</v-btn
-                        >
-                    </v-card-actions>
-                </v-card>
-            </v-dialog> -->
         </v-card-actions>
     </v-card>
 </template>
