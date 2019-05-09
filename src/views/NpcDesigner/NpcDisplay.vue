@@ -123,7 +123,7 @@
                     v-for="system in npc.systems"
                     :key="system.name"
                 >
-                    <system-card :system="system" />
+                    <system-card :npc="npc" :system="system" />
                 </v-flex>
             </v-layout>
         </v-container>

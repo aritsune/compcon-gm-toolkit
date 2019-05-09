@@ -9,7 +9,7 @@ export default function renderTag(
   tier?: number,
 ): string {
   const tagData = tags.find(t => t.id === tag.id);
-  if (!tagData) throw new Error(`invalid tag "${tag.id}"`);
+  if (!tagData) return tag.id;
 
   if (!tag.val) return tagData.name;
 

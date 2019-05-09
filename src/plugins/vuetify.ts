@@ -17,5 +17,7 @@ Vue.use(Vuetify, {
     'system--weapon': '#cc0000',
     'system--system': '#2aa780',
     'system--trait': '#bd6579',
+
+    template: '#ad8951',
   },
 });

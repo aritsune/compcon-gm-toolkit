@@ -8,6 +8,7 @@
                 ? `system--${system.type}--text`
                 : 'white--text',
         }"
+        @click="dialog = true"
     >
         <v-card-title
             :class="`system--${system.type} white--text`"
@@ -27,13 +28,20 @@
         >
             {{ system.effect_short || system.effect }}
         </v-card-text>
+        <v-dialog v-model="dialog" max-width="40%">
+            <system-dialog-card :npc="npc" :system="system" />
+        </v-dialog>
     </v-card>
 </template>
 
 <script>
+import SystemDialogCard from '../SystemDialogCard.vue'
+
 export default {
     name: 'system-card',
-    props: { system: { type: Object, required: true } }
+    components: { SystemDialogCard },
+    data: () => ({ dialog: false }),
+    props: { system: { type: Object, required: true }, npc: { type: Object } }
 }
 </script>
 

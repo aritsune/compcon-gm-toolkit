@@ -60,6 +60,7 @@
             </v-container>
         </v-card-title>
         <v-card-text class="px-4">
+            <!-- Stats -->
             <v-layout wrap justify-space-around class="statblock">
                 <v-flex
                     xs6
@@ -116,6 +117,7 @@
                 </v-flex>
             </v-layout>
             <v-divider class="my-3" />
+            <!-- Notes -->
             <v-text-field
                 outline
                 label="Notes"
@@ -124,6 +126,7 @@
             >
             </v-text-field>
             <v-divider class="mt-2 mb-3" />
+            <!-- Systems header -->
             <v-layout grow-shrink-0>
                 <v-flex
                     class="title mb-2 text-xs-left grey--text text--darken-1"
@@ -138,6 +141,7 @@
                     />
                 </v-flex>
             </v-layout>
+            <!-- Systems picker -->
             <v-layout>
                 <v-flex xs6>
                     <v-card class="picker-card">
@@ -196,6 +200,61 @@
                     </v-card>
                 </v-flex>
             </v-layout>
+            <!-- Templates header -->
+            <v-divider class="my-3" />
+            <v-layout grow-shrink-0>
+                <v-flex
+                    class="title mb-2 text-xs-left grey--text text--darken-1"
+                >
+                    Templates
+                </v-flex>
+            </v-layout>
+            <!-- Templates picker -->
+            <v-layout>
+                <v-flex xs6>
+                    <v-card class="picker-card">
+                        <v-container>
+                            <v-fade-transition
+                                group
+                                tag="div"
+                                class="layout justify-start grow-shrink-0 wrap"
+                            >
+                                <template-button
+                                    v-for="template in npc.templates"
+                                    :key="template.name"
+                                    :template="template"
+                                    :closable="!template.base"
+                                    @close="npc.removeTemplate(template.name)"
+                                />
+                            </v-fade-transition>
+                        </v-container>
+                    </v-card>
+                </v-flex>
+                <v-flex xs6>
+                    <v-card class="picker-card">
+                        <v-container fluid>
+                            <v-fade-transition
+                                group
+                                tag="div"
+                                class="layout justify-start grow-shrink-0 wrap"
+                            >
+                                <template-button
+                                    v-for="template in npc.availableTemplates"
+                                    :key="template.name"
+                                    :template="template"
+                                    :addable="true"
+                                    @add="npc.addTemplate(template.name)"
+                                    :disabled="
+                                        npc.templateIsIncompatible(
+                                            template.name,
+                                        )
+                                    "
+                                />
+                            </v-fade-transition>
+                        </v-container>
+                    </v-card>
+                </v-flex>
+            </v-layout>
         </v-card-text>
         <v-divider class="my-1" />
         <v-card-actions class="mb-1 mr-2">
@@ -215,6 +274,7 @@ import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
 import _ from 'lodash';
 // components
 import SystemButton from "@/components/NpcDesigner/SystemButton.vue";
+import TemplateButton from "@/components/NpcDesigner/TemplateButton.vue";
 // vuex
 import { mapState } from 'vuex';
 
@@ -224,7 +284,7 @@ import { NPCSystem } from '../../logic/interfaces/NPCSystem';
 
 
 @Component({
-    components: { SystemButton }
+    components: { SystemButton, TemplateButton }
 })
 export default class NpcBuilder extends Vue {
     @Prop(Object) readonly preNpc!: NPC

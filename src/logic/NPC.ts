@@ -111,6 +111,10 @@ export default class NPC {
     );
   }
 
+  get availableTemplates(): NPCTemplate[] {
+    return _.difference(templates, this.templates);
+  }
+
   addTemplate(templateName: string) {
     if (this.incompatibleTemplateNames.includes(templateName))
       throw new Error(`incompatible template "${templateName}"!`);
@@ -124,6 +128,17 @@ export default class NPC {
     this._templates = _.without(this._templates, templateName);
     this._pickedSystems = this._pickedSystems.filter(
       sys => sys.class !== templateName,
+    );
+  }
+
+  templateIsIncompatible(templateName: string) {
+    const template = templates.find(t => t.name === templateName);
+    const incompatibleNpcTemplates =
+      (template && template.incompatibleTemplates) || [];
+    return (
+      (this.incompatibleTemplateNames.includes(templateName) ||
+        this._templates.some(tn => incompatibleNpcTemplates.includes(tn))) &&
+      this.incompatibleList(templateName)
     );
   }
 
