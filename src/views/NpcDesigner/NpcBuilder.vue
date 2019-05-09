@@ -124,41 +124,72 @@
             >
             </v-text-field>
             <v-divider class="mt-2 mb-3" />
-            <h6 class="title mb-2 text-xs-left grey--text text--darken-1">
-                Systems
-            </h6>
+            <v-layout grow-shrink-0>
+                <v-flex
+                    class="title mb-2 text-xs-left grey--text text--darken-1"
+                >
+                    Systems
+                </v-flex>
+                <v-flex ml-auto>
+                    <v-checkbox
+                        :color="`role--${npc.npcClass.role}`"
+                        v-model="systemsUnlocked"
+                        label="Unlock all systems"
+                    />
+                </v-flex>
+            </v-layout>
             <v-layout>
                 <v-flex xs6>
                     <v-card class="picker-card">
                         <v-container>
-                            <v-layout justify-start grow-shrink-0 wrap>
+                            <v-fade-transition
+                                group
+                                tag="div"
+                                class="layout justify-start grow-shrink-0 wrap"
+                            >
                                 <system-button
-                                    v-for="system in npc.systems"
+                                    v-for="system in mySystems"
                                     :key="system.name"
                                     :system="system"
                                     :closable="!system.base"
+                                    @close="npc.removeSystem(system)"
                                 />
-                            </v-layout>
+                            </v-fade-transition>
                         </v-container>
                     </v-card>
                 </v-flex>
                 <v-flex xs6>
                     <v-card class="picker-card">
                         <v-tabs dark color="primary" slider-color="secondary">
-                            <v-tab v-for="n in 3" :key="n" ripple>
-                                Item {{ n }}
+                            <v-tab
+                                v-for="cat in Object.keys(systemsAvailable)"
+                                :key="cat"
+                                ripple
+                                centered
+                                mandatory
+                            >
+                                {{ cat }}
                             </v-tab>
-                            <v-tab-item v-for="n in 3" :key="n">
+                            <v-tab-item
+                                v-for="cat in Object.keys(systemsAvailable)"
+                                :key="cat"
+                            >
                                 <v-container fluid>
-                                    <v-layout justify-start grow-shrink-0 wrap>
+                                    <v-fade-transition
+                                        group
+                                        tag="div"
+                                        class="layout justify-start grow-shrink-0 wrap"
+                                    >
                                         <system-button
-                                            v-for="system in systemsAvailable"
+                                            v-for="system in systemsAvailable[
+                                                cat
+                                            ]"
                                             :key="system.name"
                                             :system="system"
                                             :addable="true"
-                                            @add="addSystem(system)"
+                                            @add="npc.pickSystem(system)"
                                         />
-                                    </v-layout>
+                                    </v-fade-transition>
                                 </v-container>
                             </v-tab-item>
                         </v-tabs>
@@ -191,6 +222,7 @@ import NPC from '../../logic/NPC';
 import { Dictionary } from 'vue-router/types/router';
 import { NPCSystem } from '../../logic/interfaces/NPCSystem';
 
+
 @Component({
     components: { SystemButton }
 })
@@ -200,6 +232,7 @@ export default class NpcBuilder extends Vue {
     editingName = false;
     newName = '';
     npc = _.clone(this.preNpc);
+    systemsUnlocked = false;
     
     get stats() {
         const npcst = (this.npc as NPC).stats
@@ -218,15 +251,27 @@ export default class NpcBuilder extends Vue {
         return _.pickBy(obj, o => o !== null);
     }
 
-    get systemsAvailable(): NPCSystem.Any[] {
-      const preSort = this.npc.optional_class_systems.filter(
-        sys => !this.npc!.pickedSystems.includes(sys),
-      );
-      return _.orderBy(
+    get systemsAvailable(): { [key: string]: NPCSystem.Any[]} {
+      const { npc } = this;
+      const preSort = npc.allSystems.filter((system) => {
+          return !npc.systems.includes(system)
+          && (this.systemsUnlocked ||
+            npc._templates.concat([npc.npcClass.name, 'generic']).includes(system.class)
+          )
+      });
+      return _.groupBy(_.orderBy(
         preSort,
         ['base', 'type', 'name'],
         ['desc', 'desc', 'asc'],
-      );
+      ), 'class');
+    }
+
+    get mySystems(): NPCSystem.Any[] {
+        return _.orderBy(
+          this.npc.systems,
+          ['base', 'type', 'name'],
+          ['desc', 'desc', 'asc'],
+        )
     }
 
     editName() {
@@ -247,10 +292,6 @@ export default class NpcBuilder extends Vue {
     @Watch('npc', {deep: true})
     onEditNPC(val: NPC) {
         this.$store.commit('npcDesigner/edit', val)
-    }
-
-    addSystem(system: NPCSystem.Any) {
-        alert(system.name)
     }
 
 }
@@ -287,8 +328,10 @@ export default class NpcBuilder extends Vue {
 .picker-card {
     border-color: rgba(0, 0, 0, 0.125) !important;
     background-color: #f8f9fa !important;
-    height: 100%;
+    height: 250px;
+    overflow-y: auto;
 }
+
 .picker-card .v-tabs__bar {
     border-radius: 0;
 }

@@ -17,6 +17,7 @@ export default class NPC {
   _name?: string;
   notes?: string;
   size: number;
+  allSystems = systems.concat(genericSystems).concat(templateSystems);
 
   private _pickedSystems: NPCSystem.Any[] = [];
   _templates: string[] = [];
@@ -207,7 +208,10 @@ export default class NPC {
     if (obj.name) npc.name = obj.name;
     npc._templates = obj.templates;
     for (const sysName of obj.systems) {
-      const sys = systems.concat(genericSystems).find(s => s.name === sysName);
+      const sys = systems
+        .concat(genericSystems)
+        .concat(templateSystems)
+        .find(s => s.name === sysName);
       if (!sys) throw new Error(`invalid system ${sysName}`);
       npc.pickSystem(sys);
     }
