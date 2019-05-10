@@ -80,7 +80,20 @@ export default class NPC {
   }
 
   get systems() {
-    const preSort = this.base_class_systems.concat(this.pickedSystems);
+    // turn the bare template traits into real trait objects
+    const templateTraits: NPCSystem.NonWeapon[] = _.flatten(
+      this.templates.map(template =>
+        template.traits.map(trait => ({
+          ...trait,
+          class: template.name,
+          type: 'trait',
+          base: true,
+        })),
+      ),
+    );
+    const preSort = this.base_class_systems
+      .concat(this.pickedSystems)
+      .concat(templateTraits);
     return _.orderBy(
       preSort,
       ['base', 'type', 'name'],
@@ -185,7 +198,10 @@ export default class NPC {
     }
 
     for (const stat in tempStats) {
-      if (statCaps[stat] && statCaps[stat] < (tempStats as any)[stat]) {
+      if (
+        statCaps.hasOwnProperty(stat) &&
+        statCaps[stat] < (tempStats as any)[stat]
+      ) {
         tempStats = {
           ...tempStats,
           [stat]: statCaps[stat],
