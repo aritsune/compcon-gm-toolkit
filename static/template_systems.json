@@ -367,7 +367,7 @@
 
         "class": "veteran",
         "type": "trait",
-        "effect": "The veteran can use Overcharge. It’s cost for overcharging is always 1d6.",
+        "effect": "Whenever the veteran is targeted by any weapon of size heavy or larger, roll a d6. On a 5+, the weapon automatically misses this mech.",
         "base": false
     },
 
