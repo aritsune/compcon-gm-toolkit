@@ -16,12 +16,17 @@ Encounter Runner:
     ☐ NPC status effect tracking
         ☐ Custom statuses
     ☐ Recharge roll button
-Rework the back end:
+    ☐ add quip in runner npc card about grunt hp/damage?
+    Rework the back end:
     ☐ Concept of "NPC schematic" and "NPC instance"
     ☐ separate encounter and NPC editors
     ☐ encounter editor "new npc" button adds a precreated npc or redirects to npc editor
     ☐ after creating an encounter, you can run it, this will let you track npc combat info
 
 Bugs:
-    ☐ Grunts do not have heat 0 (add quip in npc card about grunts?)
+    ✔ Grunts do not have heat 0 @done(19-05-10 15:43)
     ✔ Variable size & npc class doesn't have size @done(19-05-08 13:43)
+    ✔ Template traits are not displayed at all @done(19-05-10 15:51)
+    ✔ Tier is not selectable in NPC builder @done(19-05-10 15:42)
+    ✔ Breacher Dual Shotguns Typo @done(19-05-10 15:04)
+    ✔ Lightning Reflexes is wrong @done(19-05-10 15:54)
