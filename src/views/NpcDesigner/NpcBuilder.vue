@@ -285,6 +285,7 @@
                 >Done</v-btn
             >
         </v-card-actions>
+        <GoblinChan v-if="npc && tips.length" :tips="tips" key="goblinchan" />
     </v-card>
 </template>
 
@@ -294,16 +295,18 @@ import _ from 'lodash';
 // components
 import SystemButton from "@/components/NpcDesigner/SystemButton.vue";
 import TemplateButton from "@/components/NpcDesigner/TemplateButton.vue";
+import GoblinChan from "@/components/NpcDesigner/GoblinChan.vue";
 // vuex
 import { mapState } from 'vuex';
 
 import NPC from '../../logic/NPC';
 import { Dictionary } from 'vue-router/types/router';
 import { NPCSystem } from '../../logic/interfaces/NPCSystem';
+import { NPCTips } from '../../logic/Tips';
 
 
 @Component({
-    components: { SystemButton, TemplateButton }
+    components: { SystemButton, TemplateButton, GoblinChan }
 })
 export default class NpcBuilder extends Vue {
     @Prop(Object) readonly preNpc!: NPC
@@ -312,6 +315,10 @@ export default class NpcBuilder extends Vue {
     newName = '';
     npc = _.clone(this.preNpc);
     systemsUnlocked = false;
+
+    get tips(): object[] {
+      return NPCTips(this.npc);
+    }
     
     get stats() {
         const npcst = (this.npc as NPC).stats

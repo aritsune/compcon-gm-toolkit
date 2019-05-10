@@ -52,6 +52,7 @@ export const NPCTips = (npc: NPC): Tip[] => {
   if (templates.includes('exotic')) {
     const exoticSystemsCount = systems.filter(sys => sys.class === 'exotic')
       .length;
+    console.log(exoticSystemsCount);
     output.push({
       id: 'exotic',
       text: `The NPC should have <b>one or two</b> exotic modules.<br/>It has ${exoticSystemsCount}.`,

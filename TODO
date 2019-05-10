@@ -2,14 +2,16 @@ Other:
     ✔ Componentify system & feature badges @done(19-05-09 00:37)
     ☐ Visual party between NPCDisplay and NPCDesigner
 NPC Builder:
+    ☐ minor graphical glitch in Mobile where the mech types hover over the top bar
     ☐ Class details in class picker
     ✔ Naming NPCs @done(19-05-09 00:38)
-    ☐ Template picker
-    ☐ System picker
-        ☐ Unlock other NPC's systems
-    ☐ Goblin-chan
+    ✔ Template picker @done(19-05-10 16:02)
+    ✔ System picker @done(19-05-10 16:02)
+        ✔ Unlock other NPC's systems @done(19-05-10 16:02)
+    ✔ Goblin-chan @done(19-05-10 16:22)
+    ☐ Sort tabs better, right now they switch around a bunch
 Encounter Builder:
-    ☐ Pick NPCs, name the individuals, multiplier
+    ☐ Pick NPCs, name the individuals, amount
     ☐ Randomize Encounter (with random or my NPCs)
 Encounter Runner:
     ☐ RunnerNpcDisplay component like in old version
@@ -22,6 +24,10 @@ Encounter Runner:
     ☐ separate encounter and NPC editors
     ☐ encounter editor "new npc" button adds a precreated npc or redirects to npc editor
     ☐ after creating an encounter, you can run it, this will let you track npc combat info
+
+System modal:
+    ☐ Look like shit rn lol
+    ☐ No tech rolls
 
 Bugs:
     ✔ Grunts do not have heat 0 @done(19-05-10 15:43)
