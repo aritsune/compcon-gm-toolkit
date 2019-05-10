@@ -10,6 +10,7 @@
                 <v-layout
                     align-center
                     grow-shrink-0
+                    wrap
                     :class="{
                         column: $vuetify.breakpoint.xsOnly,
                         'justify-center': $vuetify.breakpoint.xsOnly,
@@ -51,7 +52,15 @@
                             </v-text-field>
                         </v-flex>
                     </v-fade-transition>
-                    <v-flex ml-auto mr-2>
+                    <v-flex
+                        xs12
+                        sm2
+                        :class="{
+                            'mx-0': $vuetify.breakpoint.xsOnly,
+                            'ml-auto': $vuetify.breakpoint.smAndUp,
+                            'mr-2': $vuetify.breakpoint.smAndUp,
+                        }"
+                    >
                         <v-btn-toggle v-model="npc.tier" mandatory>
                             <v-btn flat>
                                 <v-icon :color="roleColor"
@@ -161,8 +170,8 @@
                 </v-flex>
             </v-layout>
             <!-- Systems picker -->
-            <v-layout>
-                <v-flex xs6>
+            <v-layout wrap>
+                <v-flex xs12 sm6>
                     <v-card class="picker-card">
                         <v-container>
                             <v-fade-transition
@@ -181,7 +190,7 @@
                         </v-container>
                     </v-card>
                 </v-flex>
-                <v-flex xs6>
+                <v-flex xs12 sm6>
                     <v-card class="picker-card">
                         <v-tabs dark color="primary" slider-color="secondary">
                             <v-tab
