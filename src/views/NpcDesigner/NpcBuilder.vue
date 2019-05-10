@@ -3,7 +3,7 @@
         <!-- Header -->
         <v-card-title
             class="white--text d-flex"
-            :class="`role--${npc.npcClass.role}`"
+            :class="roleColor"
             style="min-height: 70px;"
         >
             <v-container fluid style="padding: 0 16px">
@@ -51,7 +51,26 @@
                             </v-text-field>
                         </v-flex>
                     </v-fade-transition>
-                    <v-flex ml-auto subheading shrink>
+                    <v-flex ml-auto mr-2>
+                        <v-btn-toggle v-model="npc.tier" mandatory>
+                            <v-btn flat>
+                                <v-icon :color="roleColor"
+                                    >mdi-numeric-1-box</v-icon
+                                >
+                            </v-btn>
+                            <v-btn flat>
+                                <v-icon :color="roleColor"
+                                    >mdi-numeric-2-box</v-icon
+                                >
+                            </v-btn>
+                            <v-btn flat>
+                                <v-icon :color="roleColor"
+                                    >mdi-numeric-3-box</v-icon
+                                >
+                            </v-btn>
+                        </v-btn-toggle>
+                    </v-flex>
+                    <v-flex subheading shrink>
                         <div class="text-uppercase">
                             {{ npc.npcClass.name }}
                         </div>
@@ -83,7 +102,7 @@
                             v-if="npc.npcClass.size.length > 1"
                             :items="npc.npcClass.size"
                             v-model="npc.size"
-                            :color="`role--${npc.npcClass.role}`"
+                            :color="roleColor"
                         />
                         <div
                             v-else
@@ -122,7 +141,7 @@
                 outline
                 label="Notes"
                 v-model="npc.notes"
-                :color="`role--${npc.npcClass.role}`"
+                :color="roleColor"
             >
             </v-text-field>
             <v-divider class="mt-2 mb-3" />
@@ -135,7 +154,7 @@
                 </v-flex>
                 <v-flex ml-auto>
                     <v-checkbox
-                        :color="`role--${npc.npcClass.role}`"
+                        :color="roleColor"
                         v-model="systemsUnlocked"
                         label="Unlock all systems"
                     />
@@ -260,7 +279,7 @@
         <v-card-actions class="mb-1 mr-2">
             <v-btn
                 flat
-                :color="`role--${npc.npcClass.role}`"
+                :color="roleColor"
                 class="ml-auto"
                 @click="$router.push('/npc-designer/')"
                 >Done</v-btn
@@ -332,6 +351,10 @@ export default class NpcBuilder extends Vue {
           ['base', 'type', 'name'],
           ['desc', 'desc', 'asc'],
         )
+    }
+
+    get roleColor(): string {
+        return `role--${this.npc.npcClass.role}`
     }
 
     editName() {
