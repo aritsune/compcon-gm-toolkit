@@ -446,7 +446,7 @@
         "val": [6, 8, 10],
         "type": "kinetic"
     }],
-    "effect": "The Breacher can attack twice with this weapon, choocking the same or different targets."
+    "effect": "The Breacher can attack twice with this weapon, choosing the same or different targets."
 }, {
     "class": "breacher",
     "base": true,
