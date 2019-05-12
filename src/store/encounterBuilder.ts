@@ -9,13 +9,22 @@ export default {
   namespaced: true,
   state: {
     encounters: storedEncounters
-      ? JSON.parse(storedEncounters).map((obj: any) => {
-          const enc = new EncounterBase(obj.name);
-          enc.notes = obj.notes;
-          enc.id = obj.id;
-          enc.npcs = obj.npcs;
-          return enc;
-        })
+      ? JSON.parse(storedEncounters).map(
+          (obj: ReturnType<EncounterBase['serialize']>) => {
+            const enc = new EncounterBase(obj.name);
+            enc.notes = obj.notes;
+            enc.id = obj.id;
+            console.log(npcDesigner.state);
+            enc.npcs = obj.npcs.map(encNPC => ({
+              name: encNPC.name,
+              count: encNPC.count,
+              npc: npcDesigner.state.npcs.find(
+                (n: NPC) => n.id === encNPC.npcID,
+              ),
+            }));
+            return enc;
+          },
+        )
       : [],
   },
   mutations: {

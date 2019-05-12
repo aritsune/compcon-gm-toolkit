@@ -28,10 +28,7 @@
                     <v-card class="pickCard">
                         <v-layout column pa-3>
                             <v-flex v-for="(npc, i) in encounterNPCs" :key="i">
-                                <File
-                                    icon="mdi-account"
-                                    :name="npc.npcData.name"
-                                >
+                                <File icon="mdi-account" :name="npc.name">
                                     <template v-slot:extra-icons>
                                         <v-btn
                                             style="min-width: 0;"
@@ -99,9 +96,9 @@ export default class EncounterBuilder extends Vue {
     addNPC(npc: NPC) {
         console.log(npc)
         this.encounter.npcs.push({
-            name: npc.name.,
+            name: npc.name,
             count: 1,
-            npcID: npc.id,
+            npc,
         })
     }
 
@@ -110,12 +107,7 @@ export default class EncounterBuilder extends Vue {
     }
 
     get encounterNPCs() {
-        return this.encounter.npcs.map(
-            encNPC => ({
-                ...encNPC,
-                npcData: this.npcs.find(n => n.id === encNPC.npcID)
-            })
-        );
+        return this.encounter.npcs.map(npc => npc.npc)
     }
 
     @Watch('encounter', {deep: true})

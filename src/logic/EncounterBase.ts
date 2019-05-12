@@ -1,8 +1,8 @@
 import newId from './newId';
 import NPC from './NPC';
 
-type EncounterBaseNPC = {
-  npcID: string;
+export type EncounterBaseNPC = {
+  npc: NPC;
   name: string;
   count: number;
 };
@@ -22,7 +22,11 @@ export default class EncounterBase {
       id: this.id,
       name: this.name,
       notes: this.notes,
-      npcs: this.npcs,
+      npcs: this.npcs.map(npc => ({
+        name: npc.name,
+        count: npc.count,
+        npcID: npc.npc.id,
+      })),
     };
   }
 }
