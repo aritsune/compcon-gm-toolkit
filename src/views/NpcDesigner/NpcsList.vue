@@ -15,7 +15,7 @@
             tag="div"
             class="layout row wrap justify-start"
         >
-            <v-flex v-for="npc in npcs" :key="npc.id" xs12 sm6 md2>
+            <v-flex v-for="npc in npcs" :key="npc.id" xs12 sm6 md3>
                 <File
                     :name="npc.name"
                     icon="mdi-account"
