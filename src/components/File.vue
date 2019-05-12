@@ -5,7 +5,7 @@
         large
         :color="color"
         v-ripple="{ color: 'primary' }"
-        @click="$router.push(to)"
+        @click="onClick"
     >
         <v-icon class="main-icon" left>{{ icon }}</v-icon>
         <div class="file-btn-text">{{ name }}</div>
@@ -22,6 +22,11 @@ export default {
         icon: { type: String, default: 'mdi-file' },
         color: { type: String, default: 'secondary' },
         to: { type: String },
+    },
+    methods: {
+        onClick() {
+            if (this.to) this.$router.push(this.to);
+        }
     }
 }
 </script>
