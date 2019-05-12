@@ -3,6 +3,9 @@ import Router from 'vue-router';
 
 import store from './store';
 
+import NPC from './logic/NPC';
+import EncounterBase from './logic/EncounterBase';
+
 import Home from './views/Home.vue';
 import UnderConstruction from './views/UnderConstruction.vue';
 
@@ -11,7 +14,10 @@ import NpcBuilder from './views/NpcDesigner/NpcBuilder.vue';
 import NpcClassPicker from './views/NpcDesigner/NpcClassPicker.vue';
 import NpcsList from './views/NpcDesigner/NpcsList.vue';
 import NpcDisplay from './views/NpcDesigner/NpcDisplay.vue';
-import NPC from './logic/NPC';
+
+import EncounterBuilderIndex from './views/EncounterBuilder/EncounterBuilderIndex.vue';
+import EncountersList from './views/EncounterBuilder/EncountersList.vue';
+import EncounterBuilder from './views/EncounterBuilder/EncounterBuilder.vue';
 
 Vue.use(Router);
 
@@ -62,8 +68,32 @@ export default new Router({
     },
     {
       path: '/encounter-builder',
-      name: 'encounter-builder',
-      component: UnderConstruction,
+      component: EncounterBuilderIndex,
+      children: [
+        {
+          path: '',
+          name: 'encounter-builder',
+          component: EncountersList,
+        },
+        {
+          path: '/encounter-builder/new',
+          beforeEnter: (to, from, next) => {
+            const newEnc = new EncounterBase('Untitled Encounter');
+            store.commit('encounterBuilder/add', newEnc);
+            next('/encounter-builder/' + newEnc.id);
+          },
+        },
+        {
+          path: '/encounter-builder/:id',
+          name: 'encounter-edit',
+          component: EncounterBuilder,
+          props: route => ({
+            preEnc: (store.state as any).encounterBuilder.encounters.find(
+              (e: any) => e.id === route.params.id,
+            ),
+          }),
+        },
+      ],
     },
     {
       path: '/encounter-runner',
