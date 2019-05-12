@@ -159,7 +159,22 @@ export default class NPC {
     return _.uniqBy(_.flatten(this.templates.map(t => t.features)), 'name');
   }
 
-  get stats() {
+  get stats(): {
+    hp: number;
+    evade: number;
+    edef: number;
+    heatcap: number;
+    hull: number;
+    agility: number;
+    systems: number;
+    engineering: number;
+    armor: number;
+    speed: number;
+    sensor: number;
+    save: number;
+    structure: number;
+    stress: number;
+  } {
     let tempStats = (_.clone(this.npcClass.stats[this.tier]) as unknown) as {
       [key: string]: number;
     };
