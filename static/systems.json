@@ -1079,7 +1079,8 @@
     }, {
         "id": "ordnance"
     }, {
-        "id": "knockback 3"
+        "id": "knockback",
+        "val": 3
     }],
     "weapon_roll": {
         "flat": {
@@ -2269,7 +2270,8 @@
     "tags": [{
         "id": "arcing"
     }, {
-        "id": "knockback 1"
+        "id": "knockback",
+        "val": 1
     }],
     "weapon_roll": {
         "flat": {

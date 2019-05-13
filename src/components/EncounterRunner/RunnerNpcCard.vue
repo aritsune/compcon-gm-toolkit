@@ -1,6 +1,9 @@
 <template>
     <v-card :class="`${roleColor}--text`" class="runner-npc-card">
-        <v-card-title class="white--text text-uppercase" :class="roleColor">
+        <v-card-title
+            class="white--text text-uppercase npccardtitle"
+            :class="roleColor"
+        >
             <v-layout space-between grow-shrink-0>
                 <v-flex class="title">
                     {{ npcData.name }}
@@ -89,7 +92,7 @@
                         dark
                         color="primary"
                     >
-                        <strong>{{ data.item.name }}</strong>
+                        <strong>{{ data.item.name || data.item }}</strong>
                     </v-chip>
                 </template>
             </v-combobox>
@@ -168,6 +171,42 @@
                 </v-flex>
             </v-layout>
         </v-container>
+        <v-divider class="my-2" />
+        <v-container
+            py-1
+            fluid
+            v-if="npcData.features.length"
+            class="primary--text"
+        >
+            <h3 class="body-2">
+                Features
+            </h3>
+            <v-dialog
+                max-width="500"
+                v-for="feature in npcData.features"
+                :key="feature.name"
+            >
+                <template v-slot:activator="{ on }">
+                    <v-chip
+                        dark
+                        color="primary"
+                        v-on="on"
+                        class="featurechip"
+                        v-ripple
+                    >
+                        {{ feature.name }}
+                    </v-chip>
+                </template>
+                <v-card class="primary--text">
+                    <v-card-title class="title primary white--text">
+                        {{ feature.name }}
+                    </v-card-title>
+                    <v-card-text>
+                        {{ feature.description }}
+                    </v-card-text>
+                </v-card>
+            </v-dialog>
+        </v-container>
         <v-container fluid px-0 py-0 mt-2>
             <NpcCardSystem
                 v-for="system in systemsSorted"
@@ -231,5 +270,8 @@ export default class RunnerNpcCard extends Vue {
 }
 .stat * {
     padding: 0 !important;
+}
+.featurechip * {
+    cursor: pointer !important
 }
 </style>

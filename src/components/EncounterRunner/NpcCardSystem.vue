@@ -156,7 +156,7 @@ export default class NpcCardSystem extends Vue {
         output += flatTotal;
       }
       if (accdiff) {
-        output += `+${Math.abs(accdiff.val) *
+        output += `${accdiff.val > -1 ? '+' : '-'}${Math.abs(accdiff.val) *
           (accdiff.pertier ? tier + 1 : 1)}d6`;
       }
       output += ' vs ';

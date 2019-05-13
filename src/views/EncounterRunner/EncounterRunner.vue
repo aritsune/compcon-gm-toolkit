@@ -1,14 +1,20 @@
 <template>
     <v-container fluid>
-        <v-layout wrap>
+        <draggable
+            v-model="encounter.npcs"
+            handle=".npccardtitle"
+            class="layout wrap"
+            filter=".v-card"
+        >
             <v-flex xs12 sm6 md4 v-for="(npc, i) in encounter.npcs" :key="i">
                 <runner-npc-card :npc="npc" />
             </v-flex>
-        </v-layout>
+        </draggable>
     </v-container>
 </template>
 
 <script lang="ts">
+import draggable from 'vuedraggable'
 import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
 import _ from 'lodash';
 import ActiveEncounter from '../../logic/ActiveEncounter';
@@ -16,7 +22,7 @@ import ActiveEncounter from '../../logic/ActiveEncounter';
 import RunnerNpcCard from '@/components/EncounterRunner/RunnerNpcCard.vue'
 
 @Component({
-    components: { RunnerNpcCard }
+    components: { RunnerNpcCard, draggable }
 })
 export default class EncounterRunner extends Vue {
     @Prop(Object) preEnc!: ActiveEncounter;
