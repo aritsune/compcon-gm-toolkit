@@ -54,7 +54,12 @@
                 >
                     {{ system.effect_short || system.effect }}
                 </v-flex>
-                <v-flex layout align-center my-0 v-else-if="system.action">
+                <v-flex
+                    layout
+                    align-center
+                    my-0
+                    v-else-if="system.action || system.recharge"
+                >
                     <span class="body-2 mr-1">
                         {{ actionName }}
                     </span>
@@ -64,6 +69,7 @@
                             {{ rollString }}
                         </div>
                     </template>
+                    <recharge :value="system.recharge" />
                 </v-flex>
             </v-layout>
             <v-flex
@@ -100,9 +106,10 @@ import { NPCSystem } from '../../logic/interfaces/NPCSystem';
 import renderTag from '../../logic/rendertag';
 
 import SystemDialogCard from "../SystemDialogCard.vue"; 
+import Recharge from "./Recharge.vue"; 
 
 @Component({
-    components: { SystemDialogCard }
+    components: { SystemDialogCard, Recharge }
 })
 export default class NpcCardSystem extends Vue {
     @Prop(Object) system!: NPCSystem.Any;
