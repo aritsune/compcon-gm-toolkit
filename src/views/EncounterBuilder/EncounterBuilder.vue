@@ -94,7 +94,6 @@ export default class EncounterBuilder extends Vue {
     }
 
     addNPC(npc: NPC) {
-        console.log(npc)
         this.encounter.npcs.push({
             name: npc.name,
             count: 1,

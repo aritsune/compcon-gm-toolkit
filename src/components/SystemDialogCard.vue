@@ -1,7 +1,7 @@
 <template>
     <v-card>
         <v-card-title
-            class="headline"
+            class="headline d-flex grow-shrink-0"
             :class="`system--${system.type} white--text`"
         >
             <v-icon dark left>{{ icon }}</v-icon>

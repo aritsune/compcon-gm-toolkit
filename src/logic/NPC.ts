@@ -17,7 +17,7 @@ export default class NPC {
   _name?: string;
   notes?: string;
   size: number;
-  allSystems = systems.concat(genericSystems).concat(templateSystems);
+  static allSystems = systems.concat(genericSystems).concat(templateSystems);
 
   private _pickedSystems: NPCSystem.Any[] = [];
   _templates: string[] = [];
@@ -175,9 +175,7 @@ export default class NPC {
     structure: number;
     stress: number;
   } {
-    let tempStats = (_.clone(this.npcClass.stats[this.tier]) as unknown) as {
-      [key: string]: number;
-    };
+    let tempStats = (_.clone(this.npcClass.stats[this.tier]) as unknown) as any;
     tempStats.structure = 1;
     tempStats.stress = 1;
 

@@ -19,6 +19,11 @@ import EncounterBuilderIndex from './views/EncounterBuilder/EncounterBuilderInde
 import EncountersList from './views/EncounterBuilder/EncountersList.vue';
 import EncounterBuilder from './views/EncounterBuilder/EncounterBuilder.vue';
 
+import EncounterRunnerIndex from './views/EncounterRunner/EncounterRunnerIndex.vue';
+import EncounterRunnerList from './views/EncounterRunner/EncounterRunnerList.vue';
+import EncounterRunnerNew from './views/EncounterRunner/EncounterRunnerNew.vue';
+import EncounterRunner from './views/EncounterRunner/EncounterRunner.vue';
+
 Vue.use(Router);
 
 function getNPC(id: string): NPC {
@@ -97,8 +102,29 @@ export default new Router({
     },
     {
       path: '/encounter-runner',
-      name: 'encounter-runner',
-      component: UnderConstruction,
+      component: EncounterRunnerIndex,
+      children: [
+        {
+          path: '',
+          name: 'encounter-runner-list',
+          component: EncounterRunnerList,
+        },
+        {
+          path: '/encounter-runner/new',
+          name: 'encounter-runner-new',
+          component: EncounterRunnerNew,
+        },
+        {
+          path: '/encounter-runner/:id',
+          name: 'encounter-runner',
+          component: EncounterRunner,
+          props: route => ({
+            preEnc: (store.state as any).encounterRunner.activeEncounters.find(
+              (e: any) => e.id === route.params.id,
+            ),
+          }),
+        },
+      ],
     },
     {
       path: '/about',

@@ -121,7 +121,7 @@ export default {
     }),
     computed: {
         backButton() {
-            return !['home', 'npc-list', 'encounter-builder', 'encounter-runner', 'about'].includes(this.$route.name)
+            return !['home', 'npc-list', 'encounter-builder', 'encounter-runner-list', 'about'].includes(this.$route.name)
         }
     },
     methods: {

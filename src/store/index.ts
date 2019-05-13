@@ -3,8 +3,10 @@ import Vuex from 'vuex';
 
 import npcDesigner from './npcDesigner';
 import encounterBuilder from './encounterBuilder';
+import encounterRunner from './encounterRunner';
 import NPC from '@/logic/NPC';
 import EncounterBase from '@/logic/EncounterBase';
+import ActiveEncounter from '@/logic/ActiveEncounter';
 
 Vue.use(Vuex);
 
@@ -15,7 +17,6 @@ export default new Vuex.Store({
   plugins: [
     (store: any) =>
       store.subscribe((mutation: any, state: any) => {
-        console.log(mutation);
         localStorage.setItem(
           'npcs',
           JSON.stringify(state.npcDesigner.npcs.map((n: NPC) => n.serialize())),
@@ -28,7 +29,15 @@ export default new Vuex.Store({
             ),
           ),
         );
+        localStorage.setItem(
+          'activeEncounters',
+          JSON.stringify(
+            state.encounterRunner.activeEncounters.map((e: ActiveEncounter) =>
+              e.serialize(),
+            ),
+          ),
+        );
       }),
   ],
-  modules: { npcDesigner, encounterBuilder },
+  modules: { npcDesigner, encounterBuilder, encounterRunner },
 });

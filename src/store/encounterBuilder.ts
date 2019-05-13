@@ -14,7 +14,6 @@ export default {
             const enc = new EncounterBase(obj.name);
             enc.notes = obj.notes;
             enc.id = obj.id;
-            console.log(npcDesigner.state);
             enc.npcs = obj.npcs.map(encNPC => ({
               name: encNPC.name,
               count: encNPC.count,

@@ -348,7 +348,7 @@ export default class NpcBuilder extends Vue {
 
     get systemsAvailable(): { [key: string]: NPCSystem.Any[]} {
       const { npc } = this;
-      const preSort = npc.allSystems.filter((system) => {
+      const preSort = NPC.allSystems.filter((system) => {
           return !npc.systems.includes(system)
           && (this.systemsUnlocked ||
             npc._templates.concat([npc.npcClass.name, 'generic']).includes(system.class)

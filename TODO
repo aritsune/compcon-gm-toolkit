@@ -12,19 +12,23 @@ NPC Builder:
     ☐ Sort tabs better, right now they switch around a bunch
     ✔ Make more mobile friendly @done(19-05-10 16:30)
 Encounter Builder:
-    ☐ Pick NPCs, name the individuals, amount
+    ☐ Name individuals
+    ☐ Pick amount & reflect amount when encounter is active
+    // NPC list probably should have its own component for easier editing of name & count
     ☐ Randomize Encounter (with random or my NPCs)
+    ☐ Delete encounter
 Encounter Runner:
     ☐ RunnerNpcDisplay component like in old version
-    ☐ NPC status effect tracking
-        ☐ Custom statuses
+    ✔ NPC status effect tracking @done(19-05-12 22:38)
+        ✔ Custom statuses @done(19-05-12 22:38)
     ☐ Recharge roll button
-    ☐ add quip in runner npc card about grunt hp/damage?
+    ✔ add quip in runner npc card about grunt hp/damage? @done(19-05-12 22:38)
+    ☐ roll20 style differential hp/heat/struct/stress changing
     Rework the back end:
-    ☐ Concept of "NPC schematic" and "NPC instance"
-    ☐ separate encounter and NPC editors
-    ☐ encounter editor "new npc" button adds a precreated npc or redirects to npc editor
-    ☐ after creating an encounter, you can run it, this will let you track npc combat info
+        ✔ Concept of "NPC schematic" and "NPC instance" @done(19-05-11 22:13)
+        ✔ separate encounter and NPC editors @done(19-05-11 22:13)
+        ☐ encounter editor "new npc" button adds a precreated npc or redirects to npc editor
+        ✔ after creating an encounter, you can run it, this will let you track npc combat info @done(19-05-11 22:13)
 
 System modal:
     ☐ Look like shit rn lol
