@@ -3,6 +3,7 @@ import newId from './newId';
 import NPC from './NPC';
 
 export class ActiveNPC {
+  id: string;
   baseNPC: NPC;
   hp: number;
   heat: number;
@@ -13,6 +14,7 @@ export class ActiveNPC {
   statuses: string[];
 
   constructor(npc: NPC) {
+    this.id = newId();
     this.baseNPC = npc;
     const { stats } = this.baseNPC;
     this.hp = stats.hp;
@@ -25,6 +27,7 @@ export class ActiveNPC {
 
   serialize() {
     return {
+      id: this.id,
       npc: this.baseNPC.serialize(),
       hp: this.hp,
       heat: this.heat,
@@ -38,6 +41,7 @@ export class ActiveNPC {
   static deserialize(obj: ReturnType<ActiveNPC['serialize']>) {
     const baseNPC = NPC.deserialize(obj.npc);
     const activeNPC = new ActiveNPC(baseNPC);
+    if (obj.id) activeNPC.id = obj.id;
     activeNPC.hp = obj.hp;
     activeNPC.heat = obj.heat;
     activeNPC.structure = obj.structure;

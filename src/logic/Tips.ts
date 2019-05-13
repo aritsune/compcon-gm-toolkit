@@ -81,8 +81,9 @@ export const NPCTips = (npc: NPC): Tip[] => {
   }
 
   if (templates.includes('ultra')) {
-    const ultraSystemsCount = systems.filter(sys => sys.class === 'ultra')
-      .length;
+    const ultraSystemsCount = systems.filter(
+      sys => sys.class === 'ultra' && !sys.base,
+    ).length;
     output.push({
       id: 'ultra',
       text: `The Ultra should have <b>1-3</b> Ultra traits or modules.</br>It has ${ultraSystemsCount}.`,

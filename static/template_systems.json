@@ -618,7 +618,7 @@
             }
         },
         "weapon_range": [{
-            "type": "Thrown",
+            "type": "thrown",
             "val": 5
         }],
         "damage": [{

@@ -1,5 +1,5 @@
 <template>
-    <div @click="dialog = true">
+    <div class="syswrap" @click="dialog = true">
         <v-layout column mx-0 my-0 class="sys primary--text">
             <v-layout
                 justify-space-between
@@ -167,11 +167,12 @@ export default class NpcCardSystem extends Vue {
     get rangeStrings(): string[] {
       if (this.system.type !== 'weapon') return [''];
       const map: { [key: string]: string } = {
-        range: 'RNG',
-        threat: 'THR',
-        blast: 'BLA',
-        burst: 'BUR',
-        cone: 'CON',
+        range: 'RNGE',
+        threat: 'THRT',
+        thrown: 'THWN',
+        blast: 'BLST',
+        burst: 'BRST',
+        cone: 'CONE',
       };
       const { weapon_range: ranges } = this.system;
       return ranges
@@ -202,16 +203,20 @@ export default class NpcCardSystem extends Vue {
 </script>
 
 <style lang="scss">
+.syswrap {
+  height: 100%;
+}
 .sys {
     overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.1);
   background-color: rgba(0, 0, 0, 0.05);
   transition: background-color 0.2s ease;
-  border-width: 1px 0 0 0;
+  border-width: 1px 1px 0 0;
   margin: 0;
   padding: 0.8em 1.2em;
   font-size: 0.7em;
   width: 100%;
+  height: 100%;
   text-align: left;
   min-height: 43px;
 }
@@ -221,9 +226,6 @@ export default class NpcCardSystem extends Vue {
   cursor: pointer;
 }
 
-.syswrap:last-child .sys {
-  border-bottom-width: 1px;
-}
 .d20 {
   font-size: 24px;
 }

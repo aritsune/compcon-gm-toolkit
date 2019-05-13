@@ -1,220 +1,274 @@
 <template>
-    <v-card :class="`${roleColor}--text`" class="runner-npc-card">
+    <v-card :class="`${roleColor}--text`" class="runner-npc-card d-flex-column">
         <v-card-title
             class="white--text text-uppercase npccardtitle"
-            :class="roleColor"
+            :class="roleColor + ' ' + (isUltra ? 'bigTitle' : '')"
         >
-            <v-layout space-between grow-shrink-0>
+            <v-layout
+                :class="isUltra ? roleColor : ''"
+                space-between
+                align-center
+                grow-shrink-0
+            >
+                <v-flex class="draghandle">
+                    <v-icon dark>mdi-drag</v-icon>
+                </v-flex>
                 <v-flex class="title">
                     {{ npcData.name }}
                 </v-flex>
                 <v-flex class="ml-auto body-2">
                     TIER {{ npcData.tier + 1 }} {{ npcData.npcClass.name }}
                 </v-flex>
+                <v-flex py-0>
+                    <v-btn
+                        outline
+                        small
+                        color="white"
+                        class="ma-0 px-2"
+                        style="min-width: 0;"
+                        title="Mark as Destroyed"
+                        @click="npc.destroyed = true"
+                    >
+                        <v-icon small>mdi-skull-crossbones</v-icon>
+                    </v-btn>
+                </v-flex>
             </v-layout>
         </v-card-title>
-        <v-container class="primary--text" fluid py-3>
-            <v-layout wrap v-if="!npcData._templates.includes('grunt')">
-                <v-flex xs6>
-                    <div class="text-xs-left body-2">
-                        HP {{ npc.hp }}/{{ npcData.stats.hp }}
-                    </div>
-                    <PipBar
-                        v-model="npc.hp"
-                        :max="npcData.stats.hp"
-                        empty-icon="mdi-circle-outline"
-                        full-icon="mdi-circle"
-                    />
-                </v-flex>
-                <v-flex xs6>
-                    <div class="text-xs-left body-2">
-                        HEAT {{ npc.heat }}/{{ npcData.stats.heatcap }}
-                    </div>
-                    <PipBar
-                        v-model="npc.heat"
-                        :max="npcData.stats.heatcap"
-                        empty-icon="mdi-circle-outline"
-                        full-icon="mdi-circle"
-                    />
-                </v-flex>
-                <v-flex xs6 v-if="npcData.stats.structure > 1">
-                    <div class="text-xs-left body-2">
-                        STRUCTURE {{ npc.structure }}/{{
-                            npcData.stats.structure
-                        }}
-                    </div>
-                    <PipBar
-                        v-model="npc.structure"
-                        :max="npcData.stats.structure"
-                        empty-icon="mdi-circle-outline"
-                        full-icon="mdi-circle"
-                    />
-                </v-flex>
-                <v-flex xs6 v-if="npcData.stats.stress > 1">
-                    <div class="text-xs-left body-2">
-                        STRESS {{ npc.stress }}/{{ npcData.stats.stress }}
-                    </div>
-                    <PipBar
-                        v-model="npc.stress"
-                        :max="npcData.stats.stress"
-                        empty-icon="mdi-circle-outline"
-                        full-icon="mdi-circle"
-                    />
-                </v-flex>
-            </v-layout>
-            <v-layout column v-else>
-                <span class="grey--text  caption">
-                    The grunt only has 1 HP, structure and stress maximum. If it
-                    takes heat, it shuts down. If it takes damage, it's
-                    destroyed. It doesn't take damage from successful saves.
-                </span>
-            </v-layout>
-        </v-container>
-        <v-divider class="mb-2" />
-        <v-container fluid pt-2 pb-2>
-            <v-combobox
-                v-model="npc.statuses"
-                :items="baseStatuses"
-                item-text="name"
-                item-value="name"
-                label="Status effects"
-                :color="roleColor"
-                chips
-                outline
-                clearable
-                multiple
-            >
-                <template v-slot:selection="data">
-                    <v-chip
-                        :selected="data.selected"
-                        close
-                        @input="removeStatus(data.item)"
-                        dark
-                        color="primary"
-                    >
-                        <strong>{{ data.item.name || data.item }}</strong>
-                    </v-chip>
-                </template>
-            </v-combobox>
-        </v-container>
-        <v-divider class="mb-2" />
-        <v-container fluid px-3 py-1>
-            <v-layout wrap align-center>
-                <v-flex stat>
-                    <v-flex class="caption">ARMOR</v-flex>
-                    <v-flex class="headline font-weight-bold primary--text">
-                        {{ npcData.stats.armor }}
-                    </v-flex>
-                </v-flex>
-                <v-flex stat>
-                    <v-flex class="caption">EVADE</v-flex>
-                    <v-flex class="headline font-weight-bold primary--text">
-                        {{ npcData.stats.evade }}
-                    </v-flex>
-                </v-flex>
-                <v-flex stat>
-                    <v-flex class="caption">EDEF</v-flex>
-                    <v-flex class="headline font-weight-bold primary--text">
-                        {{ npcData.stats.edef }}
-                    </v-flex>
-                </v-flex>
-                <v-flex stat>
-                    <v-flex class="caption">SPEED</v-flex>
-                    <v-flex class="headline font-weight-bold primary--text">
-                        {{ npcData.stats.speed }}
-                    </v-flex>
-                </v-flex>
-                <v-flex stat>
-                    <v-flex class="caption">SENSOR</v-flex>
-                    <v-flex class="headline font-weight-bold primary--text">
-                        {{ npcData.stats.sensor }}
-                    </v-flex>
-                </v-flex>
-            </v-layout>
-        </v-container>
-        <v-divider class="my-2" />
-        <v-container fluid px-3 py-1>
-            <v-layout wrap align-center>
-                <v-flex stat>
-                    <v-flex class="caption">HULL</v-flex>
-                    <v-flex class="headline font-weight-bold primary--text">
-                        {{ npcData.stats.hull > -1 ? '+' : ''
-                        }}{{ npcData.stats.hull }}
-                    </v-flex>
-                </v-flex>
-                <v-flex stat>
-                    <v-flex class="caption">AGI</v-flex>
-                    <v-flex class="headline font-weight-bold primary--text">
-                        {{ npcData.stats.agility > -1 ? '+' : ''
-                        }}{{ npcData.stats.agility }}
-                    </v-flex>
-                </v-flex>
-                <v-flex stat>
-                    <v-flex class="caption">SYS</v-flex>
-                    <v-flex class="headline font-weight-bold primary--text">
-                        {{ npcData.stats.systems > -1 ? '+' : ''
-                        }}{{ npcData.stats.systems }}
-                    </v-flex>
-                </v-flex>
-                <v-flex stat>
-                    <v-flex class="caption">ENG</v-flex>
-                    <v-flex class="headline font-weight-bold primary--text">
-                        {{ npcData.stats.engineering > -1 ? '+' : ''
-                        }}{{ npcData.stats.engineering }}
-                    </v-flex>
-                </v-flex>
-                <v-flex stat>
-                    <v-flex class="caption">SAVE</v-flex>
-                    <v-flex class="headline font-weight-bold primary--text">
-                        {{ npcData.stats.save }}
-                    </v-flex>
-                </v-flex>
-            </v-layout>
-        </v-container>
-        <v-divider class="my-2" />
-        <v-container
-            py-1
-            fluid
-            v-if="npcData.features.length"
-            class="primary--text"
+        <div
+            class="d-flex justify-space-evenly"
+            :style="{ height: collapsed ? 0 : 'auto' }"
+            style="flex-direction: column; flex-grow: 1;"
         >
-            <h3 class="body-2">
-                Features
-            </h3>
-            <v-dialog
-                max-width="500"
-                v-for="feature in npcData.features"
-                :key="feature.name"
-            >
-                <template v-slot:activator="{ on }">
-                    <v-chip
-                        dark
-                        color="primary"
-                        v-on="on"
-                        class="featurechip"
-                        v-ripple
+            <v-container class="primary--text" fluid py-3>
+                <v-layout wrap v-if="!npcData._templates.includes('grunt')">
+                    <v-flex xs6>
+                        <div class="text-xs-left body-2">
+                            HP {{ npc.hp }}/{{ npcData.stats.hp }}
+                        </div>
+                        <PipBar
+                            v-model="npc.hp"
+                            :max="npcData.stats.hp"
+                            empty-icon="mdi-circle-outline"
+                            full-icon="mdi-circle"
+                        />
+                    </v-flex>
+                    <v-flex xs6>
+                        <div class="text-xs-left body-2">
+                            HEAT {{ npc.heat }}/{{ npcData.stats.heatcap }}
+                        </div>
+                        <PipBar
+                            v-model="npc.heat"
+                            :max="npcData.stats.heatcap"
+                            empty-icon="mdi-circle-outline"
+                            full-icon="mdi-circle"
+                        />
+                    </v-flex>
+                    <v-flex xs6 v-if="npcData.stats.structure > 1">
+                        <div class="text-xs-left body-2">
+                            STRUCTURE {{ npc.structure }}/{{
+                                npcData.stats.structure
+                            }}
+                        </div>
+                        <PipBar
+                            v-model="npc.structure"
+                            :max="npcData.stats.structure"
+                            empty-icon="mdi-circle-outline"
+                            full-icon="mdi-circle"
+                        />
+                    </v-flex>
+                    <v-flex xs6 v-if="npcData.stats.stress > 1">
+                        <div class="text-xs-left body-2">
+                            STRESS {{ npc.stress }}/{{ npcData.stats.stress }}
+                        </div>
+                        <PipBar
+                            v-model="npc.stress"
+                            :max="npcData.stats.stress"
+                            empty-icon="mdi-circle-outline"
+                            full-icon="mdi-circle"
+                        />
+                    </v-flex>
+                </v-layout>
+                <v-layout column v-else>
+                    <span class="grey--text  caption">
+                        The grunt only has 1 HP, structure and stress maximum.
+                        If it takes heat, it shuts down. If it takes damage,
+                        it's destroyed. It doesn't take damage from successful
+                        saves.
+                    </span>
+                </v-layout>
+            </v-container>
+            <v-divider class="mb-2" />
+            <v-container fluid pt-2 pb-2>
+                <v-combobox
+                    v-model="npc.statuses"
+                    :items="baseStatuses"
+                    item-text="name"
+                    item-value="name"
+                    label="Status effects"
+                    :color="roleColor"
+                    chips
+                    outline
+                    clearable
+                    multiple
+                >
+                    <template v-slot:selection="data">
+                        <v-chip
+                            :selected="data.selected"
+                            close
+                            @input="removeStatus(data.item)"
+                            dark
+                            color="primary"
+                        >
+                            <strong>{{ data.item.name || data.item }}</strong>
+                        </v-chip>
+                    </template>
+                </v-combobox>
+            </v-container>
+            <v-divider class="mb-2" />
+            <v-layout :class="{ column: !isUltra }">
+                <v-container fluid px-3 py-1>
+                    <v-layout wrap align-center>
+                        <v-flex stat>
+                            <v-flex class="caption">ARMOR</v-flex>
+                            <v-flex
+                                class="headline font-weight-bold primary--text"
+                            >
+                                {{ npcData.stats.armor }}
+                            </v-flex>
+                        </v-flex>
+                        <v-flex stat>
+                            <v-flex class="caption">EVADE</v-flex>
+                            <v-flex
+                                class="headline font-weight-bold primary--text"
+                            >
+                                {{ npcData.stats.evade }}
+                            </v-flex>
+                        </v-flex>
+                        <v-flex stat>
+                            <v-flex class="caption">EDEF</v-flex>
+                            <v-flex
+                                class="headline font-weight-bold primary--text"
+                            >
+                                {{ npcData.stats.edef }}
+                            </v-flex>
+                        </v-flex>
+                        <v-flex stat>
+                            <v-flex class="caption">SPEED</v-flex>
+                            <v-flex
+                                class="headline font-weight-bold primary--text"
+                            >
+                                {{ npcData.stats.speed }}
+                            </v-flex>
+                        </v-flex>
+                        <v-flex stat>
+                            <v-flex class="caption">SENSOR</v-flex>
+                            <v-flex
+                                class="headline font-weight-bold primary--text"
+                            >
+                                {{ npcData.stats.sensor }}
+                            </v-flex>
+                        </v-flex>
+                    </v-layout>
+                </v-container>
+                <v-divider class="my-2" />
+                <v-container fluid px-3 py-1>
+                    <v-layout wrap align-center>
+                        <v-flex stat>
+                            <v-flex class="caption">HULL</v-flex>
+                            <v-flex
+                                class="headline font-weight-bold primary--text"
+                            >
+                                {{ npcData.stats.hull > -1 ? '+' : ''
+                                }}{{ npcData.stats.hull }}
+                            </v-flex>
+                        </v-flex>
+                        <v-flex stat>
+                            <v-flex class="caption">AGI</v-flex>
+                            <v-flex
+                                class="headline font-weight-bold primary--text"
+                            >
+                                {{ npcData.stats.agility > -1 ? '+' : ''
+                                }}{{ npcData.stats.agility }}
+                            </v-flex>
+                        </v-flex>
+                        <v-flex stat>
+                            <v-flex class="caption">SYS</v-flex>
+                            <v-flex
+                                class="headline font-weight-bold primary--text"
+                            >
+                                {{ npcData.stats.systems > -1 ? '+' : ''
+                                }}{{ npcData.stats.systems }}
+                            </v-flex>
+                        </v-flex>
+                        <v-flex stat>
+                            <v-flex class="caption">ENG</v-flex>
+                            <v-flex
+                                class="headline font-weight-bold primary--text"
+                            >
+                                {{ npcData.stats.engineering > -1 ? '+' : ''
+                                }}{{ npcData.stats.engineering }}
+                            </v-flex>
+                        </v-flex>
+                        <v-flex stat>
+                            <v-flex class="caption">SAVE</v-flex>
+                            <v-flex
+                                class="headline font-weight-bold primary--text"
+                            >
+                                {{ npcData.stats.save }}
+                            </v-flex>
+                        </v-flex>
+                    </v-layout>
+                </v-container>
+            </v-layout>
+            <template v-if="npcData.features.length">
+                <v-divider class="my-2" />
+                <v-container pt-1 pb-3 fluid class="primary--text">
+                    <h3 class="body-2">
+                        Features
+                    </h3>
+                    <v-dialog
+                        max-width="500"
+                        v-for="feature in npcData.features"
+                        :key="feature.name"
                     >
-                        {{ feature.name }}
-                    </v-chip>
-                </template>
-                <v-card class="primary--text">
-                    <v-card-title class="title primary white--text">
-                        {{ feature.name }}
-                    </v-card-title>
-                    <v-card-text>
-                        {{ feature.description }}
-                    </v-card-text>
-                </v-card>
-            </v-dialog>
-        </v-container>
-        <v-container fluid px-0 py-0 mt-2>
-            <NpcCardSystem
-                v-for="system in systemsSorted"
-                :key="system.id"
-                :system="system"
-                :npc="npcData"
-            />
-        </v-container>
+                        <template v-slot:activator="{ on }">
+                            <v-chip
+                                dark
+                                color="primary"
+                                v-on="on"
+                                class="featurechip"
+                                v-ripple
+                            >
+                                {{ feature.name }}
+                            </v-chip>
+                        </template>
+                        <v-card class="primary--text">
+                            <v-card-title class="title primary white--text">
+                                {{ feature.name }}
+                            </v-card-title>
+                            <v-card-text>
+                                {{ feature.description }}
+                            </v-card-text>
+                        </v-card>
+                    </v-dialog>
+                </v-container>
+            </template>
+            <v-container fluid px-0 py-0 mt-auto>
+                <v-layout wrap>
+                    <v-flex
+                        :class="
+                            isUltra && $vuetify.breakpoint.xlOnly
+                                ? 'xs4 pa-0'
+                                : 'xs12 py-0'
+                        "
+                        v-for="system in systemsSorted"
+                        :key="system.name"
+                    >
+                        <NpcCardSystem :system="system" :npc="npcData" />
+                    </v-flex>
+                </v-layout>
+            </v-container>
+        </div>
     </v-card>
 </template>
 
@@ -235,6 +289,8 @@ export default class RunnerNpcCard extends Vue {
     npcData = this.npc.baseNPC;
     baseStatuses = ActiveNPC.baseStatuses;
 
+    collapsed = false;
+
     get roleColor(): string {
         return `role--${this.npcData.npcClass.role}`
     }
@@ -251,10 +307,17 @@ export default class RunnerNpcCard extends Vue {
         ).reverse();
     }
 
+    get isUltra(): boolean {
+        return this.npcData._templates.includes('ultra')
+    }
+
 }
 </script>
 
 <style>
+.v-card {
+    overflow: hidden;
+}
 .v-card .v-card__title {
     border-radius: 0 !important;
     display: block;
@@ -273,5 +336,16 @@ export default class RunnerNpcCard extends Vue {
 }
 .featurechip * {
     cursor: pointer !important
+}
+
+.bigTitle {
+    background-image: linear-gradient(135deg, #ffffff 25%, transparent 25%, transparent 50%, #ffffff 50%, #ffffff 75%, transparent 75%, transparent 100%);
+    background-size: 56.57px 56.57px;
+    background-repeat: repeat;
+    border-bottom: 1px solid currentColor;
+}
+.bigTitle .layout {
+    padding: 4px;
+    border-radius: 4px;
 }
 </style>
