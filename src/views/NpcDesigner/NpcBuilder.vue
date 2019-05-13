@@ -1,5 +1,5 @@
 <template>
-    <v-card :class="`role--${npc.npcClass.role}--text`">
+    <v-card :class="`role--${npc.npcClass.role}--text npc-builder`">
         <!-- Header -->
         <v-card-title
             class="white--text d-flex"
@@ -124,7 +124,7 @@
             </v-layout>
             <v-divider class="my-3" />
             <!-- HASE -->
-            <v-layout wrap justify-space-around class="statblock">
+            <v-layout wrap justify-center class="statblock">
                 <v-flex
                     xs6
                     sm2
@@ -397,6 +397,10 @@ export default class NpcBuilder extends Vue {
 </script>
 
 <style>
+.npc-builder {
+    width: 80%;
+    margin: 0 auto;
+}
 /* fixing some weird positioning glitches with the name-edit transition */
 .name.fade-transition-enter-active {
     position: relative;

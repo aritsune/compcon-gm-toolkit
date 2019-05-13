@@ -20,7 +20,7 @@
                 :key="encounter.id"
                 xs12
                 sm6
-                md4
+                md2
             >
                 <File
                     :name="encounter.name"
@@ -86,11 +86,3 @@ export default class EncountersList extends Vue {
     @encounterBuilder.State encounters!: EncounterBase[];
 }
 </script>
-
-<style>
-@media screen and (min-width: 960px) {
-    .v-container {
-        width: 70%;
-    }
-}
-</style>

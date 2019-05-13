@@ -5,12 +5,3 @@
         </v-fade-transition>
     </v-container>
 </template>
-
-
-<style>
-@media screen and (min-width: 960px) {
-    .v-container {
-        width: 70%;
-    }
-}
-</style>

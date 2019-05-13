@@ -22,7 +22,7 @@
                 :key="encounter.id"
                 xs12
                 sm6
-                md4
+                md2
             >
                 <File
                     :name="encounter.name"
