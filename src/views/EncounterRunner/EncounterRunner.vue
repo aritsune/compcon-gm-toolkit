@@ -55,19 +55,17 @@
                             v-for="npc in destroyedNpcs"
                             :key="npc.id"
                         >
-                            <v-card color="grey darken-2">
+                            <v-card color="grey darken-2" class="dead-npc">
                                 <v-card-title class="white--text title"
-                                    >{{ npc.baseNPC.name }}
+                                    >{{ npc.name }}
                                     <v-btn
                                         dark
-                                        outline
-                                        small
-                                        color="white"
+                                        icon
                                         class="ma-0 ml-2 px-2"
                                         style="min-width: 0;"
                                         title="Bring Back"
                                         @click="npc.destroyed = false"
-                                        ><v-icon small>mdi-undo</v-icon></v-btn
+                                        ><v-icon dark>mdi-undo</v-icon></v-btn
                                     ></v-card-title
                                 >
                             </v-card>

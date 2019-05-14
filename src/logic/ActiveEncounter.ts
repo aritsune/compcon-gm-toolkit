@@ -43,7 +43,12 @@ export class ActiveNPC {
 
   static deserialize(obj: ReturnType<ActiveNPC['serialize']>) {
     const baseNPC = NPC.deserialize(obj.npc);
-    const activeNPC = new ActiveNPC({ name: '', count: 1, npc: baseNPC });
+    const activeNPC = new ActiveNPC({
+      id: '',
+      name: '',
+      count: 1,
+      npc: baseNPC,
+    });
     if (obj.id) activeNPC.id = obj.id;
     activeNPC.name = obj.name || baseNPC.name || 'unnamed';
     activeNPC.hp = obj.hp;

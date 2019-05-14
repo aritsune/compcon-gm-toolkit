@@ -2,6 +2,7 @@ import NPC from '../logic/NPC';
 import EncounterBase from '../logic/EncounterBase';
 import _ from 'lodash';
 import npcDesigner from './npcDesigner';
+import newId from '@/logic/newId';
 
 const storedEncounters = localStorage.getItem('encounters');
 
@@ -15,6 +16,7 @@ export default {
             enc.notes = obj.notes;
             enc.id = obj.id;
             enc.npcs = obj.npcs.map(encNPC => ({
+              id: newId(),
               name: encNPC.name,
               count: encNPC.count,
               npc: npcDesigner.state.npcs.find(

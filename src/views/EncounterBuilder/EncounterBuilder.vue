@@ -33,7 +33,7 @@
                         >
                             <v-flex
                                 v-for="(npc, i) in encounter.npcs"
-                                :key="`${npc.name}--${i}`"
+                                :key="npc.id"
                             >
                                 <EncounterNPCObject
                                     :npc="npc"
@@ -77,6 +77,9 @@ import NPC from '../../logic/NPC';
 import File from "@/components/File.vue";
 import EncounterNPCObject from "@/components/EncounterBuilder/EncounterNPCObject.vue";
 
+import newId from '@/logic/newId';
+
+
 const npcDesigner = namespace('npcDesigner');
 
 @Component({
@@ -87,7 +90,6 @@ export default class EncounterBuilder extends Vue {
     encounter = _.clone(this.preEnc);
 
     @npcDesigner.State npcs!: NPC[];
-
     test() {
         alert('wew')
     }
@@ -95,6 +97,7 @@ export default class EncounterBuilder extends Vue {
     addNPC(npc: NPC) {
         const count = this.encounter.npcs.filter(n => n.npc.id === npc.id).length + 1;
         this.encounter.npcs.push({
+            id: newId(),
             name: `${npc.name} #${count}`,
             count: 1,
             npc,

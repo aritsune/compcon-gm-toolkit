@@ -2,6 +2,7 @@ import newId from './newId';
 import NPC from './NPC';
 
 export type EncounterBaseNPC = {
+  id: string;
   npc: NPC;
   name: string;
   count: number;
