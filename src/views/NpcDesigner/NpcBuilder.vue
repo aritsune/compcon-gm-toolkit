@@ -432,7 +432,7 @@ export default class NpcBuilder extends Vue {
     border-color: rgba(0, 0, 0, 0.125) !important;
     background-color: #f8f9fa !important;
     height: 250px;
-    overflow-y: auto;
+    overflow-y: auto !important;
 }
 
 .picker-card .v-tabs__bar {

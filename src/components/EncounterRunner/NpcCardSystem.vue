@@ -69,7 +69,7 @@
                             {{ rollString }}
                         </div>
                     </template>
-                    <recharge :value="system.recharge" />
+                    <recharge :value="system.recharge" v-if="system.recharge" />
                 </v-flex>
             </v-layout>
             <v-flex
