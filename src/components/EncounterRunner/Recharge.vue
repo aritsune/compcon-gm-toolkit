@@ -83,7 +83,7 @@ export default Vue.extend({
     50% {
             transform: rotate(-15deg)
     }
-    75 {
+    75% {
         transform: rotate(15deg)
     }
     100% {
