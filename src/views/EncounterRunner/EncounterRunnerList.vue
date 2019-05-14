@@ -31,10 +31,53 @@
                     :to="`/encounter-runner/${encounter.id}`"
                     color="orange"
                 >
-                    <template v-slot:extra-icons> </template>
+                    <template v-slot:extra-icons>
+                        <v-btn
+                            icon
+                            @click.stop="
+                                deletingID = encounter.id;
+                                deleteDialog = true;
+                            "
+                        >
+                            <v-icon color="grey darken-1">delete</v-icon>
+                        </v-btn>
+                    </template>
                 </File>
             </v-flex>
         </v-slide-y-transition>
+        <v-dialog
+            v-model="deleteDialog"
+            v-if="deletingID !== null"
+            persistent
+            max-width="290"
+        >
+            <v-card>
+                <v-card-title class="headline">Delete encounter?</v-card-title>
+                <v-card-text>This cannot be undone.</v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                        color="secondary"
+                        flat
+                        @click="
+                            deleteEncounter(deletingID);
+                            deletingID = null;
+                            deleteDialog = false;
+                        "
+                        >OK</v-btn
+                    >
+                    <v-btn
+                        color="secondary"
+                        flat
+                        @click.stop="
+                            deletingID = null;
+                            deleteDialog = false;
+                        "
+                        >Cancel</v-btn
+                    >
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
     </v-container>
 </template>
 
@@ -54,5 +97,8 @@ const encounterRunner = namespace('encounterRunner')
 export default class EncounterRunnerList extends Vue {
     @encounterRunner.State activeEncounters!: ActiveEncounter[];
     @encounterRunner.Mutation('delete') deleteEncounter!: (id: string) => void;
+
+    deleteDialog = false;
+    deletingID: string | null = null;
 }
 </script>
