@@ -1,9 +1,10 @@
-import EncounterBase from './EncounterBase';
+import EncounterBase, { EncounterBaseNPC } from './EncounterBase';
 import newId from './newId';
 import NPC from './NPC';
 
 export class ActiveNPC {
   id: string;
+  name: string;
   baseNPC: NPC;
   hp: number;
   heat: number;
@@ -13,9 +14,10 @@ export class ActiveNPC {
   static baseStatuses: { name: string }[] = require('lancer-data').statuses;
   statuses: string[];
 
-  constructor(npc: NPC) {
+  constructor(npc: EncounterBaseNPC) {
     this.id = newId();
-    this.baseNPC = npc;
+    this.name = npc.name;
+    this.baseNPC = npc.npc;
     const { stats } = this.baseNPC;
     this.hp = stats.hp;
     this.heat = 0;
@@ -28,6 +30,7 @@ export class ActiveNPC {
   serialize() {
     return {
       id: this.id,
+      name: this.name,
       npc: this.baseNPC.serialize(),
       hp: this.hp,
       heat: this.heat,
@@ -40,8 +43,9 @@ export class ActiveNPC {
 
   static deserialize(obj: ReturnType<ActiveNPC['serialize']>) {
     const baseNPC = NPC.deserialize(obj.npc);
-    const activeNPC = new ActiveNPC(baseNPC);
+    const activeNPC = new ActiveNPC({ name: '', count: 1, npc: baseNPC });
     if (obj.id) activeNPC.id = obj.id;
+    activeNPC.name = obj.name || baseNPC.name || 'unnamed';
     activeNPC.hp = obj.hp;
     activeNPC.heat = obj.heat;
     activeNPC.structure = obj.structure;
@@ -63,7 +67,7 @@ export default class ActiveEncounter {
     this.name = enc.name;
     this.notes = enc.notes;
     if (enc instanceof EncounterBase) {
-      this.npcs = enc.npcs.map(({ npc }) => new ActiveNPC(npc));
+      this.npcs = enc.npcs.map(npc => new ActiveNPC(npc));
     } else {
       this.npcs = enc.npcs.map(n => ActiveNPC.deserialize(n));
       this.id = enc.id;

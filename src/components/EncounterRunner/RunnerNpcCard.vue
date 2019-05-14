@@ -4,7 +4,7 @@
         class="runner-npc-card d-flex-column"
     >
         <v-card-title
-            class="white--text text-uppercase npccardtitle"
+            class="white--text npccardtitle"
             :class="roleColor + ' ' + (isUltra ? 'bigTitle' : '')"
         >
             <v-layout
@@ -17,9 +17,9 @@
                     <v-icon dark>mdi-drag</v-icon>
                 </v-flex>
                 <v-flex class="title">
-                    {{ npcData.name }}
+                    {{ npc.name }}
                 </v-flex>
-                <v-flex class="ml-auto body-2">
+                <v-flex class="ml-auto body-2 text-uppercase">
                     TIER {{ npcData.tier + 1 }} {{ npcData.npcClass.name }}
                 </v-flex>
                 <v-flex py-0>
@@ -110,7 +110,6 @@
         <v-expand-transition>
             <div
                 class="d-flex justify-space-evenly"
-                :style="{ height: collapsed ? 0 : 'auto' }"
                 style="flex-direction: column; flex-grow: 1;"
             >
                 <!-- v-if="expanded"             -->

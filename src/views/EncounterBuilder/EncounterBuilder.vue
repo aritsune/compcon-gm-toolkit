@@ -26,23 +26,21 @@
                         Encounter NPCs
                     </h6>
                     <v-card class="pickCard">
-                        <v-layout column pa-3>
-                            <v-flex v-for="(npc, i) in encounterNPCs" :key="i">
-                                <File icon="mdi-account" :name="npc.name">
-                                    <template v-slot:extra-icons>
-                                        <v-btn
-                                            style="min-width: 0;"
-                                            class="px-1"
-                                            color="red darken-1"
-                                            flat
-                                            @click.stop="deleteNPC(i)"
-                                        >
-                                            <v-icon>remove</v-icon>
-                                        </v-btn>
-                                    </template>
-                                </File>
+                        <v-slide-y-transition
+                            group
+                            tag="div"
+                            class="layout column pa-3"
+                        >
+                            <v-flex
+                                v-for="(npc, i) in encounter.npcs"
+                                :key="`${npc.name}--${i}`"
+                            >
+                                <EncounterNPCObject
+                                    :npc="npc"
+                                    @deleted="deleteNPC(i)"
+                                />
                             </v-flex>
-                        </v-layout>
+                        </v-slide-y-transition>
                     </v-card>
                 </v-flex>
                 <v-flex xs12 sm6>
@@ -77,11 +75,12 @@ import _ from 'lodash';
 import { State, namespace } from 'vuex-class';
 import NPC from '../../logic/NPC';
 import File from "@/components/File.vue";
+import EncounterNPCObject from "@/components/EncounterBuilder/EncounterNPCObject.vue";
 
 const npcDesigner = namespace('npcDesigner');
 
 @Component({
-    components: { File }
+    components: { File, EncounterNPCObject }
 })
 export default class EncounterBuilder extends Vue {
     @Prop(Object) preEnc!: EncounterBase;
@@ -94,8 +93,9 @@ export default class EncounterBuilder extends Vue {
     }
 
     addNPC(npc: NPC) {
+        const count = this.encounter.npcs.filter(n => n.npc.id === npc.id).length + 1;
         this.encounter.npcs.push({
-            name: npc.name,
+            name: `${npc.name} #${count}`,
             count: 1,
             npc,
         })
