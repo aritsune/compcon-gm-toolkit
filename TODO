@@ -14,14 +14,15 @@ NPC Builder:
 Encounter Builder:
     ☐ Name individuals
     ☐ Pick amount & reflect amount when encounter is active
-    // NPC list probably should have its own component for easier editing of name & count
+    ☐ NPC list should have its own component for easier editing of name & count
     ☐ Randomize Encounter (with random or my NPCs)
-    ☐ Delete encounter
+    ✔ Delete encounter @done(19-05-14 15:58)
 Encounter Runner:
-    ☐ RunnerNpcDisplay component like in old version
+    ✔ RunnerNpcDisplay component like in old version @done(19-05-14 15:58)
     ✔ NPC status effect tracking @done(19-05-12 22:38)
         ✔ Custom statuses @done(19-05-12 22:38)
-    ☐ Recharge roll button
+    ✔ Recharge roll button @done(19-05-14 15:58)
+    ☐ Fix recharge roll animation
     ✔ add quip in runner npc card about grunt hp/damage? @done(19-05-12 22:38)
     ☐ roll20 style differential hp/heat/struct/stress changing
     Rework the back end:
