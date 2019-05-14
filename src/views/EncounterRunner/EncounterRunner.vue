@@ -10,7 +10,17 @@
             <!-- NPCs -->
             <v-tab-item>
                 <v-container fluid>
-                    <draggable handle=".draghandle" @end="onChange">
+                    <draggable
+                        handle=".draghandle"
+                        @start="onStartDrag"
+                        @end="onChange"
+                        :animation="250"
+                        ghost-class="dragging-hidden"
+                        drag-class="dragging"
+                        chosen-class="chosen"
+                        easing="cubic-bezier(1, 0, 0, 1)"
+                        :force-fallback="true"
+                    >
                         <v-slide-y-transition
                             group
                             tag="div"
@@ -19,6 +29,7 @@
                             <v-flex
                                 xs12
                                 sm6
+                                class="cardflex"
                                 :class="calcSize(npc)"
                                 v-for="npc in aliveNpcs"
                                 :key="npc.id"
@@ -102,18 +113,23 @@ export default class EncounterRunner extends Vue {
     }
 
 
-
-    onChange({newIndex, oldIndex}: any) {
-        const arr = _.clone(this.encounter.npcs)
-        arr.splice(newIndex, 0, arr.splice(oldIndex, 1)[0]);
-        console.log(arr.map(a => a.baseNPC.name))
-        this.encounter.npcs = [...arr];
-    }
-
     calcSize({ baseNPC: npc }: ActiveNPC) {
         if (npc._templates.includes('ultra')) return 'md12';
         if (npc._templates.includes('elite')) return 'md6';
         return 'md3';
+    }
+
+    draggedIndex: number | null = null;
+    onStartDrag({ oldIndex }: { oldIndex: number }) {
+        this.draggedIndex = oldIndex;
+    }
+
+    onChange({newIndex, oldIndex}: any) {
+        this.draggedIndex = null;
+        const arr = _.clone(this.encounter.npcs)
+        arr.splice(newIndex, 0, arr.splice(oldIndex, 1)[0]);
+        console.log(arr.map(a => a.baseNPC.name))
+        this.encounter.npcs = [...arr];
     }
 
 }
@@ -122,5 +138,16 @@ export default class EncounterRunner extends Vue {
 <style>
 .v-tabs__bar {
     border-radius: 0;
+}
+.dragging-hidden {
+    opacity: 0;
+}
+.dragging, .dragging * {
+    opacity: 1 !important;
+    cursor: grabbing !important;
+    /* transition: transform 100ms cubic-bezier(1, 0, 0, 1); */
+}
+.cardflex:not(.dragging) {
+    /* transition: all 100ms cubic-bezier(1, 0, 0, 1); */
 }
 </style>

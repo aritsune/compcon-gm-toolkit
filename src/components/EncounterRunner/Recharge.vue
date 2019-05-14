@@ -17,14 +17,16 @@
             <v-icon
                 key="recharging"
                 ref="die"
-                :class="{'failed': failed}"
+                :class="{ failed: failed }"
                 color="primary"
                 v-else
                 @click.stop="roll"
                 >mdi-dice-d6</v-icon
             >
         </v-fab-transition>
-        <span class="last" :class="{'floating': floating}">{{last}}{{!failed ? '!' : ''}}</span>
+        <span class="last" :class="{ floating: floating }"
+            >{{ last }}{{ !failed ? '!' : '' }}</span
+        >
     </div>
 </template>
 
