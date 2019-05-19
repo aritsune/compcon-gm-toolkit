@@ -21,15 +21,30 @@
                             block
                             outline
                             :color="`role--${role}`"
-                            class="cls-button"
+                            class="cls-button d-flex pa-0"
                             @click="selectClass(cls)"
                         >
-                            {{ cls.name }}
+                            <div>{{ cls.name }}</div>
+                            <v-btn icon class="ma-0" @click.stop="getInfo(cls)">
+                                <v-icon :color="`role--${role}`">
+                                    mdi-help-circle-outline
+                                </v-icon>
+                            </v-btn>
                         </v-btn>
                     </v-flex>
                 </v-layout>
             </template>
         </v-container>
+        <v-dialog v-model="infoDialog" max-width="50%">
+            <class-info
+                v-if="infoClass"
+                :cls="infoClass"
+                @chosen="
+                    infoDialog = false;
+                    selectClass(infoClass);
+                "
+            />
+        </v-dialog>
     </v-card>
 </template>
 
@@ -42,13 +57,24 @@ import NPC from '../../logic/NPC';
 import NPCClass from '../../logic/interfaces/NPCClass';
 import { mapMutations } from 'vuex';
 
+import ClassInfo from '@/components/NpcDesigner/ClassInfo.vue'
+
 export default Vue.extend({
+    components: { ClassInfo },
+    data: () => ({
+        infoDialog: false,
+        infoClass: null as null | NPCClass,
+    }),
     methods: {
         selectClass(cls: NPCClass) {
             const npc = new NPC(cls);
             npc.name = `My ${_.capitalize(cls.name)}`
             this.$store.commit('npcDesigner/add', npc);
             this.$router.replace(`edit/${npc.id}`)
+        },
+        getInfo(cls: NPCClass) {
+            this.infoClass = cls;
+            this.infoDialog = true;
         }
     },
     computed: {
