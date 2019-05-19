@@ -3,7 +3,7 @@ Other:
     ☐ Visual party between NPCDisplay and NPCDesigner
 NPC Builder:
     ☐ minor graphical glitch in Mobile where the mech types hover over the top bar
-    ☐ Class details in class picker
+    ✔ Class details in class picker @done(19-05-19 00:29)
     ✔ Naming NPCs @done(19-05-09 00:38)
     ✔ Template picker @done(19-05-10 16:02)
     ✔ System picker @done(19-05-10 16:02)
@@ -12,9 +12,8 @@ NPC Builder:
     ☐ Sort tabs better, right now they switch around a bunch
     ✔ Make more mobile friendly @done(19-05-10 16:30)
 Encounter Builder:
-    ☐ Name individuals
-    ☐ Pick amount & reflect amount when encounter is active
-    ☐ NPC list should have its own component for easier editing of name & count
+    ✔ Name individuals @done(19-05-19 00:29)
+    ✔ NPC list should have its own component for easier editing of name & count @done(19-05-19 00:29)
     ☐ Randomize Encounter (with random or my NPCs)
     ✔ Delete encounter @done(19-05-14 15:58)
 Encounter Runner:
