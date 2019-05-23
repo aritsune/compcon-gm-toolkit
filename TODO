@@ -1,6 +1,6 @@
 Other:
     ✔ Componentify system & feature badges @done(19-05-09 00:37)
-    ☐ Visual party between NPCDisplay and NPCDesigner
+    ☐ Visual parity between NPCDisplay and NPCDesigner
 NPC Builder:
     ✔ minor graphical glitch in Mobile where the mech types hover over the top bar @done(19-05-22 20:42)
     ✔ Class details in class picker @done(19-05-19 00:29)
@@ -21,9 +21,9 @@ Encounter Runner:
     ✔ NPC status effect tracking @done(19-05-12 22:38)
         ✔ Custom statuses @done(19-05-12 22:38)
     ✔ Recharge roll button @done(19-05-14 15:58)
-    ☐ Fix recharge roll animation
+    ✔ Fix recharge roll animation @done(19-05-23 12:59)
     ✔ add quip in runner npc card about grunt hp/damage? @done(19-05-12 22:38)
-    ☐ roll20 style differential hp/heat/struct/stress changing
+    ✔ roll20 style differential hp/heat/struct/stress changing @done(19-05-23 12:59)
     Rework the back end:
         ✔ Concept of "NPC schematic" and "NPC instance" @done(19-05-11 22:13)
         ✔ separate encounter and NPC editors @done(19-05-11 22:13)
