@@ -40,49 +40,38 @@
         <v-card-text>
             <v-layout wrap v-if="!npcData._templates.includes('grunt')">
                 <v-flex xs6>
-                    <div class="text-xs-left body-2">
-                        HP {{ npc.hp }}/{{ npcData.stats.hp }}
-                    </div>
                     <PipBar
+                        label="hp"
                         v-model="npc.hp"
                         :max="npcData.stats.hp"
-                        empty-icon="mdi-circle-outline"
-                        full-icon="mdi-circle"
+                        :rollover="npcData.stats.structure > 1"
+                        @rollover="onHpRollover"
                     />
                 </v-flex>
                 <v-flex xs6>
-                    <div class="text-xs-left body-2">
-                        HEAT {{ npc.heat }}/{{ npcData.stats.heatcap }}
-                    </div>
                     <PipBar
+                        label="heat"
                         v-model="npc.heat"
                         :max="npcData.stats.heatcap"
-                        empty-icon="mdi-circle-outline"
-                        full-icon="mdi-circle"
+                        :rollover="npcData.stats.stress > 1"
+                        rollover-negative
+                        @rollover="onHeatRollover"
                     />
                 </v-flex>
                 <v-flex xs6 v-if="npcData.stats.structure > 1">
-                    <div class="text-xs-left body-2">
-                        STRUCTURE {{ npc.structure }}/{{
-                            npcData.stats.structure
-                        }}
-                    </div>
                     <PipBar
+                        label="structure"
                         v-model="npc.structure"
                         :max="npcData.stats.structure"
-                        empty-icon="mdi-circle-outline"
-                        full-icon="mdi-circle"
+                        :class="{ rolledOver: structRolledOver }"
                     />
                 </v-flex>
                 <v-flex xs6 v-if="npcData.stats.stress > 1">
-                    <div class="text-xs-left body-2">
-                        STRESS {{ npc.stress }}/{{ npcData.stats.stress }}
-                    </div>
                     <PipBar
+                        label="stress"
                         v-model="npc.stress"
                         :max="npcData.stats.stress"
-                        empty-icon="mdi-circle-outline"
-                        full-icon="mdi-circle"
+                        :class="{ rolledOver: stressRolledOver }"
                     />
                 </v-flex>
             </v-layout>
@@ -334,6 +323,37 @@ export default class RunnerNpcCard extends Vue {
         return this.npcData._templates.includes('ultra')
     }
 
+    structRolledOver = false;
+    stressRolledOver = false;
+
+    onHpRollover() {
+        if (this.npc.structure === 1) {
+            this.$nextTick(() => {this.npc.hp = 0})
+        }
+        this.npc.structure = this.npc.structure - 1;
+        if (this.npc.structure < 0) this.npc.structure = 0;
+        else {
+            this.structRolledOver = true;
+            setTimeout(() => {
+                this.structRolledOver = false;            
+            }, 500);
+        }
+    }
+    onHeatRollover() {
+        const max = this.npcData.stats.stress
+        if (this.npc.stress === this.npcData.stats.stress) {
+            this.$nextTick(() => {this.npc.heat = this.npcData.stats.heatcap})
+        }
+        this.npc.stress = this.npc.stress + 1;
+        if (this.npc.stress > max) this.npc.stress = max;
+        else {
+            this.stressRolledOver = true;
+            setTimeout(() => {
+                this.stressRolledOver = false;            
+            }, 500);
+        }
+    }
+
 }
 </script>
 
@@ -373,5 +393,33 @@ export default class RunnerNpcCard extends Vue {
 }
 .draghandle, .draghandle * {
     cursor: grab !important;
+}
+.rolledOver * {
+    animation-name: rollover;
+    animation-duration: 500ms;
+    animation-timing-function: ease-out;
+}
+@keyframes rollover {
+    0% {
+        color: red;
+    }
+    10%, 90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+
+    20%, 80% {
+      transform: translate3d(2px, 0, 0);
+    }
+
+    30%, 50%, 70% {
+      transform: translate3d(-4px, 0, 0);
+    }
+
+    40%, 60% {
+      transform: translate3d(4px, 0, 0);
+    }
+    100% {
+        color: inherit;
+    }
 }
 </style>
