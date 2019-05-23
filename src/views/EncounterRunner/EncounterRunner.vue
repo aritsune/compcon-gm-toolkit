@@ -106,7 +106,6 @@ export default class EncounterRunner extends Vue {
 
     @Watch('encounter', {deep: true})
     onEncounterChange(val: ActiveEncounter) {
-        console.log('changed')
         this.$store.commit('encounterRunner/edit', val)
     }
 
@@ -143,9 +142,5 @@ export default class EncounterRunner extends Vue {
 .dragging, .dragging * {
     opacity: 1 !important;
     cursor: grabbing !important;
-    /* transition: transform 100ms cubic-bezier(1, 0, 0, 1); */
-}
-.cardflex:not(.dragging) {
-    /* transition: all 100ms cubic-bezier(1, 0, 0, 1); */
 }
 </style>
