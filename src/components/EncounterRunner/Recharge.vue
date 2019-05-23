@@ -17,14 +17,18 @@
             <v-icon
                 key="recharging"
                 ref="die"
-                :class="{ failed: failed }"
+                :class="{ failed: failedAnim }"
+                @animationend="failedAnim = false"
                 color="primary"
                 v-else
                 @click.stop="roll"
                 >mdi-dice-d6</v-icon
             >
         </v-fab-transition>
-        <span class="last" :class="{ floating: floating }"
+        <span
+            class="last"
+            :class="{ floating: floating }"
+            @animationend="floating = false"
             >{{ last }}{{ !failed ? '!' : '' }}</span
         >
     </div>
@@ -38,6 +42,7 @@ export default Vue.extend({
     data: () => ({
         charged: false,
         failed: false,
+        failedAnim: false,
         last: 0,
         floating: false,
     }),
@@ -47,13 +52,12 @@ export default Vue.extend({
     },
     methods: {
         roll() {
-            this.floating = false;
             this.failed = false;
             const result = Math.floor(Math.random() * 6) + 1;
             if (result >= this.value) {
                 this.charged = true;
             } else {
-                this.$nextTick(() => {this.failed = true})
+                this.$nextTick(() => {this.failed = true; this.failedAnim = true;})
             }
             this.last = result;
             this.$nextTick(() => {this.floating = true})
@@ -98,7 +102,7 @@ export default Vue.extend({
 }
 .last.floating {
     animation-name: resultfloat;
-    animation-duration: 1s;
+    animation-duration: 500ms;
     animation-timing-function: ease-out;
 }
 @keyframes resultfloat {
