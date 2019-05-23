@@ -16,10 +16,10 @@
                 <v-flex class="draghandle">
                     <v-icon dark>mdi-drag</v-icon>
                 </v-flex>
-                <v-flex class="title">
+                <v-flex class="title tierclass">
                     {{ npc.name }}
                 </v-flex>
-                <v-flex class="ml-auto body-2 text-uppercase">
+                <v-flex class="ml-auto body-2 text-uppercase tierclass">
                     TIER {{ npcData.tier + 1 }} {{ npcData.npcClass.name }}
                 </v-flex>
                 <v-flex py-0>
@@ -365,6 +365,14 @@ export default class RunnerNpcCard extends Vue {
     border-radius: 0 !important;
     display: block;
 }
+
+.tierclass {
+    flex-shrink: 1 !important;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+}
+
 .stat {
     display: flex;
     flex-direction: column;
