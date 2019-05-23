@@ -79,7 +79,8 @@
                 <span class="grey--text  caption">
                     The grunt only has 1 HP, structure and stress maximum. If it
                     takes heat, it shuts down. If it takes damage, it's
-                    destroyed. It doesn't take damage from successful saves.
+                    destroyed.<br />It <b>doesn't</b> take any damage from
+                    successful saves.
                 </span>
             </v-layout>
         </v-card-text>
