@@ -16,28 +16,6 @@
                 </v-fade-transition>
             </v-toolbar-title>
         </v-toolbar>
-        <!-- <v-bottom-nav v-else color="primary" dark>
-            <v-btn dark>
-                <span>Video</span>
-                <v-icon>ondemand_video</v-icon>
-            </v-btn>
-
-            <v-btn dark>
-                <span>Music</span>
-                <v-icon>music_note</v-icon>
-            </v-btn>
-
-            <v-btn dark>
-                <span>Book</span>
-                <v-icon>book</v-icon>
-            </v-btn>
-
-            <v-btn dark>
-                <span>Image</span>
-                <v-icon>image</v-icon>
-            </v-btn>
-        </v-bottom-nav> -->
-
         <v-navigation-drawer
             v-model="drawer"
             app
@@ -141,6 +119,9 @@ export default {
 </script>
 
 <style>
+.v-toolbar {
+    z-index: 11;
+}
 .v-card {
   box-shadow: none;
   border: 1px solid !important;

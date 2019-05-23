@@ -20,33 +20,46 @@
         </v-card-title>
 
         <v-card-text>
-            <v-layout v-if="system.type === 'weapon'">
+            <v-layout
+                justify-space-around
+                grow-shrink-0
+                v-if="system.type === 'weapon'"
+            >
                 <v-flex>
-                    <v-icon>mdi-dice-multiple</v-icon>
-                    {{ printRoll(system.weapon_roll) }}
+                    <v-chip outline label color="primary">
+                        <v-icon left>mdi-dice-multiple</v-icon>
+                        {{ printRoll(system.weapon_roll, npc) }}
+                    </v-chip>
                 </v-flex>
                 <v-flex>
-                    <v-icon>mdi-vector-line</v-icon>
-                    {{ printRange(system.weapon_range) }}
+                    <v-chip outline label color="primary"
+                        ><v-icon left>mdi-vector-line</v-icon>
+                        {{ printRange(system.weapon_range) }}</v-chip
+                    >
                 </v-flex>
                 <v-flex v-if="system.damage">
-                    <v-icon>mdi-flare</v-icon>
-                    {{ printDamage(system.damage) }}
+                    <v-chip outline label color="primary"
+                        ><v-icon left>mdi-flare</v-icon>
+                        {{ printDamage(system.damage) }}</v-chip
+                    >
                 </v-flex>
             </v-layout>
             <p v-if="system.effect" class="my-2">
                 {{ system.effect }}
             </p>
-            <div v-if="system.tags">
-                <v-chip
-                    dark
-                    color="primary"
-                    small
-                    v-for="tag in system.tags"
-                    :key="tag.name"
-                    >{{ renderTag(tag, npc && npc.tier) }}</v-chip
-                >
-            </div>
+            <template v-if="system.tags">
+                <span class="body-2 grey--text text--darken-2">TAGS</span>
+                <div>
+                    <v-chip
+                        dark
+                        color="primary"
+                        small
+                        v-for="tag in system.tags"
+                        :key="tag.name"
+                        >{{ renderTag(tag, npc && npc.tier) }}</v-chip
+                    >
+                </div>
+            </template>
         </v-card-text>
     </v-card>
 </template>
@@ -93,27 +106,34 @@ export default class SystemDialogCard extends Vue {
       return map[s];
     }
     
-    printRoll(rollObj: NPCSystem.Roll, tech: boolean) {
+    printRoll(rollObj: NPCSystem.Roll, tech: boolean, npc?: NPC) {
       const { flat, accdiff } = rollObj;
       let output = '';
       if (flat) {
         if (flat.val > -1) output += '+';
+        let flatNum: number;
+        if (npc && flat.pertier) flatNum = Math.abs(flat.val) * (npc.tier + 1)
+        else flatNum = Math.abs(flat.val)
         output += flat.val;
       } else {
         output += '0';
       }
       output += tech ? ' vs e-defense' : ' vs evasion';
-      if (flat && flat.pertier) {
+      if (flat && !npc && flat.pertier) {
         output += '/tier';
       }
       if (accdiff) {
-        const word = accdiff.val > -1 ? '+' : '-';
+        const word = accdiff.val > -1 ? 'Accuracy' : 'Difficulty';
+        let accdifNum: number;
+        if (npc && accdiff.pertier) accdifNum = Math.abs(accdiff.val) * (npc.tier + 1)
+        else accdifNum = Math.abs(accdiff.val)
         output += ` with +${Math.abs(accdiff.val)} ${word}`;
-        if (accdiff.pertier) {
+        if (!npc && accdiff.pertier) {
           output += '/tier';
         }
       }
       return output;
+      console.log(output, npc)
     }
 
     printDamage(damageAry: 

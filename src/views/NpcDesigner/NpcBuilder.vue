@@ -183,7 +183,14 @@
                                     v-for="system in mySystems"
                                     :key="system.name"
                                     :system="system"
-                                    :closable="!system.base"
+                                    :closable="
+                                        !system.base ||
+                                            // make it also closable if it's a base system from another class
+                                            ![
+                                                npc.npcClass.name,
+                                                'generic',
+                                            ].includes(system.class)
+                                    "
                                     @close="npc.removeSystem(system)"
                                 />
                             </v-fade-transition>
@@ -354,11 +361,20 @@ export default class NpcBuilder extends Vue {
             npc._templates.concat([npc.npcClass.name, 'generic']).includes(system.class)
           )
       });
-      return _.groupBy(_.orderBy(
+      const sortedAndGrouped = _.groupBy(_.orderBy(
         preSort,
         ['base', 'type', 'name'],
         ['desc', 'desc', 'asc'],
       ), 'class');
+      // forcibly sort the object to have the class's systems first, then generic, then everything else
+      return {
+          [npc.npcClass.name]: sortedAndGrouped[npc.npcClass.name],
+          'generic': sortedAndGrouped['generic'],
+          // pick sorted object removing classname and generic
+          ..._.pickBy(sortedAndGrouped,
+            (value, key) => ![npc.npcClass.name, 'generic'].includes(key)
+          )
+      }
     }
 
     get mySystems(): NPCSystem.Any[] {

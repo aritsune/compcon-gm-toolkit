@@ -2,14 +2,14 @@ Other:
     ✔ Componentify system & feature badges @done(19-05-09 00:37)
     ☐ Visual party between NPCDisplay and NPCDesigner
 NPC Builder:
-    ☐ minor graphical glitch in Mobile where the mech types hover over the top bar
+    ✔ minor graphical glitch in Mobile where the mech types hover over the top bar @done(19-05-22 20:42)
     ✔ Class details in class picker @done(19-05-19 00:29)
     ✔ Naming NPCs @done(19-05-09 00:38)
     ✔ Template picker @done(19-05-10 16:02)
     ✔ System picker @done(19-05-10 16:02)
         ✔ Unlock other NPC's systems @done(19-05-10 16:02)
     ✔ Goblin-chan @done(19-05-10 16:22)
-    ☐ Sort tabs better, right now they switch around a bunch
+    ✔ Sort tabs better, right now they switch around a bunch @done(19-05-22 20:39)
     ✔ Make more mobile friendly @done(19-05-10 16:30)
 Encounter Builder:
     ✔ Name individuals @done(19-05-19 00:29)
