@@ -28,7 +28,7 @@
                 <v-flex>
                     <v-chip outline label color="primary">
                         <v-icon left>mdi-dice-multiple</v-icon>
-                        {{ printRoll(system.weapon_roll, npc) }}
+                        {{ printRoll(system.weapon_roll, system.smart, npc) }}
                     </v-chip>
                 </v-flex>
                 <v-flex>
@@ -69,6 +69,7 @@ import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
 import { NPCSystem } from '../logic/interfaces/NPCSystem';
 import NPC from '../logic/NPC';
 import renderTag from '../logic/rendertag';
+import _ from 'lodash';
 
 @Component({
 
@@ -106,7 +107,8 @@ export default class SystemDialogCard extends Vue {
       return map[s];
     }
     
-    printRoll(rollObj: NPCSystem.Roll, tech: boolean, npc?: NPC) {
+    printRoll(rollObj: NPCSystem.Roll, tech: boolean) {
+      const npc = this.npc;
       const { flat, accdiff } = rollObj;
       let output = '';
       if (flat) {
@@ -114,7 +116,7 @@ export default class SystemDialogCard extends Vue {
         let flatNum: number;
         if (npc && flat.pertier) flatNum = Math.abs(flat.val) * (npc.tier + 1)
         else flatNum = Math.abs(flat.val)
-        output += flat.val;
+        output += flatNum;
       } else {
         output += '0';
       }
@@ -127,7 +129,7 @@ export default class SystemDialogCard extends Vue {
         let accdifNum: number;
         if (npc && accdiff.pertier) accdifNum = Math.abs(accdiff.val) * (npc.tier + 1)
         else accdifNum = Math.abs(accdiff.val)
-        output += ` with +${Math.abs(accdiff.val)} ${word}`;
+        output += ` with +${accdifNum} ${word}`;
         if (!npc && accdiff.pertier) {
           output += '/tier';
         }
@@ -139,13 +141,17 @@ export default class SystemDialogCard extends Vue {
     printDamage(damageAry: 
         { val: [number, number, number]; type: string }[]
     ) {
-      return damageAry
+      if (this.npc) {
+        return damageAry.map(damageObj => `${damageObj.val[this.npc.tier]} ${_.capitalize(damageObj.type)}`).join(', ')
+      } else {
+          return damageAry
         .map(damageObj => `${damageObj.val.join('/')} ${damageObj.type}`)
         .join(' + ');
+      }
     }
 
     printRange(rangeAry: { val: number; type: string }[]) {
-      return rangeAry.map(r => `${r.type} ${r.val}`).join(' ');
+      return rangeAry.map(r => `${_.capitalize(r.type)} ${r.val}`).join(' ');
     }
 
 }
