@@ -6,7 +6,7 @@
             class="text-xs-left text-uppercase body-2"
         >
             <v-flex>{{ label }} {{ value }}/{{ max }}</v-flex>
-            <v-flex ml-0>
+            <v-flex ml-0 class="primary--text">
                 <v-fade-transition leave-absolute>
                     <v-btn
                         style="color: currentColor !important"

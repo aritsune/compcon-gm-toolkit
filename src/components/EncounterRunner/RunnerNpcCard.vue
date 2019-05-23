@@ -327,7 +327,7 @@ export default class RunnerNpcCard extends Vue {
     stressRolledOver = false;
 
     onHpRollover() {
-        if (this.npc.structure === 1) {
+        if (this.npc.structure <= 1) {
             this.$nextTick(() => {this.npc.hp = 0})
         }
         this.npc.structure = this.npc.structure - 1;
@@ -341,7 +341,7 @@ export default class RunnerNpcCard extends Vue {
     }
     onHeatRollover() {
         const max = this.npcData.stats.stress
-        if (this.npc.stress === this.npcData.stats.stress) {
+        if (this.npc.stress >= this.npcData.stats.stress - 1) {
             this.$nextTick(() => {this.npc.heat = this.npcData.stats.heatcap})
         }
         this.npc.stress = this.npc.stress + 1;
