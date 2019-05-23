@@ -1,6 +1,6 @@
 <template>
-    <div class="recharge d-flex align-center justify-content-center">
-        <div class="ml-1" @click.stop>
+    <div class="recharge d-flex align-center justify-content-end ">
+        <div @click.stop>
             <v-checkbox
                 color="secondary"
                 :value="charged"
@@ -8,22 +8,28 @@
             />
         </div>
         <div class="mx-1 caption">
-            {{ charged ? 'Charged' : 'Recharging' }} ({{ value }}+)
+            {{ charged ? 'Charged' : 'Charging' }} ({{ value }}+)
         </div>
         <v-fab-transition>
             <v-icon key="charged" color="primary" v-if="charged"
                 >mdi-history</v-icon
             >
-            <v-icon
-                key="recharging"
-                ref="die"
-                :class="{ failed: failedAnim }"
-                @animationend="failedAnim = false"
-                color="primary"
+            <v-btn
+                class="mx-0"
+                icon
+                small
                 v-else
+                key="recharging"
                 @click.stop="roll"
-                >mdi-dice-d6</v-icon
             >
+                <v-icon
+                    ref="die"
+                    :class="{ failed: failedAnim }"
+                    @animationend="failedAnim = false"
+                    color="primary"
+                    >mdi-dice-d6</v-icon
+                >
+            </v-btn>
         </v-fab-transition>
         <span
             class="last"
