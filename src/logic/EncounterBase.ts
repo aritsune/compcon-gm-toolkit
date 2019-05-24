@@ -18,6 +18,25 @@ export default class EncounterBase {
     this.name = name;
   }
 
+  getDifficulty(playerCount: number): number {
+
+    let diffCoefficient = 0;
+    for (const _npc of this.npcs) {
+      const { npc } = _npc;
+      if (npc.hasTemplate('ultra')) {
+        diffCoefficient += 4/playerCount;
+      } else if (npc.hasTemplate('elite')) {
+        diffCoefficient += 1/playerCount;
+      } else if (npc.hasTemplate('grunt')) {
+        diffCoefficient += 0.25/playerCount;
+      } else {
+        diffCoefficient += 0.8/playerCount;
+      }
+    }
+
+    return diffCoefficient
+  }
+
   serialize() {
     return {
       id: this.id,

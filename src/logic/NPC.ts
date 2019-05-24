@@ -155,6 +155,10 @@ export default class NPC {
     );
   }
 
+  hasTemplate(templateName: string) {
+    return this._templates.includes(templateName)
+  }
+
   get features() {
     return _.uniqBy(_.flatten(this.templates.map(t => t.features)), 'name');
   }
