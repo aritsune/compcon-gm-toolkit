@@ -11,7 +11,10 @@
     "weapon_type": ["Main", "Launcher"],
     "tags": [{
         "id": "seeking"
+    },  {
+        "id": "smart"
     }],
+    "smart": true,
     "weapon_roll": {
         "flat": {
             "val": 1,
@@ -81,7 +84,7 @@
         "val": 5
     }],
     "damage": [{
-        "val": [4, 5, 6],
+        "val": [3, 4, 5],
         "type": "explosive"
     }],
     "effect": "This weapon does not hit allied characters and deals double damage to characters suffering from the Lock On condition",
@@ -337,6 +340,12 @@
     "effect": "Critical hits from the Chain Axe cause targets damaged to become Shredded until the end of their next turn."
 }, {
     "class": "berserker",
+    "base":true,
+    "name": "Active Defense",
+    "type": "trait",
+    "effect": "The Berserker has resistance to all damage unless it suffers from the impaired, stunned, immobilized, shredded, or slowed conditions or the exposed status."
+}, {
+    "class": "berserker",
     "base": true,
     "name": "Aggression",
     "type": "trait",
@@ -356,6 +365,8 @@
     "type": "system",
     "tags": [{
         "id": "shield"
+    },{
+        "id": "1/round"
     }],
     "action": "reaction",
     "effect": "Once per round, the Berserker can activate this dispersal shield when it takes damage from any melee attack. The Berserker gains resistance to all the damage from the attack, and the attacker must pass an engineering save or take Burn 2/tier."
@@ -364,7 +375,7 @@
     "base": false,
     "name": "Juggernaut",
     "type": "trait",
-    "effect": "When the Berserker Charges, all characters (allied and enemy) it passes adjacent to during its Charge and all targets it ends adjacent to must pass a hull save or be knocked prone."
+    "effect": "When the Berserker charges, all characters (allied and enemy) it passes adjacent to during its charge and all targets it ends adjacent to must pass a hull save or be knocked prone."
 }, {
     "class": "berserker",
     "base": false,
@@ -460,7 +471,7 @@
     "base": true,
     "name": "Break Armor",
     "type": "trait",
-    "effect": "A target struck more than twice by the Breacher’s Dual shotguns in the same turn becomes shredded for the rest of this scene."
+    "effect": "A target struck twice or more by the Breacher’s Dual shotguns in the same turn becomes shredded for the rest of this scene."
 }, {
     "class": "breacher",
     "base": false,
@@ -480,9 +491,6 @@
     "name": "Hunter Lock",
     "type": "trait",
     "action": "quicktech",
-    "tags": [{
-        "id": "smart"
-    }],
     "tech_roll": {
         "flat": {
             "val": 1,
@@ -660,13 +668,13 @@
     }],
     "action": "full",
     "recharge": 4,
-    "effect": "This system spreads a powerful shimmering repulsion shield over a large area. While this system is active, this mech is immobilized, but all ranged, melee, or tech attacks against any character or object within a burst 3 zone around this mech originating outside of that zone take +2 Difficulty. Attacks out of the zone or between targets that are both inside of the zone are unaffected. It can be deactivated as a full action, and it automatically deactivates if the Aegis is stunned, jammed, or destroyed. If the Aegis is involuntarily moved (such as from knock back), the field does not deactivate, but moves with it.",
+    "effect": "This system spreads a powerful shimmering repulsion shield over a large area. While this system is active, this mech is immobilized, but all ranged, melee, or tech attacks against any character or object within a burst 3 zone around this mech originating outside of that zone take +2 Difficulty and cannot critically hit. Attacks out of the zone or between targets that are both inside of the zone are unaffected. It can be deactivated as a protocol, and it automatically deactivates if the Aegis is stunned, jammed, or destroyed. If the Aegis is involuntarily moved (such as from knock back), the field does not deactivate, but moves with it.",
     "base": true
 }, {
-    "name": "EM Shielding",
+    "name": "Regenerative Shielding",
     "class": "aegis",
     "type": "trait",
-    "effect": "The Aegis and allied characters inside it’s defense net are immune to the impaired condition, and any allied character that moves inside of the defense net can immediately end the impaired condition on itself.",
+    "effect": "The Aegis and allied characters inside its defense net are immune to the impaired and slowed conditions, and any allied character that moves inside of the defense net can immediately end the impaired or slowed condition on itself.",
     "base": true
 }, {
     "name": "Adaptive Shielding",
@@ -720,7 +728,7 @@
     "weapon_type": ["Main", "Cannon"],
     "tags": [{
         "id": "reliable",
-        "val": [2, 3, 4]
+        "val": [3, 4, 5]
     }],
     "weapon_roll": {
         "flat": {
@@ -733,7 +741,7 @@
         "val": 10
     }],
     "damage": [{
-        "val": [4, 6, 8],
+        "val": [5, 7, 10],
         "type": "kinetic"
     }],
     "base": true
@@ -775,7 +783,7 @@
     "tags": [{
         "id": "1/round"
     }],
-    "effect": "The Archer can force a target struck by its attacks to pass an engineering save or only have line of sight to adjacent spaces until the end of its next turn",
+    "effect": "The Archer can force a target struck by its attacks to pass an engineering save or only have line of sight to adjacent spaces until the end of its next turn.",
     "base": false
 }, {
     "name": "Hail of Fire",
@@ -815,10 +823,10 @@
         "val": 10
     }],
     "damage": [{
-        "val": [2, 3, 4],
+        "val": [2],
         "type": "energy"
     }],
-    "effect": "On hit, the target is slowed until the end of its next turn.",
+    "effect": "This weapon can attack twice at tier II onwards when it’s fired, choosing either the same or different targets. On hit, the target is slowed until the end of its next turn.",
     "base": true
 }, {
     "name": "Mobile Printer",
@@ -869,7 +877,7 @@
     "name": "Rapid Extruder",
     "class": "barricade",
     "type": "trait",
-    "effect": "he Barricade can print twice as fast (can print two sections of cover at once).",
+    "effect": "The Barricade can print twice as fast (can print two sections of cover at once).",
     "base": false
 }, {
     "name": "Mag Mines",
@@ -877,7 +885,7 @@
     "type": "system",
     "action": "quick",
     "recharge": 6,
-    "effect": "The Barricade rapidly prints and deploys a field of tiny mines in a free adjacent space that seek out characters and clamp on to them in droves, slowing them down and inhibiting movement. The mines take up a size 4 cube. The area is difficulty terrain, and any character other than the Barricade or its allies that enters the area or starts its turn there must pass a systems save or become Slowed until the end of its next turn.",
+    "effect": "The Barricade rapidly prints and deploys a field of tiny mines in a free adjacent space that seek out characters and clamp on to them in droves, slowing them down and inhibiting movement. The mines take up a size 4 cube. The area is difficult terrain, and any character other than the Barricade or its allies that enters the area or starts its turn there must pass a systems save or become Slowed until the end of its next turn.",
     "base": false
 }, {
     "name": "Snare Drone",
@@ -1126,10 +1134,10 @@
         "val": 2
     }],
     "damage": [{
-        "val": [5, 7, 9],
+        "val": [5],
         "type": "kinetic"
     }],
-    "effect": "This lance-like weapon can be fired with either profile (used as a melee or ranged weapon), but not both in the same turn.",
+    "effect": "This lance-like weapon attacks twice at tier II onwards when it’s fired, choosing the same or different targets. It can be fired with either profile (used as a melee or ranged weapon), but not both in the same turn.",
     "base": true
 }, {
     "name": "Trample",
@@ -1302,7 +1310,7 @@
         "val": [3, 4, 5],
         "type": "kinetic"
     }],
-    "effect": "This weapon gains +2 Accuracy against flying targets",
+    "effect": "This weapon gains +2 Accuracy against flying targets.",
     "base": true
 }, {
     "name": "Deployable turret",
@@ -1320,7 +1328,7 @@
     "type": "system",
     "action": "quick",
     "recharge": 6,
-    "effect": "The Engineer chooses a character it can see. Until the end of the engineer’s next turn, turrets will prioritize this character if they are in range, and all turret attacks gain the AP tag.",
+    "effect": "The Engineer chooses a character it can see. Until the end of the engineer’s next turn, turrets will prioritize this character if they are in range.",
     "base": true
 }, {
     "name": "Power Deployer",
@@ -1437,7 +1445,7 @@
     "effect": "When the Goliath takes damage, its next attack deals +2/3/4 bonus damage on hit. This effect stacks up to +8, but is lost when the Goliath attacks or at the end of the Goliath’s turn.",
     "base": false
 }, {
-    "name": "Hunter Killer Drone Nexus",
+    "name": "Hunter Killer Nexus",
     "class": "hive",
     "type": "weapon",
     "weapon_type": ["Main", "Nexus"],
@@ -1474,7 +1482,7 @@
             "pertier": true
         }
     },
-    "effect": "The Hive directs its drones to run interference on a target of its choice. On hit, the targeted character either becomes Immobilized and Impaired until the end of its next turn, or immediately moves 4 spaces in a direction of the Hive’s choice (the targeted character can choose). This movement ignores engagement and does not provoke reactions.",
+    "effect": "The Hive directs its drones to run interference on a target of its choice. On hit, the targeted character either becomes Immobilized and Impaired until the end of its next turn, or immediately moves up to 5 spaces in a direction of the Hive’s choice (the targeted character can choose whether it moves or is impaired and immobilized). This movement ignores engagement and does not provoke reactions.",
     "base": true
 }, {
     "name": "Razor Swarm",
@@ -1758,9 +1766,6 @@
     "class": "operator",
     "type": "weapon",
     "weapon_type": ["Heavy", "Rifle"],
-    "tags": [{
-        "id": "ap"
-    }],
     "weapon_roll": {
         "flat": {
             "val": 2,
@@ -1776,7 +1781,7 @@
         "val": 20
     }],
     "damage": [{
-        "val": [5],
+        "val": [7],
         "type": "energy"
     }],
     "effect": "This weapon can attack twice at tier II and three times at tier III.",
@@ -2037,7 +2042,7 @@
         "id": "arcing"
     }, {
         "id": "reliable",
-        "val": [1, 2, 2]
+        "val": [2, 3, 3]
     }, {
         "id": "knockback",
         "val": 1
@@ -2053,7 +2058,7 @@
         "val": 20
     }],
     "damage": [{
-        "val": [3, 4, 5],
+        "val": [4, 5, 6],
         "type": "explosive"
     }],
     "effect": "This weapon attacks one, two, or three targets in range.",
@@ -2063,13 +2068,13 @@
     "class": "rainmaker",
     "type": "system",
     "action": "quick",
-    "effect": "The Rainmaker chooses 3 free spaces in range 20 and line of sight. These spaces are visible to all characters. The next time any character passes through this space or any of the spaces over it vertically up to 10 spaces high, or starts its turn in one of those spaces, it takes 4/5/6 kinetic damage as a rocket hits them, then this effect ends in that area. It also ends on all targeted spaces at the start of the Rainmaker’s next turn.",
+    "effect": "The Rainmaker chooses 3 free spaces in range 20 and line of sight that are not adjacent to each other. These spaces are visible to all characters. The next time any hostile character passes through this space or any of the spaces over it vertically up to 10 spaces high, or starts its turn in one of those spaces, it takes 5/6/7 kinetic damage as a rocket hits them, then this effect ends in that area. It also ends on all targeted spaces at the start of the Rainmaker’s next turn.",
     "base": true
 }, {
     "name": "Huntsman",
     "class": "rainmaker",
     "type": "trait",
-    "effect": "While firing at a target suffering from the Lock On condition, the rainmaker’s weapons gain the Smart and Seeking tags.",
+    "effect": "While firing at a target suffering from the Lock On condition, the rainmaker’s weapons gain the Smart, Seeking, and AP tags.",
     "base": true
 }, {
     "name": "HADES missile",
@@ -2409,13 +2414,16 @@
     "class": "sentinel",
     "type": "system",
     "action": "full",
-    "effect": "While this system is armed, the next time the Sentinel fires its combat shotgun, it makes two attacks instead of one.",
+    "effect": "The sentinel may arm this module as a full action. After arming the Wrath-lock, the next time the Sentinel fires its combat shotgun, it makes two attacks instead of one.",
     "base": false
 }, {
     "name": "Impaler",
     "class": "sentinel",
     "type": "system",
-    "effect": "The first enemy damaged by an overwatch shot from the Sentinel must pass an hull save with 1 difficulty or immediately stop moving and become immobilized until the end of their next turn.",
+    "tags":[{
+        "id":"1/round"
+    }],
+    "effect": "1/round when the sentinel hits a character with an overwatch attack, its target must pass a hull save or become Immobilized and Jammed until the end of their next turn.",
     "base": false
 }, {
     "name": "Watchful",
@@ -2536,11 +2544,14 @@
         }
     },
     "weapon_range": [{
+        "type": "range",
+        "val": 3
+    },  {
         "type": "threat",
         "val": 3
     }],
     "damage": [{
-        "val": [4],
+        "val": [5],
         "type": "kinetic"
     }],
     "effect": "This weapon can attack twice at tier II and three times at tier III.",
@@ -2562,13 +2573,13 @@
     "name": "Hunt",
     "class": "spectre",
     "type": "trait",
-    "effect": "The Spectre’s melee attacks deal +3 bonus damage and become AP if no characters other than the Spectre are adjacent to its target.",
+    "effect": "The Spectre’s melee attacks deal +5 base damage if no characters other than the Spectre are adjacent to its target.",
     "base": true
 }, {
     "name": "Fortress",
     "class": "spectre",
     "type": "trait",
-    "effect": "Tech attacks are made against the Spectre with +3 difficulty and it makes all system saves with +3 Accuracy",
+    "effect": "Tech attacks are made against the Spectre with +3 difficulty and it makes all systems saves with +3 Accuracy",
     "base": false
 }, {
     "name": "Drain Systems",
@@ -2581,7 +2592,7 @@
             "pertier": true
         }
     },
-    "effect": "The Spectre can only make this attack against an adjacent target. On hit, the target is stunned until any character other than the specter starts its turn adjacent to the target or moves adjacent to the target.",
+    "effect": "The Spectre can only make this attack against an adjacent target. On hit, the target is stunned until any character other than the Spectre starts its turn adjacent to the target or moves adjacent to the target.",
     "base": false
 }, {
     "name": "Step",
@@ -2610,10 +2621,10 @@
         "val": 3
     }],
     "damage": [{
-        "val": [2, 2, 2],
+        "val": [2],
         "type": "kinetic"
     }],
-    "effect": "This weapon can attack twice at tier II and three times at tier III",
+    "effect": "This weapon can attack twice at tier II and three times at tier III.",
     "base": false
 }, {
     "name": "Weakness Analyser",

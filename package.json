@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "deploy": "git checkout live-page || git checkout -b live-page && git merge master --no-commit && git commit --message 'automerge' && npm run build && git add dist && git commit -m 'autodeploy' && git subtree push --prefix dist origin gh-pages && git checkout master"

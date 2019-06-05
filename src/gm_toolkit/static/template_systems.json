@@ -12,7 +12,9 @@
 
         "class": "ultra",
         "type": "trait",
-        "tags": "1/round",
+        "tags": [{
+            "id":"1/round"
+        }],
         "effect": "When the ultra hits with an attack, all targets visible to the ultra take 2/4/6 kinetic, explosive, or energy damage.",
         "base": false
     },
@@ -178,7 +180,9 @@
         "class": "ultra",
         "type": "system",
         "action": "full",
-        "tags": "Ordnance",
+        "tags": [{
+            "id": "ordnance"
+        }],
         "recharge": 6,
         "effect": "Choose a direction, then draw a line 30 spaces long and 2 spaces wide in that direction. Each character inside that area must pass an agility skill save or take 1 structure damage, or be reduced to 1 HP on a successful check. Any objects smaller than size 5 in the area are completely annihilated.",
         "base": false
@@ -292,9 +296,12 @@
 
         "class": "veteran",
         "type": "trait",
-        "tag": "Limited(1)",
+        "tags":[{
+            "id":"limited",
+            "val": 1
+        }],
         "action": "full",
-        "effect": "This mech heals 1/2 HP and ends one condition currently affecting it (impaired, Slowed, immobilized, shut down, jammed)",
+        "effect": "This mech heals 1/2 HP and ends all conditions currently affecting it.",
         "base": false
     },
 
@@ -321,7 +328,9 @@
 
         "class": "veteran",
         "type": "trait",
-        "tags": "1/round",
+        "tags": [{
+            "id":"1/round"
+        }],
         "effect": "When the veteran scores a Critical Hit, the target of its attack must pass an hull save or only be able to draw line of sight to adjacent spaces until the end of its next turn.",
         "base": false
     },
@@ -403,7 +412,9 @@
 
         "class": "veteran",
         "type": "trait",
-        "tags": "1/round",
+        "tags": [{
+            "id":"1/round"
+        }],
         "effect": "The veteran can move or boost as a reaction to any enemy movement or action that it can see.",
         "base": false
     },
@@ -485,7 +496,9 @@
 
         "class": "exotic",
         "type": "trait",
-        "tags": "1/round",
+        "tags": [{
+            "id":"1/round"
+        }],
         "effect": "The NPC can force a re-roll of any 1d20 roll for themselves or any allied or hostile target it can see (but must keep the second result) by causing localized distortions in the flow of time.",
         "base": false
     },
@@ -523,7 +536,10 @@
         "class": "mercenary",
         "type": "trait",
         "action": "quick",
-        "tags": "Limited(1)",
+        "tags": [{
+            "id":"limited",
+            "val":1
+        }],
         "effect": "The Mercenary calls in a favor in the form of an orbital strike or artillery strike, targeting a blast 2 area within range 30 of its position and line of sight. All mechs caught in the area must pass an agility save or take 6/8/12 explosive damage, or half on a successful save.",
         "base": false
     },
@@ -534,7 +550,12 @@
         "class": "mercenary",
         "type": "system",
         "action": "quick",
-        "tags": "Drone,Limited(1)",
+        "tags": [{
+            "id":"drone"
+        }, {
+            "id":"limited",
+            "val":1
+        }],
         "effect": "The Mercenary fires a scout drone to an empty space within its sensor range. The drone has evasion and e-defense 10, 10 hp, and no armor. Within a burst 2 area centered on the drone, no target can turn invisible or hide from the mercenary, and the mercenary can attack targets in the area with +1 accuracy. The mercenary can reposition the drone as a free action at the start of its turn.",
         "base": false
     },
@@ -545,7 +566,10 @@
         "class": "mercenary",
         "type": "trait",
         "action": "reaction",
-        "tags": "Limited(1)",
+        "tags": [{
+            "id":"limited",
+            "val":1
+        }],
         "effect": "When the mercenary is taken below half HP, this system automatically activates. All targets within a burst 2 area around the mercenary must pass an agility save or take 2 kinetic damage and become jammed until the end of their next turns. The mercenary can then move its speed in any direction. This movement doesn't provoke reactions and ignores engagement.",
         "base": false
     },
@@ -565,7 +589,9 @@
         "class": "commander",
         "type": "trait",
         "action": "reaction",
-        "tags": "1/round",
+        "tags":[{
+            "id":"1/round"
+        }],
         "effect": "The commander can make an attack against any character that successfully damaged an ally it can see. This attack deals half damage on hit.",
         "base": false
     },
@@ -587,7 +613,9 @@
         "class": "commander",
         "type": "trait",
         "action": "reaction",
-        "tags": "1/round",
+        "tags":[{
+            "id":"1/round"
+        }],
         "effect": "One ally that a commander can see can make the boost action as a reaction to the commander’s turn starting.",
         "base": false
     },
@@ -644,7 +672,10 @@
         "class": "pirate",
         "type": "system",
         "action": "full",
-        "tags": "Limited(1)",
+        "tags":[{
+            "id":"limited",
+            "val": 1
+        }],
         "effect": "The Pirate chooses a character in range 10 and line of sight. 1d3 miniature drones are attached to the target and begin boring into the mech’s interior. In 1d6+3 rounds, if there are any missiles still attached to the target, they bore inside the cockpit and savage the pilot, reducing the pilot to 0 HP, causing them to make a Down and Out check. A single drone can be removed by making a successful systems or engineering skill check as a quick action (an adjacent ally can also make this check). The drones can also be confused by shutting the affected mech down, which pauses the timer. The pilot in the affected mech is aware of how much time they have before the drones bore through.",
         "base": false
     },
@@ -655,7 +686,10 @@
         "class": "pirate",
         "type": "system",
         "action": "full",
-        "tags": "Limited(1)",
+        "tags":[{
+            "id":"limited",
+            "val": 1
+        }],
         "effect": "An adjacent target makes a hull save. On a failed save, the targeted pilot immediately exits their mech as if they had taken the dismount action (place them adjacent to their mech).",
         "base": false
     },
@@ -720,7 +754,12 @@
 
         "class": "spacer",
         "type": "system",
-        "tags": "Mine, Limited(1)",
+        "tags":[{
+            "id":"mine"
+        },{
+            "id":"limited",
+            "val": 1
+        }],
         "effect": "This self deploying trap can be placed in a vacant space. It counts as a mine and can be scanned to be detected and disabled with a successful systems check. Once any character walks over or adjacent to the trap, it explodes, creating a burst 1 area centered on it. All targets caught inside are automatically covered in thick, fast-drying hull sealant and immobilized. The only way to break out of the sealant is to do enough damage to break it (evasion 5, 5 hp/tier).",
         "base": false
     },
@@ -731,7 +770,12 @@
         "class": "spacer",
         "type": "system",
         "action": "quick",
-        "tags": "Grenade, Limited(1)",
+        "tags":[{
+            "id":"grenade"
+        },{
+            "id":"limited",
+            "val": 1
+        }],
         "effect": "Once thrown to an impact point as a quick action, these grenades explode outwards with a concussive pulse in a blast 1 area around the space where they are targeted. Targets caught in the area must pass an agility check or be knocked back 3 spaces directly away from the impact point. If this causes them to collide with an obstacle or another mech, they are additionally knocked prone.",
         "base": false
     }

@@ -14,24 +14,24 @@ const templates: NPCTemplate[] = [
       {
         name: 'Deadly',
         description:
-          'The Ultra can Critical Hit, dealing an extra +3/5/7 bonus damage on Critical Hits.',
+          'The Ultra can Critical Hit, dealing an extra +1d6 bonus damage on Critical Hits.',
       },
     ],
     traits: [
       {
         name: 'Juggernaut',
         effect:
-          'At the end of its turn, the Ultra ends one condition affecting it.',
+          'At the start of its turn, the Ultra ends one condition affecting it.',
       },
       {
         name: 'Legendary',
         effect:
-          'The Ultra can enter the CRITICAL state and is not destroyed when reaching 0 HP.',
+          'The Ultra rolls all overheating and structure damage rolls twice and chooses either result.',
       },
       {
         name: 'Reflex',
         effect:
-          'The Ultra has unlimited overwatch reactions (it can still only many 1 reaction per turn).',
+          'The Ultra has unlimited overwatch reactions (it can still only take 1 reaction per turn).',
       },
     ],
     statTransform(stats) {
@@ -238,27 +238,6 @@ const templates: NPCTemplate[] = [
     ],
     incompatibleTemplates: [],
   },
-  {
-    name: 'Outworlder',
-    description:
-      'Outworlder-type enemies are found in the distal/proximal areas of the galaxy. They are, typically, more rugged and independent than other enemy types, able to operate on a shoestring -- or without one! -- for extended periods of time.',
-    features: [
-      {
-        name: 'Resourceful',
-        description:
-          'The Outworlder gains +1 use to all (limited) use weapons, actions, and deployables (including the repair action below - not yet included in the profile).',
-      },
-    ],
-    traits: [
-      {
-        name: 'Repair',
-        effect:
-          'Full Action, Limited(1). This mech heals 1/2 HP and ends one condition currently affecting it (impaired, Slowed, immobilized, shut down, jammed).',
-      },
-    ],
-    incompatibleTemplates: [],
-  },
-
   {
     name: 'vehicle',
     description:

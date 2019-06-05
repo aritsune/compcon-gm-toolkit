@@ -295,10 +295,10 @@
 
     {
         "name": "bastion",
-        "role": "tank",
+        "role": "defender",
         "info": {
             "flavor": "Bastion doctrine chassis trade the pure defensive edge of an Aegis doctrine chassis for one that allows more mobility. Blending area-denial offensive capability with hardened defense systems and advanced communication suites, Bastion doctrine chassis make for strong squadron commanders.",
-            "tactics": "The Bastion is a hardy tank that is able to protect itself and adjacent allies very well with its bulk and size. Use its shieldwall trait to protect from enemy back-liners. Knock back and forced movement effects are very effective against the Bastion or its ward since they break many of its abilities."
+            "tactics": "The Bastion is a hardy defender that is able to protect itself and adjacent allies very well with its bulk and size. Use its shieldwall trait to protect from enemy back-liners. Knock back and forced movement effects are very effective against the Bastion or its ward since they break many of its abilities."
         },
         "stats": [{
             "hp": 10,
@@ -345,10 +345,10 @@
 
     {
         "name": "demolisher",
-        "role": "tank",
+        "role": "defender",
         "info": {
             "flavor": "The prolonged siege of Jadigmora City saw the development of the DEMOLISHER patten. Based off the long-operational berserker doctrine, DEMOLISHER tuned the chaotic heat flow to a more sustainable, if limited system, increasing a chassis’ heavy-lift capacity to allow for supermassive kinetic weapons to be used effectively in combat. Combined with the increased pilot shielding and system hardening made necessary by the heat tuning, pilots soon discovered more aggressive applications for concussion-wave ordinance.",
-            "tactics": "The Demolisher is a slow, resilient tank able to dish out high damage and stuns with impunity up close. Use its size and power in melee combat to force enemy characters to ‘kite’ it (avoid it by moving away) rather than fight it up close, and use its Entrench ability to shrug off heavy hits."
+            "tactics": "The Demolisher is a slow, resilient defender able to dish out high damage and stuns with impunity up close. Use its size and power in melee combat to force enemy characters to ‘kite’ it (avoid it by moving away) rather than fight it up close, and use its Entrench ability to shrug off heavy hits."
         },
         "stats": [{
             "hp": 15,
@@ -395,10 +395,10 @@
 
     {
         "name": "goliath",
-        "role": "tank",
+        "role": "defender",
         "info": {
             "flavor": "Park Armored Systems’ Dangun pattern chassis is well-known across the Sierra Madre line for its toughness, trade ability, and reliable all-theater performance. The Dangun base pattern is a chassis to build strike forces around -- capable of mounting powerful magtech, it is a tough design to counter in kinetic combat. With a number of small fleet contracts in their portfolio, Park Armored Systems is a chassis designer worth keeping an eye on: indeed, Harrison Armory has taken particular notice, and rumblings in the omninet speak of a possible partnership in the near future.",
-            "tactics": "The Goliath is a relatively mobile and tough tank that can force enemies to get closer to it. Use it’s Crush Targeting ability to force dangerous characters to focus fire on it. Since all it needs is line of sight, it can pick even mobile or hard-to-hit characters. The Goliath’s prodigious size can also be used for cover by multiple allies."
+            "tactics": "The Goliath is a relatively mobile and tough defender that can force enemies to get closer to it. Use it’s Crush Targeting ability to force dangerous characters to focus fire on it. Since all it needs is line of sight, it can pick even mobile or hard-to-hit characters. The Goliath’s prodigious size can also be used for cover by multiple allies."
         },
         "stats": [{
             "hp": 25,
@@ -445,7 +445,7 @@
 
     {
         "name": "pyro",
-        "role": "tank",
+        "role": "defender",
         "info": {
             "flavor": "A combat doctrine adopted following the Hercynian Crisis, the Pyro chassis-pattern is reviled across the galaxy as a terror instrument, though some states and organizations still choose to integrate them into their armies. Pyro doctrine chassis are heavily armored and insulated, built to manage incredible heat tax while projecting volatile mixes of irrepressible flame towards their enemies. Pyro chassis are sent in to root out entrenched defenders, defoliate areas rich in flora, and cause terror.",
             "tactics": "The Pyro is a slow, resilient NPC that can be especially scary against characters already suffering from Burn. Players should keep their distance from it, as its explosive vent ability can be used to dump an enormous amount of heat on adjacent characters. Position the pyro so it can use its FIREBREAK shield to protect allied characters from incoming fire. Flanking around the shield reduces its effectiveness to zero, and stuns and knock back will deactivate it."
@@ -495,10 +495,10 @@
 
     {
         "name": "sentinel",
-        "role": "tank",
+        "role": "defender",
         "info": {
             "flavor": "Sentinel doctrine chassis fill guard roles. Typically found in the retinues of commanders or posted in defense of batteries, Sentinel chassis employ a suite of technology that ensures their charges stay alive and operational, even if it means the Sentinel’s death.",
-            "tactics": "The Sentinel is a fast tank that focuses on protecting its allies through overwatch. Relatively short range, it relies on good positioning to make the most of its kit, and isn’t as resilient as other tanks with its low armor."
+            "tactics": "The Sentinel is a fast defender that focuses on protecting its allies through overwatch. Relatively short range, it relies on good positioning to make the most of its kit, and isn’t as resilient as other defenders with its low armor."
         },
         "stats": [{
             "hp": 20,
@@ -548,7 +548,7 @@
         "role": "controller",
         "info": {
             "flavor": "From Ursa Major’s GATEKEEPER line of chassis, the Key-II is a powerhouse capable of punching well above its weight. What it lacks in armor, it makes up for in targeting and superpositional maneuvering systems.",
-            "tactics": "The Archer controls though ‘choice punishment’ - giving characters the ability to attack in return for letting the Archer attack them. Use it to lock down mobile or hard hitting players and cover for more vulnerable allies. The archer needs to get somewhat close to its target to be at full effectiveness and is not that durable itself."
+            "tactics": "The Archer controls though ‘choice punishment’ - giving characters a choice between not taking certain actions or letting the Archer attack them. Use it to lock down mobile or hard hitting players and cover for more vulnerable allies. The archer needs to get somewhat close to its target to be at full effectiveness and is not that durable itself."
         },
         "stats": [{
             "hp": 16,
@@ -598,7 +598,7 @@
         "role": "controller",
         "info": {
             "flavor": "Using battlefield printing and terraforming technology, Veld Systems’ Keeper Pattern 5 is a common guard chassis, converted from frames originally designed for earth moving in the early stages of colonial development.",
-            "tactics": "The Barricade is at its best when locking down fast moving targets. It can use its mobile printer to create hard cover for its allies to use, or create a blocker to prevent melee or fastmoving mechs from moving through an area."
+            "tactics": "The Barricade is at its best when locking down fast moving targets. It can use its mobile printer to create hard cover for its allies to use, or create a blocker to prevent melee or fast-moving mechs from moving through an area."
         },
         "stats": [{
             "hp": 12,
@@ -848,7 +848,7 @@
         "role": "support",
         "info": {
             "flavor": "Aegis-style mechs are squat, defend-and-suppress chassis built to hold ground, support their allies, and suppress enemies. Higher-tier Aegis mech pilots have access to hardlight and blackwall defensive measures - technology that makes bulwarks out of even the smallest barricade.",
-            "tactics": "The Aegis is a tougher, defensive support. Use its defense net to place it in a location where it will cover the most allies, since it is hard for it to redeploy. It’s EM shielding trait can be used to easily protect its allies from player suppression tools such as the Guardian trait or tech attacks. Stunning or moving the Aegis, or simple getting inside its shield, can nullify its effectiveness."
+            "tactics": "The Aegis is a tougher, defensive support. Use its defense net to place it in a location where it will cover the most allies, since it is hard for it to redeploy. It’s regenerative shielding trait can be used to easily protect its allies from player suppression tools such as the Guardian trait or tech attacks. Stunning or moving the Aegis, or simple getting inside its shield, can nullify its effectiveness."
         },
         "stats": [{
             "hp": 14,
@@ -898,7 +898,7 @@
         "role": "support",
         "info": {
             "flavor": "Priest-class chassis are usually piloted by technozealots or those dedicated heavily to harnessing the potent powers of a fully kitted out mech processor. Most of their frames are modified to be able to link and intermesh systems with another mech in legionspace, in effect creating a digital super-construct. Long term or powerful priest pilots can even perceive and share the sensory input of other pilots they are linked to, which has been linked to altered or degraded mental states and personality shifts.",
-            "tactics": "The Priest is a high powered support that functions best when paired with another character it can empower with its Investiture action. Use its Dispersal Shield to protect vulnerable targets, then Investiture to empower a striker or tank. Investiture can be ‘turned off’ by moving the priest or its partner out of range 5 with each other, and both characters become vulnerable to conditions."
+            "tactics": "The Priest is a high powered support that functions best when paired with another character it can empower with its Investiture action. Use its Dispersal Shield to protect vulnerable targets, then Investiture to empower a striker or defender. Investiture can be ‘turned off’ by moving the priest or its partner out of range 5 with each other, and both characters become vulnerable to conditions."
         },
         "stats": [{
             "hp": 10,
@@ -1098,7 +1098,7 @@
         "role": "artillery",
         "info": {
             "flavor": "The Bombard doctrine calls for unending salvos of punishing artillery bombardments. Chassis tuned to this style of combat are found miles behind the line in fortified positions, or otherwise removed from combat: one common strategy for prolonged area-denial bombardment is to place a battery of bombard chassis on a world’s local moon(s). From that movable satellite, the battery can rain shells down upon the world below, well removed from the dangers of combat.",
-            "tactics": "The Bombard punishes characters that group up or ‘death ball’ to take advantage of adjacency bonuses and has very high range. It is relatively fragile up close, but resilient from far away, so place it far back to maximize effectiveness. It’s Earthshaker shells can be used to block movement or provide cover for allies, but affect the Bombard’s allies as well."
+            "tactics": "The Bombard punishes characters that group up or ‘death ball’ to take advantage of adjacency bonuses and has very high range. It is relatively fragile up close, but resilient from far away, so place it far back to maximize effectiveness. Its Earthshaker shells can be used to block movement or provide cover for allies, but affect the Bombard’s allies as well."
         },
         "stats": [{
             "hp": 10,
