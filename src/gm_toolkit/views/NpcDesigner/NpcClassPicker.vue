@@ -25,9 +25,14 @@
                             @click="selectClass(cls)"
                         >
                             <div>{{ cls.name }}</div>
-                            <v-btn icon class="ma-0" @click.stop="getInfo(cls)">
-                                <v-icon :color="`role--${role}`">
-                                    mdi-help-circle-outline
+                            <v-btn
+                                icon
+                                small
+                                class="ma-0 ml-1"
+                                @click.stop="getInfo(cls)"
+                            >
+                                <v-icon small :color="`role--${role}`">
+                                    mdi-help
                                 </v-icon>
                             </v-btn>
                         </v-btn>

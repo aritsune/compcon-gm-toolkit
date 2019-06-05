@@ -1,6 +1,6 @@
 export default {
     'role--striker': '#bd3f39',
-    'role--tank': '#d67e08',
+    'role--defender': '#d67e08',
     'role--controller': '#398ad6',
     'role--support': '#6aa84f',
     'role--artillery': '#a64d79',
