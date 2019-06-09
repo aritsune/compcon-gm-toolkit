@@ -42,7 +42,7 @@ export default Vue.extend({
         }
     },
     computed: {
-        roleColor() {
+        roleColor(): string {
             return `role--${this.npc.npc.npcClass.role}`
         }
     }

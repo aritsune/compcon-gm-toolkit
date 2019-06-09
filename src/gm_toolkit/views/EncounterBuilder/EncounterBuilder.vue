@@ -91,12 +91,12 @@ export default Vue.extend({
     },
     data: function() {
         return {
-            encounter: _.clone(this.preEnc),
+            encounter: _.clone(this.preEnc) as EncounterBase,
         }
     },
     computed: {
         ...mapState(['npcDesigner/npcs']),
-        encounterNPCs() {
+        encounterNPCs(): NPC[] {
             return this.encounter.npcs.map(npc => npc.npc)
         }
     },
@@ -127,7 +127,7 @@ export default Vue.extend({
 
 <style>
 .pickCard {
-    border-color: rgba(0,0,0,0.4) !important;
+    border-color: rgba(0, 0, 0, 0.4) !important;
     background-color: transparent !important;
     height: 100%;
 }

@@ -48,7 +48,6 @@ import Vue from 'vue';
 import NPCClass from '../../logic/interfaces/NPCClass';
 import { NPCSystem } from '../../logic/interfaces/NPCSystem';
 import SystemCard from '../../components/NpcDesigner/SystemButton.vue'
-import { type } from 'os';
 
 const allSystems: NPCSystem.Any[] = require('../../static/systems.json');
 
@@ -57,16 +56,16 @@ export default Vue.extend({
     components: { SystemCard },
     props: { cls: { type: Object, required: true } },
     computed: { 
-        color() {
+        color(): string {
             if (!this.cls) return 'primary'
             else return `role--${this.cls.role}`
         },
 
-        baseSystems() {
+        baseSystems(): NPCSystem.Any[] {
             return allSystems.filter(s => s.class === this.cls.name && s.base)
         },
 
-        optionalSystems() {
+        optionalSystems(): NPCSystem.Any[] {
             return allSystems.filter(s => s.class === this.cls.name && !s.base)
         },
     }

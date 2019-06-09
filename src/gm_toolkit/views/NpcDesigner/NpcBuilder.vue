@@ -397,7 +397,7 @@ export default Vue.extend({
             })
         },
 
-        submitName() {
+        submitName(): void {
             if (this.newName) {
                 (this.npc as NPC)._name = this.newName;
             }
@@ -407,7 +407,7 @@ export default Vue.extend({
     watch: {
         npc: {
             handler: function onEditNPC(val: NPC) {
-                this.$store.commit('npcDesigner/edit', val)
+                (this as any).$store.commit('npcDesigner/edit', val)
             },
             deep: true,
         }

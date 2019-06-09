@@ -42,7 +42,6 @@ import NPC from '../../logic/NPC';
 
 import SystemDialogCard from '../SystemDialogCard.vue'
 
-
 export default Vue.extend({
     name: 'system-button',
     components: { SystemDialogCard },
@@ -67,6 +66,8 @@ export default Vue.extend({
                 case 'weapon':
                     return 'mdi-sword-cross'
                     break;
+                default:
+                    return 'mdi-info'
             }
         }
     }
@@ -86,11 +87,10 @@ export default Vue.extend({
     box-shadow: none !important;
 }
 .v-chip.system-chip:focus::after {
-   display: none;
+    display: none;
 }
 
 .v-chip .rightbtn:hover {
     opacity: 0.7 !important;
 }
-
 </style>
