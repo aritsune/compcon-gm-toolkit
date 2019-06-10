@@ -95,7 +95,7 @@ export default Vue.extend({
         }
     },
     computed: {
-        ...mapState(['npcDesigner/npcs']),
+        ...mapState('npcDesigner', ['npcs']),
         encounterNPCs(): NPC[] {
             return this.encounter.npcs.map(npc => npc.npc)
         }
