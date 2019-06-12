@@ -3,7 +3,7 @@ import NPC from './NPC';
 
 export type EncounterBaseNPC = {
   id: string;
-  npc: NPC;
+  npc: NPC | undefined;
   name: string;
   count: number;
 };
@@ -19,22 +19,21 @@ export default class EncounterBase {
   }
 
   getDifficulty(playerCount: number): number {
-
     let diffCoefficient = 0;
     for (const _npc of this.npcs) {
       const { npc } = _npc;
       if (npc.hasTemplate('ultra')) {
-        diffCoefficient += 4/playerCount;
+        diffCoefficient += 4 / playerCount;
       } else if (npc.hasTemplate('elite')) {
-        diffCoefficient += 1/playerCount;
+        diffCoefficient += 1 / playerCount;
       } else if (npc.hasTemplate('grunt')) {
-        diffCoefficient += 0.25/playerCount;
+        diffCoefficient += 0.25 / playerCount;
       } else {
-        diffCoefficient += 0.8/playerCount;
+        diffCoefficient += 0.8 / playerCount;
       }
     }
 
-    return diffCoefficient
+    return diffCoefficient;
   }
 
   serialize() {
@@ -42,11 +41,13 @@ export default class EncounterBase {
       id: this.id,
       name: this.name,
       notes: this.notes,
-      npcs: this.npcs.map(npc => ({
-        name: npc.name,
-        count: npc.count,
-        npcID: npc.npc.id,
-      })),
+      npcs: this.npcs
+        .filter(n => n.npc)
+        .map(npc => ({
+          name: npc.name,
+          count: npc.count,
+          npcID: npc.npc.id,
+        })),
     };
   }
 }

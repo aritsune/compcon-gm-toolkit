@@ -75,7 +75,7 @@ export default Vue.extend({
     name: 'system-dialog-card',
     props: { 
         system: { type: Object, required: true }, 
-        npc: { type: NPC, required: true }, 
+        npc: { type: NPC }, 
     },
     computed: {
         icon(): string {

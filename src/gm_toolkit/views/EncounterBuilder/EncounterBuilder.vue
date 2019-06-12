@@ -97,12 +97,12 @@ export default Vue.extend({
     computed: {
         ...mapState('npcDesigner', ['npcs']),
         encounterNPCs(): NPC[] {
-            return this.encounter.npcs.map(npc => npc.npc)
+            return _.compact(this.encounter.npcs.map(npc => npc.npc))
         }
     },
     methods: {
         addNPC(npc: NPC) {
-            const count = this.encounter.npcs.filter(n => n.npc.id === npc.id).length + 1;
+            const count = this.encounter.npcs.filter(n => n.npc && n.npc.id === npc.id).length + 1;
             this.encounter.npcs.push({
                 id: newId(),
                 name: `${npc.name} #${count}`,
