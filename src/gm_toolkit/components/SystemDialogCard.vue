@@ -89,6 +89,8 @@ export default Vue.extend({
                 case 'weapon':
                     return 'mdi-sword-cross'
                     break;
+                default:
+                    return '';
             }
         }
     },
