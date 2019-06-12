@@ -97,6 +97,6 @@ export default Vue.extend({
         deletingID: null as string | null,
     }),
     computed: mapState('encounterRunner', ['activeEncounters']),
-    methods: mapMutations('encounterRunner', { 'delete': 'deleteEncounter' }),
+    methods: mapMutations('encounterRunner', { 'deleteEncounter': 'delete' }),
 })
 </script>
