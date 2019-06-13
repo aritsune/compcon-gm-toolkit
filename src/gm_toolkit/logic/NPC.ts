@@ -156,7 +156,7 @@ export default class NPC {
   }
 
   hasTemplate(templateName: string) {
-    return this._templates.includes(templateName)
+    return this._templates.includes(templateName);
   }
 
   get features() {
@@ -185,6 +185,8 @@ export default class NPC {
 
     let statCaps: { [key: string]: number } = {
       armor: 4,
+      evade: 20,
+      edef: 20,
     };
 
     for (const template of this.templates) {
