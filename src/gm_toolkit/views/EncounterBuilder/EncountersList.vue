@@ -20,7 +20,8 @@
                 :key="encounter.id"
                 xs12
                 sm6
-                md2
+                md3
+                xl2
             >
                 <File
                     :name="encounter.name"
