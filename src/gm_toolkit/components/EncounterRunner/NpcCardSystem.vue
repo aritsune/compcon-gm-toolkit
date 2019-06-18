@@ -37,6 +37,7 @@
                     <div
                         style="margin: 0 !important"
                         class="font-weight-bold mr-2 layout column justify-center"
+                        v-if="system.damage"
                     >
                         <v-flex
                             py-0
