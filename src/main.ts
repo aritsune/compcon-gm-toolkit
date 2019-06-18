@@ -1,11 +1,10 @@
 import Vue from 'vue';
 import App from './gm_toolkit/Main.vue';
 import '@mdi/font/css/materialdesignicons.css';
-import './gm_toolkit/styles.css'
 
 import Vuetify from 'vuetify/lib';
 import 'vuetify/dist/vuetify.min.css';
-import gmToolkitTheme from '@/gm_toolkit/vuetify_theme'
+import gmToolkitTheme from '@/gm_toolkit/vuetify_theme';
 
 Vue.config.productionTip = false;
 
@@ -17,9 +16,11 @@ Vue.use(Vuetify, {
   theme: {
     primary: '#37474f',
     secondary: '#2979ff',
-    ...gmToolkitTheme
+    ...gmToolkitTheme,
   },
 });
+
+import './gm_toolkit/styles.css';
 
 new Vue({
   router,
