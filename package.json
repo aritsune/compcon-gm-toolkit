@@ -13,7 +13,7 @@
     "bootstrap-vue": "^2.0.0-rc.13",
     "file-saver": "^2.0.1",
     "lancer-data": "^1.8.54",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "objects-to-csv": "^1.2.1",
     "vue": "^2.6.6",
     "vue-class-component": "^7.1.0",
